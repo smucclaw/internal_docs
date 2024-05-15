@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "internal-docs"
+version = "0.1.0"
+description = "Internal docs for L4 development"
+authors = ["SMUCCLAW"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+mkdocs-material = "^9.5.22"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
