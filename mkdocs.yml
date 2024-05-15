@@ -1,1 +1,6 @@
-site_name: My Docs
+site_name: Internal Docs for L4 Development
+site_url: https://smucclaw.github.io/internal_docs/
+nav:
+  - Home: index.md
+theme:
+  name: material
