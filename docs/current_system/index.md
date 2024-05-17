@@ -2,11 +2,14 @@
 
 TODO 
 
-## The two transpiler pipelines / systems
+## The two (currently-most-functional) transpiler pipelines / systems that don't involve visualization
+
+There are other transpilers; these are just the ones that are currently the most functional.
+
 
 TODO
 
-### The Logical English transpiler and web app generation
+### The Logical English transpiler and web form generation (via JSON Schema)
 
 TODO
 
