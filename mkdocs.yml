@@ -7,7 +7,7 @@ nav:
       - current_system/index.md
       - Notes on Codebase:
           - current_system/codebase/index.md
-          - A precursor -- Baby L4: current_system/codebase/baby_L4.md
+          - Baby L4: current_system/codebase/baby_L4.md
           - The Rule AST: current_system/codebase/rule_ast.md
           - DevOps: current_system/codebase/devops.md
   - For the Future:
