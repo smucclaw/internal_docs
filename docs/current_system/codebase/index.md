@@ -34,3 +34,10 @@ TODO
   npm run docs
   ```
 * [Specification in Google Drive](https://drive.google.com/drive/folders/1y7TssfA925VuyuAt8VBaNxlRTo8KyqlS?usp=sharing)
+
+### Petri Net stuff
+
+According to Meng (16 May 2024):
+
+* Context: This was meant to be a visualization for the state transition parts / deontics-handling parts of L4.
+* Status: Although we still want to offer visualizations for the state transition-y parts in the next iteration of L4,  we don't need to stick to Petri Nets. We are free to move to something else, if there are better alternatives.
