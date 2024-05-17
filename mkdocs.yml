@@ -2,5 +2,21 @@ site_name: Internal Docs for L4 Development
 site_url: https://smucclaw.github.io/internal_docs/
 nav:
   - Home: index.md
+  - Historical Context (high-level): historical_context.md # TODO: add link to original grant proposal here
+  - Current L4 System:
+      - current_system/index.md
+      - Notes on Codebase: current_system/codebase.md
+  - For the Future:
+      - Wishlist: future_aspirations.md
+      - Misc Notes or Ideas: misc.md
+  - Further Reading: further_reading.md
 theme:
   name: material
+  features:
+    - navigation.indexes
+    - navigation.top
+    - navigation.expand
+    - navigation.path
+    - toc.follow
+    - toc.integrate
+    - navigation.instant
