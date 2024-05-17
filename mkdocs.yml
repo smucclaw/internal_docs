@@ -2,10 +2,12 @@ site_name: Internal Docs for L4 Development
 site_url: https://smucclaw.github.io/internal_docs/
 nav:
   - Home: index.md
-  - Historical Context (high-level): historical_context.md # TODO: add link to original grant proposal here
-  - Current L4 System:
+  - Historical Context (high-level): historical_context.md
+  - The L4 System:
       - current_system/index.md
-      - Notes on Codebase: current_system/codebase.md
+      - Notes on Codebase:
+          - current_system/codebase/index.md
+          - The Rule AST: current_system/codebase/rule-ast.md
   - For the Future:
       - Wishlist: future_aspirations.md
       - Misc Notes or Ideas: misc.md
@@ -17,6 +19,7 @@ theme:
     - navigation.top
     - navigation.expand
     - navigation.path
+    # - navigation.prune
+    - navigation.instant
     - toc.follow
     - toc.integrate
-    - navigation.instant
