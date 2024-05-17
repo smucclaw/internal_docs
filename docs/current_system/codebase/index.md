@@ -5,7 +5,7 @@
 
 ### AST
 
-* [The `Rule` data structure](./rule-ast.md)
+* [The `Rule` data structure](./rule_ast.md)
 
 ### Meng's Analyzer / 'Interpreter'
 
