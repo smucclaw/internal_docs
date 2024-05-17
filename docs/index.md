@@ -1,17 +1,19 @@
-# Welcome to MkDocs
+# Welcome!
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+It's still in a pretty rough state, but hopefully it's enough to be helpful.
 
-## Commands
+## How to read this
 
-* `mkdocs new [dir-name]` - Create a new project.
+Start with the [Historical Context](./historical_context.md), which links to the original grant proposal. (If you don't have access to our Google Drive, ask one of us for the proposal, or ask Meng for access to it).
+
+Then read [this overview of the current L4 system](./current_system/index.md). From there, it should be clear what to look at to get more information about the specific components of the system.
+
+## On contributing
+
+If you are writing something that involves explaining things, it'd probably be a good idea to get someone to at least skim it (i.e., 'code' review).
+
+## MkDocs Commands, just in case
+
 * `mkdocs serve` - Start the live-reloading docs server.
 * `mkdocs build` - Build the documentation site.
 * `mkdocs -h` - Print help message and exit.
-
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
