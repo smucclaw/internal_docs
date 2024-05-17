@@ -2,12 +2,14 @@ site_name: Internal Docs for L4 Development
 site_url: https://smucclaw.github.io/internal_docs/
 nav:
   - Home: index.md
-  - Historical Context (high-level): historical_context.md
+  - Historical Context: historical_context.md
   - The L4 System:
       - current_system/index.md
       - Notes on Codebase:
           - current_system/codebase/index.md
+          - A precursor -- Baby L4: current_system/codebase/babyL4.md
           - The Rule AST: current_system/codebase/rule-ast.md
+          - DevOps: current_system/codebase/devops.md
   - For the Future:
       - Wishlist: future_aspirations.md
       - Misc Notes or Ideas: misc.md
