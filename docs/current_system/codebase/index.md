@@ -21,14 +21,17 @@ TODO
 
 ## [The 'Explainable' codebase](https://github.com/smucclaw/dsl/tree/main/lib/haskell/explainable)
 
-[TODO]
+The Explainable codebase includes the following components.
+
+- [MathLang](./mathlang.md): a DSL for arithmetic expressions and predicates
+- [Explainable](./explainable.md): a monad for evaluating MathLang expressions and providing explanations for the (intermediate and final) results
 
 ## Visualizations
 
 ### [Ladder Diagram](https://github.com/smucclaw/ladder-diagram)
 
 * [The main Ladder Diagram repo](https://github.com/smucclaw/ladder-diagram)
-  * There are also docs available for this, via 
+  * There are also docs available for this, via
   ```
   npm install jsdoc -g
   npm run docs
