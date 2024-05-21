@@ -1,3 +1,7 @@
+# Timeline
+
+We're aiming to get most of the substantive material up by June 1.
+
 # How to install / set up locally
 
 1. Install `poetry`,  the dependency manager we're using, [by following the instructions here](https://python-poetry.org/docs/).
