@@ -21,9 +21,9 @@ graph TB;
 
 	C --"runs"--> C1["the Purescript and Vue codebase\n(2021/2022)"];
 	C1--"imports"-->D[["LS/XPile/Purescript.hs"]];
-    D--"transpiles to"-->E[("workdir/uuid/purs/LATEST.purs\n(2023)")];
+    D--"transpiles to"-->E[("workdir/uuid/purs/LATEST.purs")];
 
-    C --"runs"--> G0["the JSON Schema transpiler"];
+    C --"runs"--> G0["the JSON Schema transpiler\n(2023)"];
 	G0--"imports"-->G1[["LS/XPile/ExportTypes.hs"]];
 	G1--"transpiles to"-->G2[("workdir/uuid/jsonTp/LATEST.json")];
 ```
