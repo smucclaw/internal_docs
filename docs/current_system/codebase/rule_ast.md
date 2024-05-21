@@ -1,4 +1,4 @@
-# AST for rules
+# AST (or CST?) for rules
 
 ## Rule
 

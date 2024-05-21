@@ -3,13 +3,14 @@
 
 ## [The Natural L4 codebase](https://github.com/smucclaw/dsl/tree/main/lib/haskell/natural4)
 
-### AST
+### AST / CST
 
 * [The `Rule` data structure](./rule_ast.md)
 
 ### Meng's Analyzer / 'Interpreter'
 
-TODO
+[TODO-Meng]
+
 
 ### Transpilers
 
