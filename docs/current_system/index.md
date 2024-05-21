@@ -8,9 +8,29 @@ We'll systematically discuss each of these transpilers and their statuses when w
 
 ## The (currently-most-functional) transpiler pipelines / components that don't involve visualization
 
-### Web form generation (via the JSON Schema transpiler)
+### Web form generation
 
-One useful thing you can do with L4 is to scaffold a web form app from an L4 specification. 
+One useful thing you can do with L4 is to scaffold a web form app from an L4 specification.
+
+There have been two generations of this app builder.
+
+```mermaid
+graph TB;
+    A["Google Sheets"] --> B["Apps Script Sanic Hello.py"];
+    B-->C["natural4-exe"];
+    C-->D["workdir/uuid/"];
+	D-->E[["LS/XPile/Purescript.hs"]];
+    E-->F[(".../purs/LATEST.purs")];
+```
+
+
+#### via the Purescript and Vue codebase
+
+The first generation built a Vue app from an encoding of the Personal Data Protection Act.
+
+
+
+#### (via the JSON Schema transpiler)
 
 [The relevant docs](https://github.com/smucclaw/documentation/blob/main/docs/webform.rst) explain how the web form generation works in some detail. [The JSON schema transpiler docs](https://github.com/smucclaw/documentation/blob/main/docs/transpilers-json-schema.rst) are also relevant.
 
