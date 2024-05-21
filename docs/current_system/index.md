@@ -16,7 +16,7 @@ There have been two generations of this app builder.
 
 ```mermaid
 graph TB;
-    A["Google Sheets tab"] -- "L4/Refresh" --> B[["Apps Script Sanic Hello.py]]";
+    A["Google Sheets tab"] -- "L4/Refresh" --> B[["Apps Script Sanic Hello.py"]];
 	B -- calls -->C[["natural4-exe (app/Main.hs)"]];
 
 	C --> C1["via the Purescript and Vue codebase"];
