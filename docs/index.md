@@ -8,6 +8,8 @@ Start with the [Historical Context](./historical_context.md), which links to the
 
 Then read [this overview of the current L4 system](./current_system/index.md). From there, it should be clear what to look at to get more information about the specific components of the system.
 
+There's also a more detailed, but currently still WIP, discussion of the codebase [in the Codebase section](./current_system/codebase/index.md).
+
 ## On contributing
 
 If you are writing something that involves explaining things, it'd probably be a good idea to get someone to at least skim it (i.e., 'code' review).
