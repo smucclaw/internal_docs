@@ -45,17 +45,19 @@ This module is not really an interpreter. It should have been called an Analyzer
 
 
 ```mermaid
+
 graph TB;
     A1["Google Sheets tab\n(via API)"] -- "L4/Refresh" --> C;
     A2["command-line invocation\n(perhaps involving fswatch)"] -- calls --> C;
     subgraph C ["natural4-exe (app/Main.hs)"]
     classDef nl4exe fill:#f9f,stroke:#333,stroke-width:2px;
 
-	Parser --> Interpreter;
-	class Parser,Interpreter nl4exe
+	P["src/LS/\nParser.hs"] --> I["src/LS/\nInterpreter.hs"];
+	class P,I nl4exe
+
     end
 	
-    C --"runs"--> D["various transpilers under LS/XPile/"];
+    C --"runs"--> D["various transpilers under src/LS/XPile/"];
     D --"output to"-->E[("workdir/uuid/\nvarious LATEST files")];
 ```
 
@@ -163,6 +165,10 @@ graph TB;
     C --"runs"--> H0["the Prolog transpiler"];
     H0--"imports"-->H1[["LS/XPile/Prolog.hs"]];
     H1--"transpiles to"-->H2[("workdir/uuid/\njsonTp/LATEST.json")];
+
+    C --"runs"--> I0["other transpiler"];
+    I0--"imports"-->I1[["LS/XPile/OtherTranspiler.hs"]];
+    I1--"transpiles to"-->I2[("workdir/uuid/\nTranspilerDir/LATEST")];
 ```
 
 `Main.hs` runs a whole zoo of transpilers:

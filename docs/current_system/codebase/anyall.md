@@ -17,4 +17,4 @@ The original SVG ladder diagrams that show up in the sidebar are drawn by `SVGLa
 Then there's another family of diagrams, used in the web-app
 interview. There, the clickable ladder diagrams that show up at the
 bottom of the page are drawn by the `ladder-diagram` repo described
-below.
+in [visualizations](./visualizations.md).

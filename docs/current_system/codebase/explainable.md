@@ -33,14 +33,18 @@ That embedded DSL should give you some sense for what Meng has in mind with his 
 The Explainable codebase includes the following components.
 
 - [MathLang](./mathlang.md): a DSL for arithmetic expressions and predicates
-- [Explainable](./explainable.md): a monad for evaluating MathLang expressions and providing explanations for the (intermediate and final) results
+- Explainable: a monad for evaluating MathLang expressions and providing explanations for the (intermediate and final) results
 
 ## Use
 
 In 2023, the "business logic" of the use case was independently encoded in Haskell and then pretty-printed to Typescript for evaluation.
 
 ``` mermaid
+
 graph TB;
+
+    classDef tsruntime fill:#9ff,stroke:#333;
+
     A1["ToMathLang.hs\n(usecases/sect10-haskell/src/)"]
 
     A1 -- "imports" --> B;
@@ -63,6 +67,8 @@ graph TB;
     C -- "imported by" -->G["crunch.ts\n(sect10-typescript/src/crunch.ts)"]
 
     G -- "outputs to" -->H["sect10-typescript/\ntests/\ndot/"]
+
+    class C,G,H,D tsruntime
 ```
 
 All the above is orchestrated by a `Makefile` under `sect10-typescript`.
@@ -90,9 +96,13 @@ graph TB;
 
     D--"transpiles to"-->E[("workdir/uuid/\nmathlangGen\nmathlangTS")];
     class C1,D,E highlight;
+
+    classDef tsruntime fill:#9ff,stroke:#333;
+
     E--"hopefully somehow\nbackward-compatible with"-->F["Explainable/MathLang.hs"];
 
     F --"which takes it the rest of the way to"-->G["the Typescript runtime"]
+	class F,G tsruntime
 ```
 
 
