@@ -9,11 +9,59 @@
 
 ### The Natural L4 parser
 
-[TODO-Meng --- but if there's a lot, you might want ot make a separate page and link to it]
+The first-generation parser was based on BNFC: see
+- https://github.com/smucclaw/baby-l4/blob/main/l4.bnfc
+- https://bnfc.digitalgrammars.com/
+
+This work was done around 2020, 2021. It parsed text-file input.
+
+The second-generation parser for the spreadsheet syntax was based on Megaparsec: see
+- https://github.com/smucclaw/dsl/blob/main/lib/haskell/natural4/src/LS/
+
+The monadic parser is slow. Profiling it with a flame graph shows that
+a great deal of time is spent backtracking. The parser does a bunch of
+lookahead and other work to deal with indentation. BNFC has native
+support for "layout rule" logic. In this parser, we hacked up an emulation of indentation-as-parenthesis, which doesn't work very well.
+
+[Many test
+cases](https://github.com/smucclaw/dsl/blob/main/lib/haskell/natural4/test/Parsing/megaparsing/)
+later, we still don't have full confidence in the parsing. For
+example, trying to set up a `BoolStructR` that has a non-null `PrePost`
+label can sometimes fail unintuitively when there is too much space or
+not enough space between the label and the children.
+
+The parser also hoists inline rules into top-level rules. This is the purpose of operating the parser within a Writer monad. See [tellIDFirst](https://github.com/smucclaw/dsl/blob/main/lib/haskell/natural4/src/LS/Tokens.hs#L1035-L1036).
 
 ### Meng's Analyzer / 'Interpreter'
 
-[TODO-Meng]
+After the input CSV is parsed into a collection of `Rule` types,
+[Interpreter.hs](https://github.com/smucclaw/dsl/blob/main/lib/haskell/natural4/src/LS/Interpreter.hs)
+attempts to analyze and reorganize it, to make it more ready for the
+various transpilers to export from.
+
+This is where rule substitution happens and simple rule rewriting/optimization.
+
+This module is not really an interpreter. It should have been called an Analyzer.
+
+
+```mermaid
+graph TB;
+    classDef natural4exe fill:#f9f,stroke:#333,stroke-width:2px;
+
+    A["Google Sheets tab"] -- "L4/Refresh" --> B[["Apps Script Sanic Hello.py"]];
+	B -- calls -->C;
+    subgraph C ["natural4-exe (app/Main.hs)"]
+    parser --> interpreter;
+    end
+	
+	C --"runs"--> C1["the Purescript and Vue codebase\n(2021/2022)"];
+	C1--"imports"-->D[["LS/XPile/Purescript.hs"]];
+    D--"transpiles to"-->E[("workdir/uuid/\npurs/LATEST.purs")];
+
+    C --"runs"--> G0["the JSON Schema transpiler\n(2023)"];
+	G0--"imports"-->G1[["LS/XPile/ExportTypes.hs"]];
+	G1--"transpiles to"-->G2[("workdir/uuid/\njsonTp/LATEST.json")];
+```
 
 
 ### Transpilers

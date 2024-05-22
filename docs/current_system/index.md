@@ -16,6 +16,8 @@ There have been two generations of this app builder.
 
 ```mermaid
 graph TB;
+    classDef natural4exe fill:#f9f,stroke:#333,stroke-width:2px;
+
     A["Google Sheets tab"] -- "L4/Refresh" --> B[["Apps Script Sanic Hello.py"]];
 	B -- calls -->C[["natural4-exe (app/Main.hs)"]];
 
