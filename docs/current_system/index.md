@@ -30,9 +30,11 @@ graph TB;
 	G1--"transpiles to"-->G2[("workdir/uuid/\njsonTp/LATEST.json")];
 ```
 
-#### via the Purescript and Vue codebase
+#### the Purescript and Vue codebase
 
 The first generation built a Vue app from an encoding of the Personal Data Protection Act.
+
+This app was internally titled "Dolora, the Law Explorer".
 
 **Historical Context:** This was motivated by a 2021/2022 use case around the Personal Data Protection Act.
 
@@ -43,7 +45,7 @@ The first generation built a Vue app from an encoding of the Personal Data Prote
 1. spreadsheet sidebar, at top.
 2. A static snapshot of the generated app is stable and available at https://smucclaw.github.io/mengwong/pdpa
 
-#### via the JSON Schema transpiler
+#### the JSON Schema transpiler
 
 The second generation tried to separate MVC layers by using an approach based on [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form) / [vue-form-json-schema](https://github.com/jarvelov/vue-form-json-schema).
 
