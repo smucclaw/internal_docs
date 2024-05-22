@@ -261,7 +261,7 @@ To produce this, run [function-call-graph](https://github.com/mengwong/function-
 └─[0] <git:(main a0ecd7ff) > dot -Tsvg LS.dot > LS.svg
 ```
 
-![the usual spaghetti code](LS.svg)
+![the usual spaghetti code](./LS.svg)
 
 
 ### Transpilers
