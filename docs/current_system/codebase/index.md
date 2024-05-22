@@ -31,10 +31,9 @@ below.
 
 ## [The 'Explainable' codebase](https://github.com/smucclaw/dsl/tree/main/lib/haskell/explainable)
 
-The Explainable codebase includes the following components.
+### Historical Context
 
-- [MathLang](./mathlang.md): a DSL for arithmetic expressions and predicates
-- [Explainable](./explainable.md): a monad for evaluating MathLang expressions and providing explanations for the (intermediate and final) results
+YM: Meng had written an embedded DSL during the insurance usecase, and wanted something like that that could compute things and give traces for its computations, and crucially, do it fast (recall that he did not like how the Logical English backend had been slow in its handling of requests).
 
 These components were intended to:
 - illustrate an evaluation-tree approach to logging computation for explainability purposes; and
@@ -49,7 +48,25 @@ and were used in "cleanroom testing" of the primary codebase.
 See also:
 - https://github.com/smucclaw/usecases/blob/main/sect10-typescript/
 
-This codebase features twin implementations in Haskell and Typescript.
+Interestingly, this codebase features twin implementations in Haskell and Typescript, with working runtimes in both languages.
+
+We wanted a Typescript runtime so that the computations could run in the end-user's browser.
+
+Links to Meng's embedded DSL:
+
+* [The Haskell embedded DSL](https://github.com/smucclaw/usecases/blob/main/sect10-haskell/src/ToMathLang.hs)
+* [The Haskell types and runtime](https://github.com/smucclaw/dsl/blob/main/lib/haskell/explainable/src/Explainable/MathLang.hs)
+* [The TS output pretty-printed from Haskell)](https://github.com/smucclaw/usecases/blob/main/sect10-typescript/src/pau.ts)
+* [The TS runtime which evaluates the TS output](https://github.com/smucclaw/usecases/blob/main/sect10-typescript/src/mathlang.ts)
+
+That embedded DSL should give you some sense for what Meng has in mind with his 'MathLang'.
+
+The Explainable codebase includes the following components.
+
+- [MathLang](./mathlang.md): a DSL for arithmetic expressions and predicates
+- [Explainable](./explainable.md): a monad for evaluating MathLang expressions and providing explanations for the (intermediate and final) results
+
+### Use
 
 In 2023, the "business logic" of the use case was independently encoded in Haskell and then pretty-printed to Typescript for evaluation.
 
@@ -84,6 +101,8 @@ All the above is orchestrated by a `Makefile` under `sect10-typescript`.
 Note that the business logic was independently encoded in the internal MathLang DSL and was not wired up to read from the Natural4 spreadsheets.
 
 In 2024, we built a Generic MathLang component to serve as a bridge between the Natural4 codebase and the `MathLang.hs` codebase, so the spreadsheets could serve as the single source of truth.
+
+YM started implementing the Generic MathLang component over Dec 2023 - Jan 2024, but subsequently passed the baton on to Inari. 
 
 ``` mermaid
 graph TB;

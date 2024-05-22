@@ -94,24 +94,6 @@ Depends on Meng, I guess. But I imagine we'll want to have this at least as a ba
 
 See "The 'Explainable' codebase" in the [codebase](./codebase/index.md) file.
 
-#### Historical Context
-
-YM: Meng had written an embedded DSL during the insurance usecase, and wanted something like that that could compute things and give traces for its computations, and crucially, do it fast (recall that he did not like how the Logical English backend had been slow in its handling of requests).
-
-Links to Meng's embedded DSL:
-
-* [The TS output (I think?)](https://github.com/smucclaw/usecases/blob/main/sect10-typescript/src/mathlang.ts)
-* [The Haskell embedded DSL](https://github.com/smucclaw/usecases/blob/main/sect10-typescript/src/mathlang.ts)
-
-That embedded DSL should give you some sense for what Meng has in mind with his 'MathLang'.
-
-YM started implementing this over Dec 2023 - Jan 2024, but subsequently passed the baton on to Inari. 
-
-
-#### Status:
-
-[TODO-Meng | TODO-Inari]
-
 ### Natural Language Generation 
 
 [TODO-Inari. Would be good to also reference / link to the examples where this gets used, eg in the dolora web app]
