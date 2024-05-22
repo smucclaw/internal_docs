@@ -47,7 +47,7 @@ formulations](https://github.com/smucclaw/usecases/blob/b256ffb78d21f15335d78935
 and were used in "cleanroom testing" of the primary codebase.
 
 See also:
-- https://github.com/smucclaw/usecases/blob/mathlang-vis-horizontal/sect10-typescript/
+- https://github.com/smucclaw/usecases/blob/main/sect10-typescript/
 
 This codebase features twin implementations in Haskell and Typescript.
 
@@ -79,9 +79,11 @@ graph TB;
     G -- "outputs to" -->H["sect10-typescript/\ntests/\ndot/"]
 ```
 
+All the above is orchestrated by a `Makefile` under `sect10-typescript`.
+
 Note that the business logic was independently encoded in the internal MathLang DSL and was not wired up to read from the Natural4 spreadsheets.
 
-In 2024, we built a Generic MathLang component to serve as a bridge between the Natural4 codebase and the `MathLang.hs` codebase.
+In 2024, we built a Generic MathLang component to serve as a bridge between the Natural4 codebase and the `MathLang.hs` codebase, so the spreadsheets could serve as the single source of truth.
 
 ``` mermaid
 graph TB;
@@ -94,10 +96,13 @@ graph TB;
     end
 
     C --"runs"--> C1["the Generic MathLang codebase\n(2024)"];
-    C1--"imports"-->D[["LS/XPile/MathLang"]];
-    D--"transpiles to"-->E[("workdir/uuid/\nmathlangGen\nmathlangTS")];
 
+    C1--"imports"-->D[["LS/XPile/MathLang"]];
+    C1--"imports"-->F
+
+    D--"transpiles to"-->E[("workdir/uuid/\nmathlangGen\nmathlangTS")];
     class C1,D,E highlight;
+    E--"hopefully somehow\nbackward-compatible with"-->F["Explainable/MathLang.hs"];
 ```
 
 
