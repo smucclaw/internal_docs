@@ -92,7 +92,7 @@ Depends on Meng, I guess. But I imagine we'll want to have this at least as a ba
 
 ### The MathLang system and transpiler
 
-[TODO-Meng | TODO-Inari -- this should be a relatively short, high-level overview. Detailed info can be put on other pages and linked to from here and from `/codebase/index.md`]
+See "The 'Explainable' codebase" in the [codebase](./codebase/index.md) file.
 
 #### Historical Context
 

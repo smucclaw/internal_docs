@@ -1,5 +1,131 @@
 # Notes on the Codebase
 
+Our codebase is split across multiple repos, and even within the `dsl` repo, across multiple `stack` projects under `lib/haskell/`.
+
+The major projects are:
+- anyall
+- explainable
+- natural4
+- ladder-diagrams
+
+## [The AnyAll codebase](https://github.com/smucclaw/dsl/tree/main/lib/haskell/anyall)
+
+This codebase was carved out and implemented initially by [johsi-k](https://github.com/orgs/smucclaw/people/johsi-k).
+
+It was meant to support boolean structures ("BoolStructs"), augmenting
+the basic "and/or", "any/all" operators over lists with some natural
+language decorations ("PrePost labels").
+
+It grew to support ["ladder logic" visualization](https://drive.google.com/drive/folders/1y7TssfA925VuyuAt8VBaNxlRTo8KyqlS).
+
+What draws the diagrams?
+
+Well, it depends which diagram you mean. There are two families of diagrams.
+
+The original SVG ladder diagrams that show up in the sidebar are drawn by `SVGLadder.hs`. The sidebar shows tiny versions. They zoom to full-scale versions.
+
+Then there's another family of diagrams, used in the web-app
+interview. There, the clickable ladder diagrams that show up at the
+bottom of the page are drawn by the `ladder-diagram` repo described
+below.
+
+## [The 'Explainable' codebase](https://github.com/smucclaw/dsl/tree/main/lib/haskell/explainable)
+
+The Explainable codebase includes the following components.
+
+- [MathLang](./mathlang.md): a DSL for arithmetic expressions and predicates
+- [Explainable](./explainable.md): a monad for evaluating MathLang expressions and providing explanations for the (intermediate and final) results
+
+These components were intended to:
+- illustrate an evaluation-tree approach to logging computation for explainability purposes; and
+- provide a parallel implementation of infrastructure to support the insurance use case in 2023.
+
+While the primary codepaths for the insurance use case ran with L4 and
+Logical English, this Explainable codebase supported [rapid
+experimentation with alternative
+formulations](https://github.com/smucclaw/usecases/blob/b256ffb78d21f15335d789352b5e5da957e38e35/sect10-haskell/src/ToMathLang.hs#L334-L370),
+and were used in "cleanroom testing" of the primary codebase.
+
+See also:
+- https://github.com/smucclaw/usecases/blob/mathlang-vis-horizontal/sect10-typescript/
+
+This codebase features twin implementations in Haskell and Typescript.
+
+In 2023, the "business logic" of the use case was independently encoded in Haskell and then pretty-printed to Typescript for evaluation.
+
+``` mermaid
+graph TB;
+    A1["ToMathLang.hs\n(usecases/sect10-haskell/src/)"]
+
+    A1 -- "imports" --> B;
+    B["Explainable/MathLang.hs"]
+
+    A1 -- "defines" --> A2["user-space decision logic\n(in internal DSL)"]
+
+    A2 -- "has type" --> A3["Explainable.MathLang.Expr"];
+
+    A3 -- "can be natively evaluated by" -->B
+
+    B -- "pretty-prints Exprs to" -->C["Typescript output\n(sect10-typescript/src/\npau.ts)"]
+
+    C -- "imports" -->D["mathlang.ts\n(sect10-typescript/src/\nmathlang.ts)"]
+
+    F["The Abstract MathLang Language"]
+    D -- "implements\nin Typescript" -->F
+    B -- "implements\nin Haskell"    -->F
+
+    C -- "imported by" -->G["crunch.ts\n(sect10-typescript/src/crunch.ts)"]
+
+    G -- "outputs to" -->H["sect10-typescript/\ntests/\ndot/"]
+```
+
+Note that the business logic was independently encoded in the internal MathLang DSL and was not wired up to read from the Natural4 spreadsheets.
+
+In 2024, we built a Generic MathLang component to serve as a bridge between the Natural4 codebase and the `MathLang.hs` codebase.
+
+``` mermaid
+graph TB;
+    A1["Google Sheets tab\n(via API)"] -- "L4/Refresh" --> C;
+    A2["command-line invocation\n(perhaps involving fswatch)"] -- calls --> C;
+    classDef highlight fill:#f9f,stroke:#333,stroke-width:2px;
+
+    subgraph C ["natural4-exe (app/Main.hs)"]
+	Parser --> Interpreter;
+    end
+
+    C --"runs"--> C1["the Generic MathLang codebase\n(2024)"];
+    C1--"imports"-->D[["LS/XPile/MathLang"]];
+    D--"transpiles to"-->E[("workdir/uuid/\nmathlangGen\nmathlangTS")];
+
+    class C1,D,E highlight;
+```
+
+
+
+## Visualizations
+
+Two libraries 
+
+### [Ladder Diagram](https://github.com/smucclaw/ladder-diagram)
+
+This draws the interactive, clickable diagrams in the web interview.
+
+* [The main Ladder Diagram repo](https://github.com/smucclaw/ladder-diagram)
+  * There are also docs available for this, via
+  ```
+  npm install jsdoc -g
+  npm run docs
+  ```
+* [Specification in Google Drive](https://drive.google.com/drive/folders/1y7TssfA925VuyuAt8VBaNxlRTo8KyqlS?usp=sharing)
+
+### Petri Net stuff
+
+https://github.com/smucclaw/dsl/blob/main/lib/haskell/natural4/src/LS/XPile/Petri.hs
+
+According to Meng (16 May 2024):
+
+* Context: This was meant to be a visualization for the state transition parts / deontics-handling parts of L4.
+* Status: Although we still want to offer visualizations for the state transition-y parts in the next iteration of L4,  we don't need to stick to Petri Nets. We are free to move to something else, if there are better alternatives.
 
 ## [The Natural L4 codebase](https://github.com/smucclaw/dsl/tree/main/lib/haskell/natural4)
 
@@ -21,7 +147,10 @@ The second-generation parser for the spreadsheet syntax was based on Megaparsec:
 The monadic parser is slow. Profiling it with a flame graph shows that
 a great deal of time is spent backtracking. The parser does a bunch of
 lookahead and other work to deal with indentation. BNFC has native
-support for "layout rule" logic. In this parser, we hacked up an emulation of indentation-as-parenthesis, which doesn't work very well.
+support for "layout rule" logic. In this parser, we hacked up an
+emulation of indentation-as-parenthesis, which doesn't work very well.
+There is also a homegrown tracing engine that spits out megabytes of
+logging info to help figure out what the parser is thinking.
 
 [Many test
 cases](https://github.com/smucclaw/dsl/blob/main/lib/haskell/natural4/test/Parsing/megaparsing/)
@@ -46,25 +175,132 @@ This module is not really an interpreter. It should have been called an Analyzer
 
 ```mermaid
 graph TB;
-    classDef natural4exe fill:#f9f,stroke:#333,stroke-width:2px;
-
-    A["Google Sheets tab"] -- "L4/Refresh" --> B[["Apps Script Sanic Hello.py"]];
-	B -- calls -->C;
+    A1["Google Sheets tab\n(via API)"] -- "L4/Refresh" --> C;
+    A2["command-line invocation\n(perhaps involving fswatch)"] -- calls --> C;
     subgraph C ["natural4-exe (app/Main.hs)"]
-    parser --> interpreter;
+    classDef nl4exe fill:#f9f,stroke:#333,stroke-width:2px;
+
+	Parser --> Interpreter;
+	class Parser,Interpreter nl4exe
     end
 	
-	C --"runs"--> C1["the Purescript and Vue codebase\n(2021/2022)"];
-	C1--"imports"-->D[["LS/XPile/Purescript.hs"]];
-    D--"transpiles to"-->E[("workdir/uuid/\npurs/LATEST.purs")];
+    C --"runs"--> D["various transpilers under LS/XPile/"];
+    D --"output to"-->E[("workdir/uuid/\nvarious LATEST files")];
+```
 
-    C --"runs"--> G0["the JSON Schema transpiler\n(2023)"];
-	G0--"imports"-->G1[["LS/XPile/ExportTypes.hs"]];
-	G1--"transpiles to"-->G2[("workdir/uuid/\njsonTp/LATEST.json")];
+### Module dependency graph
+
+produced by
+```
+(base) ┌─[20240522-14:35:55]   [mengwong@rosegold:~/natural4/src/LS]
+└─[0] <git:(main a0ecd7ff) > grep 'import LS' *.hs | grep -v -- '-- import' |  perl -ple 's/ \(.*//g; s/\.hs:import LS\.(.+)/ --> $1;/'
+```
+
+``` mermaid
+graph TD;
+    classDef default fill:#f9f,stroke:#333;
+
+        Parser --> Interpreter;
+
+      BasicTypes --> TokenTable;
+      DataFlow --> Rule;
+      DataFlow --> Types;
+      DataFlow --> XPile.Logging;
+      Error --> BasicTypes;
+      Error --> Utils;
+      PrettyPrinter --> Rule;
+      PrettyPrinter --> Types;
+      TokenTable --> Utils;
+      Types --> BasicTypes;
+      Types --> Utils;
+      Verdict --> Rule;
+
+      Lib --> Error;
+      Lib --> Parser;
+      Lib --> RelationalPredicates;
+      Lib --> Rule;
+      Lib --> Tokens;
+      Lib --> Types;
+      Lib --> Utils;
+
+
+      RelationalPredicates --> Parser;
+      RelationalPredicates --> Rule;
+      RelationalPredicates --> Tokens;
+      RelationalPredicates --> Types;
+      RelationalPredicates --> Utils;
+
+      Tokens --> Error;
+      Tokens --> Rule;
+      Tokens --> Types;
+
+      Rule --> Types;
+      Rule --> XPile.Logging;
+
+      Parser --> Rule;
+      Parser --> Tokens;
+      Parser --> Types;
+
+      Interpreter --> PrettyPrinter;
+      Interpreter --> RelationalPredicates;
+      Interpreter --> Rule;
+      Interpreter --> Types;
+      Interpreter --> Utils;
+      Interpreter --> XPile.Logging;
 ```
 
 
+### Detailed function call graph
+
+To produce this, run [function-call-graph](https://github.com/mengwong/function-call-graph)
+
+```
+(base) ┌─[20240522-14:28:22]   [mengwong@rosegold:~/natural4/src/LS]
+└─[0] <git:(main a0ecd7ff) > fcall --clusters Lib.hs Parser.hs Utils.hs  Interpreter.hs RelationalPredicates.hs Rule.hs Tokens.hs Types.hs   > LS.dot
+(base) ┌─[20240522-14:29:42]   [mengwong@rosegold:~/natural4/src/LS]
+└─[0] <git:(main a0ecd7ff) > dot -Tsvg LS.dot > LS.svg
+```
+
+![the usual spaghetti code](LS.svg)
+
+
 ### Transpilers
+
+Moving past the parser and analyzer stages, we come to the transpilers.
+
+
+``` mermaid
+graph TB;
+    A1["Google Sheets tab\n(via API)"] -- "L4/Refresh" --> C;
+    A2["command-line invocation\n(perhaps involving fswatch)"] -- calls --> C;
+
+    subgraph C ["natural4-exe (app/Main.hs)"]
+	classDef nl4exe fill:#f9f,stroke:#333,stroke-width:2px;
+
+	Parser --> Interpreter;
+	class Parser,Interpreter nl4exe
+    end
+
+    C --"runs"--> C1["the Purescript and Vue codebase\n(2021/2022)"];
+    C1--"imports"-->D[["LS/XPile/Purescript.hs"]];
+    D--"transpiles to"-->E[("workdir/uuid/\npurs/LATEST.purs")];
+
+    C --"runs"--> G0["the JSON Schema transpiler\n(2023)"];
+    G0--"imports"-->G1[["LS/XPile/ExportTypes.hs"]];
+    G1--"transpiles to"-->G2[("workdir/uuid/\njsonTp/LATEST.json")];
+
+    C --"runs"--> H0["the Prolog transpiler"];
+    H0--"imports"-->H1[["LS/XPile/Prolog.hs"]];
+    H1--"transpiles to"-->H2[("workdir/uuid/\njsonTp/LATEST.json")];
+```
+
+`Main.hs` runs a whole zoo of transpilers:
+- https://github.com/smucclaw/dsl/blob/main/lib/haskell/natural4/app/Main.hs#L185-L224
+- https://github.com/smucclaw/dsl/tree/main/lib/haskell/natural4/src/LS/XPile
+
+We have already talked about some of these, above -- MathLang and Petri.
+
+We briefly visit a few others which are important for historical purposes, or whose functionality we want to see in a future version of the codebase.
 
 #### To Prolog (Prolog.hs)
 
@@ -87,30 +323,28 @@ It's also worth mentioning that there's a golden test framework in `dsl/lib/hask
 
 Finally, note that some of the comments in the LE transpiler codebase are out of date / out of sync with the code. Apologies about that --- I (YM) will try to clean that up soon.
 
-## [The 'Explainable' codebase](https://github.com/smucclaw/dsl/tree/main/lib/haskell/explainable)
+#### Maude
 
-The Explainable codebase includes the following components.
+This was the subject of Joe's paper on the Contract as Automata work.
 
-- [MathLang](./mathlang.md): a DSL for arithmetic expressions and predicates
-- [Explainable](./explainable.md): a monad for evaluating MathLang expressions and providing explanations for the (intermediate and final) results
+https://www.researchgate.net/publication/375025000_Deontics_and_time_in_contracts_An_executable_semantics_for_the_L4_DSL
 
-[TODO-Meng]
+#### Logging
 
-## Visualizations
+The `Intro*.hs` and `Logging.hs` files record a painful learning
+journey toward monadic logging. The goal was to allow all transpilers
+and all parts of the natural4 toolchain generally to be able to
+produce structured logging for later debug inspection.
 
-### [Ladder Diagram](https://github.com/smucclaw/ladder-diagram)
+#### Org
 
-* [The main Ladder Diagram repo](https://github.com/smucclaw/ladder-diagram)
-  * There are also docs available for this, via
-  ```
-  npm install jsdoc -g
-  npm run docs
-  ```
-* [Specification in Google Drive](https://drive.google.com/drive/folders/1y7TssfA925VuyuAt8VBaNxlRTo8KyqlS?usp=sharing)
+In parallel with structured logging we wrote a "transpiler to
+org-mode" with a hierarchy best read in Emacs's org-mode.
 
-### Petri Net stuff
+#### Purescript
 
-According to Meng (16 May 2024):
+The output of this transpiler is a Purescript representation of the boolstructs involved in the decision logic elements in L4 source input.
 
-* Context: This was meant to be a visualization for the state transition parts / deontics-handling parts of L4.
-* Status: Although we still want to offer visualizations for the state transition-y parts in the next iteration of L4,  we don't need to stick to Petri Nets. We are free to move to something else, if there are better alternatives.
+This Purescript output is consumed by the Vue web app.
+
+
