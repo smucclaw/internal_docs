@@ -117,7 +117,9 @@ Depends on Meng, I guess. But I imagine we'll want to have this at least as a ba
 
 ### The MathLang system and transpiler
 
-See "The 'Explainable' codebase" in the [codebase](./codebase/index.md) file.
+**TODO: Add 1-2 sentences explaining what this is**
+
+See "The 'Explainable' codebase" in the [codebase](./codebase/explainable.md) file.
 
 ### Natural Language Generation
 
