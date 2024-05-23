@@ -5,10 +5,11 @@ Our codebase is split across multiple repos, and even within the `dsl` repo, acr
 The major projects are:
 
 - [anyall](./anyall.md)
-- [explainable](./explainable.md)
+- [explainable](./explainable.md); discussion of 'MathLang' is also housed here
 - [natural4](./natural4.md)
 
 We also talk about
+
 - [visualizations](./visualizations.md)
 
 
