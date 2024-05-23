@@ -1,5 +1,7 @@
 # README
 
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/smucclaw/internal_docs/main.svg)](https://results.pre-commit.ci/latest/github/smucclaw/internal_docs/main)
+
 ## Timeline
 
 We're aiming to get most of the substantive material up by June 1.
