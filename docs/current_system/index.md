@@ -4,7 +4,9 @@ As [the current user-facing documentation puts it](https://l4-documentation.read
 
 > while there is one generic L4 syntax, L4 really admits of different fragments, each with their own specialized semantics, corresponding to the various transpilers. 
 
-We'll systematically discuss each of these transpilers and their statuses when we [discuss the codebase in more detail](./codebase/index.md). But before doing that, let's briefly survey what I (YM) take to be the most currently functional components of the L4 ecosystem --- or, to put it another way, what one can currently do with L4.
+We'll systematically discuss each of these dialects / transpilers and their statuses when we [discuss the codebase in more detail](./codebase/index.md). But before doing that, let's briefly survey what I (YM) take to be the most currently functional components of the L4 ecosystem --- or, to put it another way, what one can currently do with L4. 
+
+To clarify, this page aims to introduce the L4 ecosystem by highlighting the the most interesting things that can be done with it, and its key dialects. It does *not* discuss in-the-weeds details about the codebases or their architecture --- see the [Codebase section](./codebase/index.md) for that.
 
 ## Web form generation
 
@@ -50,6 +52,8 @@ Still forms part of current demos; badly needs to be superseded.
 2. A static snapshot of the generated app is stable and available at https://smucclaw.github.io/mengwong/pdpa
 
 ### More sophisticated (arithmetic + dates + some abductive queries) decision support web app (the JSON Schema transpiler)
+
+[TODO: Reorganize and explain what this is first]
 
 The second generation tried to separate MVC layers by using an approach based on [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form) / [vue-form-json-schema](https://github.com/jarvelov/vue-form-json-schema).
 
@@ -115,7 +119,9 @@ Depends on Meng, I guess. But I imagine we'll want to have this at least as a ba
 
 ### The MathLang system and transpiler
 
-See "The 'Explainable' codebase" in the [codebase](./codebase/index.md) file.
+**TODO: Add 1-2 sentences explaining what this is**
+
+See "The 'Explainable' codebase" in the [codebase](./codebase/explainable.md) file.
 
 ### Natural Language Generation
 
