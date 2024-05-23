@@ -8,17 +8,19 @@ This draws the interactive, clickable diagrams in the web interview.
 
 * [The main Ladder Diagram repo](https://github.com/smucclaw/ladder-diagram)
   * There are also docs available for this, via
-  ```
+
+  ```bash
   npm install jsdoc -g
   npm run docs
   ```
+
 * [Specification in Google Drive](https://drive.google.com/drive/folders/1y7TssfA925VuyuAt8VBaNxlRTo8KyqlS?usp=sharing)
 
-### See also the SVGLadder.hs in [AnyAll](./anyall.md).
+### See also the SVGLadder.hs in [AnyAll](./anyall.md)
 
 ## Petri Net stuff
 
-https://github.com/smucclaw/dsl/blob/main/lib/haskell/natural4/src/LS/XPile/Petri.hs
+<https://github.com/smucclaw/dsl/blob/main/lib/haskell/natural4/src/LS/XPile/Petri.hs>
 
 According to Meng (16 May 2024):
 
