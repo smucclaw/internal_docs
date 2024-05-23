@@ -8,6 +8,11 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.12"]
+      fail-fast: true
+
     steps:
       - uses: actions/checkout@v4
       - name: Configure Git Credentials
@@ -16,15 +21,28 @@ jobs:
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
       - uses: actions/setup-python@v5
         with:
-          python-version: 3.x
-      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
-      - uses: actions/cache@v4
+          python-version: ${{ matrix.python-version }}
+
+      - name: install poetry
+        uses: abatilo/actions-poetry@v2
+
+      - name: Setup a local virtual environment (if no poetry.toml file)
+        run: |
+          poetry config virtualenvs.create true --local
+          poetry config virtualenvs.in-project true --local
+
+      - name: Define a cache for the virtual environment based on the dependencies lock file
+        uses: actions/cache@v3
         with:
-          key: mkdocs-material-${{ env.cache_id }}
-          path: .cache
-          restore-keys: |
-            mkdocs-material-
-      - run: pip install \
-          mkdocs-material \
-          mkdocs-awesome-pages-plugin
-      - run: mkdocs gh-deploy --force
+          path: ./.venv
+          key: venv-${{ hashFiles('poetry.lock') }}
+
+        # Install dependencies. `--no-root` means "install all dependencies but not the project
+        # itself", which is what you want to avoid caching _your_ code. The `if` statement
+        # ensures this only runs on a cache miss.
+      - name: Install dependencies
+        run: poetry install --no-interaction --no-root
+        if: steps.cache-deps.outputs.cache-hit != 'true'
+
+      - name: Deploy to GitHub Pages
+        run: mkdocs gh-deploy --force
