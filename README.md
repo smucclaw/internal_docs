@@ -8,7 +8,7 @@ We're aiming to get most of the substantive material up by June 1.
 
 2. Use `poetry shell` to activate the virtual environment (see [the poetry docs](https://python-poetry.org/docs/basic-usage/) for more info)
 
-3. **To publish the site:** After making whatever changes you want to make, you can get it to show up on the GH pages site by pushing to `main` / making a `PR` and merging it in. *For substantive docs, you are encouraged to tag at least one of the rest for 'code' review.*
+3. **To publish the site:** After making whatever changes you want to make, you can get it to show up on the GH pages site by pushing to `main` / making a PR and merging it in. *For substantive docs, you are encouraged to tag at least one of the rest for 'code' review.*
 
 **PLEASE DO NOT PUSH TO THE `gh-pages` branch.**
 
