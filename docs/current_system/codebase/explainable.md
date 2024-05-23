@@ -5,6 +5,7 @@
 YM: Meng had written an embedded DSL during the insurance usecase, and wanted something like that that could compute things and give traces for its computations, and crucially, do it fast (recall that he did not like how the Logical English backend had been slow in its handling of requests).
 
 These components were intended to:
+
 - illustrate an evaluation-tree approach to logging computation for explainability purposes; and
 - provide a parallel implementation of infrastructure to support the insurance use case in 2023.
 
