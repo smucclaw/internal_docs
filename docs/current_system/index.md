@@ -19,15 +19,15 @@ graph TB;
     classDef natural4exe fill:#f9f,stroke:#333,stroke-width:2px;
 
     A["Google Sheets tab"] -- "L4/Refresh" --> B[["Apps Script Sanic Hello.py"]];
-	B -- calls -->C[["natural4-exe (app/Main.hs)"]];
+ B -- calls -->C[["natural4-exe (app/Main.hs)"]];
 
-	C --"runs"--> C1["the Purescript and Vue codebase\n(2021/2022)"];
-	C1--"imports"-->D[["LS/XPile/Purescript.hs"]];
+ C --"runs"--> C1["the Purescript and Vue codebase\n(2021/2022)"];
+ C1--"imports"-->D[["LS/XPile/Purescript.hs"]];
     D--"transpiles to"-->E[("workdir/uuid/\npurs/LATEST.purs")];
 
     C --"runs"--> G0["the JSON Schema transpiler\n(2023)"];
-	G0--"imports"-->G1[["LS/XPile/ExportTypes.hs"]];
-	G1--"transpiles to"-->G2[("workdir/uuid/\njsonTp/LATEST.json")];
+ G0--"imports"-->G1[["LS/XPile/ExportTypes.hs"]];
+ G1--"transpiles to"-->G2[("workdir/uuid/\njsonTp/LATEST.json")];
 ```
 
 ### Propositional-logic-only decision support web app (the Purescript and Vue codebase)
@@ -49,7 +49,7 @@ Still forms part of current demos; badly needs to be superseded.
 #### Visible at
 
 1. spreadsheet sidebar, at top.
-2. A static snapshot of the generated app is stable and available at https://smucclaw.github.io/mengwong/pdpa
+2. A static snapshot of the generated app is stable and available at <https://smucclaw.github.io/mengwong/pdpa>
 
 ### More sophisticated (arithmetic + dates + some abductive queries)
 
