@@ -1,0 +1,17 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.3.0
+    hooks:
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+        exclude: \.svg$|^docs/image
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.38.0
+    hooks:
+      - id: markdownlint
+        name: Run markdownlint
+        description: Check Markdown files with markdownlint
+        args: [--config=.github/linters/.markdownlint.yaml]
+        exclude: ^\.github/.*$
+        types: [markdown]
+        files: \.(md|mdown|markdown)$
