@@ -8,9 +8,46 @@ We'll systematically discuss each of these transpilers and their statuses when w
 
 ## The (currently-most-functional) transpiler pipelines / components that don't involve visualization
 
-### Web form generation (via the JSON Schema transpiler)
+### Web form generation
 
-One useful thing you can do with L4 is to scaffold a web form app from an L4 specification. 
+One useful thing you can do with L4 is to scaffold a web form app from an L4 specification.
+
+There have been two generations of this app builder.
+
+```mermaid
+graph TB;
+    classDef natural4exe fill:#f9f,stroke:#333,stroke-width:2px;
+
+    A["Google Sheets tab"] -- "L4/Refresh" --> B[["Apps Script Sanic Hello.py"]];
+	B -- calls -->C[["natural4-exe (app/Main.hs)"]];
+
+	C --"runs"--> C1["the Purescript and Vue codebase\n(2021/2022)"];
+	C1--"imports"-->D[["LS/XPile/Purescript.hs"]];
+    D--"transpiles to"-->E[("workdir/uuid/\npurs/LATEST.purs")];
+
+    C --"runs"--> G0["the JSON Schema transpiler\n(2023)"];
+	G0--"imports"-->G1[["LS/XPile/ExportTypes.hs"]];
+	G1--"transpiles to"-->G2[("workdir/uuid/\njsonTp/LATEST.json")];
+```
+
+#### the Purescript and Vue codebase
+
+The first generation built a Vue app from an encoding of the Personal Data Protection Act.
+
+This app was internally titled "Dolora, the Law Explorer".
+
+**Historical Context:** This was motivated by a 2021/2022 use case around the Personal Data Protection Act.
+
+**Status:** Still forms part of current demos; badly needs to be superseded.
+
+**Visible at:**
+
+1. spreadsheet sidebar, at top.
+2. A static snapshot of the generated app is stable and available at https://smucclaw.github.io/mengwong/pdpa
+
+#### the JSON Schema transpiler
+
+The second generation tried to separate MVC layers by using an approach based on [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form) / [vue-form-json-schema](https://github.com/jarvelov/vue-form-json-schema).
 
 [The relevant docs](https://github.com/smucclaw/documentation/blob/main/docs/webform.rst) explain how the web form generation works in some detail. [The JSON schema transpiler docs](https://github.com/smucclaw/documentation/blob/main/docs/transpilers-json-schema.rst) are also relevant.
 
@@ -57,29 +94,24 @@ Depends on Meng, I guess. But I imagine we'll want to have this at least as a ba
 
 ### The MathLang system and transpiler
 
-[TODO-Meng | TODO-Inari -- this should be a relatively short, high-level overview. Detailed info can be put on other pages and linked to from here and from `/codebase/index.md`]
+See "The 'Explainable' codebase" in the [codebase](./codebase/index.md) file.
 
-#### Historical Context
+### Natural Language Generation
 
-YM: Meng had written an embedded DSL during the insurance usecase, and wanted something like that that could compute things and give traces for its computations, and crucially, do it fast (recall that he did not like how the Logical English backend had been slow in its handling of requests).
+The current codebase for NLG is in [natural4/src/LS/NLP/NLG.hs](https://github.com/smucclaw/dsl/blob/main/lib/haskell/natural4/src/LS/NLP/NLG.hs), and the grammars it is based on are in [natural4/grammars](https://github.com/smucclaw/dsl/tree/main/lib/haskell/natural4/grammars).
 
-Links to Meng's embedded DSL:
+The only place where these are/were used is the [web form generation](./index.md#web-form-generation). The module [Purescript.hs](https://github.com/smucclaw/dsl/blob/main/lib/haskell/natural4/src/LS/XPile/Purescript.hs#L39-L47) imports functions from [NLG.hs](https://github.com/smucclaw/dsl/blob/main/lib/haskell/natural4/src/LS/NLP/NLG.hs), and uses them to construct questions out of the Rules.
 
-* [The TS output (I think?)](https://github.com/smucclaw/usecases/blob/main/sect10-typescript/src/mathlang.ts)
-* [The Haskell embedded DSL](https://github.com/smucclaw/usecases/blob/main/sect10-typescript/src/mathlang.ts)
+#### How it work(s|ed)
 
-That embedded DSL should give you some sense for what Meng has in mind with his 'MathLang'.
+The cells inside the [Rule](./codebase/rule_ast.md) contain freeform text in different cells. The code in NLG.hs was built based on the two examples of PDPA and Rodents and Vermins, and it made assumptions on which kinds of grammatical constructions appear in which fields. We wrote a handcrafted lexicon that contained exactly the vocabulary needed for the two use cases, and we made sure that the verbs had the right subcategories.
 
-YM started implementing this over Dec 2023 - Jan 2024, but subsequently passed the baton on to Inari. 
+We (Maryam and Inari) also did some smaller experiments in generating the lexicon automatically with UD parser. It was surprisingly good for getting the valencies of the verbs, but there was still a substantial amount of manual checking and correction needed. But given that the next use case didn't use the web app, this system was never needed in practice.
 
+#### Status
 
-#### Status:
+This was in use for the PDPA use case and the Rodents and vermin demo, both from 2021/2022. In the insurance use case, we shifted to Logical English, and it didn't use the GF-based NLG at all.
 
-[TODO-Meng | TODO-Inari]
-
-### Natural Language Generation 
-
-[TODO-Inari. Would be good to also reference / link to the examples where this gets used, eg in the dolora web app]
 
 ## Visualizations
 
