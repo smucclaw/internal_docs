@@ -96,9 +96,22 @@ Depends on Meng, I guess. But I imagine we'll want to have this at least as a ba
 
 See "The 'Explainable' codebase" in the [codebase](./codebase/index.md) file.
 
-### Natural Language Generation 
+### Natural Language Generation
 
-[TODO-Inari. Would be good to also reference / link to the examples where this gets used, eg in the dolora web app]
+The current codebase for NLG is in [natural4/src/LS/NLP/NLG.hs](https://github.com/smucclaw/dsl/blob/main/lib/haskell/natural4/src/LS/NLP/NLG.hs), and the grammars it is based on are in [natural4/grammars](https://github.com/smucclaw/dsl/tree/main/lib/haskell/natural4/grammars).
+
+The only place where these are/were used is the [web form generation](./index.md#web-form-generation). The module [Purescript.hs](https://github.com/smucclaw/dsl/blob/main/lib/haskell/natural4/src/LS/XPile/Purescript.hs#L39-L47) imports functions from [NLG.hs](https://github.com/smucclaw/dsl/blob/main/lib/haskell/natural4/src/LS/NLP/NLG.hs), and uses them to construct questions out of the Rules.
+
+#### How it work(s|ed)
+
+The cells inside the [Rule](./codebase/rule_ast.md) contain freeform text in different cells. The code in NLG.hs was built based on the two examples of PDPA and Rodents and Vermins, and it made assumptions on which kinds of grammatical constructions appear in which fields. We wrote a handcrafted lexicon that contained exactly the vocabulary needed for the two use cases, and we made sure that the verbs had the right subcategories.
+
+We (Maryam and Inari) also did some smaller experiments in generating the lexicon automatically with UD parser. It was surprisingly good for getting the valencies of the verbs, but there was still a substantial amount of manual checking and correction needed. But given that the next use case didn't use the web app, this system was never needed in practice.
+
+#### Status
+
+This was in use for the PDPA use case and the Rodents and vermin demo, both from 2021/2022. In the insurance use case, we shifted to Logical English, and it didn't use the GF-based NLG at all.
+
 
 ## Visualizations
 
