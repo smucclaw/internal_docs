@@ -17,7 +17,12 @@ Other noteworthy things include:
 
 If you are writing something that involves explaining things, it'd probably be a good idea to get someone to at least skim it (i.e., 'code' review).
 
-## MkDocs Commands, just in case
+## MkDocs related
+
+### Docs
+We're using Material for MkDocs, the documentation for which is available at [https://squidfunk.github.io/mkdocs-material/](https://squidfunk.github.io/mkdocs-material/).
+
+### Commands, just in case
 
 * `mkdocs serve` - Start the live-reloading docs server.
 * `mkdocs build` - Build the documentation site.
