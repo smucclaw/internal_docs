@@ -53,8 +53,8 @@ graph TB;
     subgraph C ["natural4-exe (app/Main.hs)"]
     classDef nl4exe fill:#f9f,stroke:#333,stroke-width:2px;
 
-	P["src/LS/\nParser.hs"] --> I["src/LS/\nInterpreter.hs"];
-	class P,I nl4exe
+ P["src/LS/\nParser.hs"] --> I["src/LS/\nInterpreter.hs"];
+ class P,I nl4exe
 
     end
 
@@ -124,7 +124,6 @@ graph TD;
       Interpreter --> XPile.Logging;
 ```
 
-
 ## Detailed function call graph ##
 
 To produce this, run [function-call-graph](https://github.com/mengwong/function-call-graph)
@@ -138,7 +137,6 @@ To produce this, run [function-call-graph](https://github.com/mengwong/function-
 
 ![the usual spaghetti code](./LS.svg)
 
-
 ## Transpilers ##
 
 Moving past the parser and analyzer stages, we come to the transpilers.
@@ -149,10 +147,10 @@ graph TB;
     A2["command-line invocation\n(perhaps involving fswatch)"] -- calls --> C;
 
     subgraph C ["natural4-exe (app/Main.hs)"]
-	classDef nl4exe fill:#f9f,stroke:#333,stroke-width:2px;
+ classDef nl4exe fill:#f9f,stroke:#333,stroke-width:2px;
 
-	Parser --> Interpreter;
-	class Parser,Interpreter nl4exe
+ Parser --> Interpreter;
+ class Parser,Interpreter nl4exe
     end
 
     C --"runs"--> C1["the Purescript and Vue codebase\n(2021/2022)"];
@@ -207,7 +205,7 @@ Finally, note that some of the comments in the LE transpiler codebase are out of
 
 This was the subject of Joe's paper on the Contract as Automata work.
 
-https://www.researchgate.net/publication/375025000_Deontics_and_time_in_contracts_An_executable_semantics_for_the_L4_DSL
+<https://www.researchgate.net/publication/375025000_Deontics_and_time_in_contracts_An_executable_semantics_for_the_L4_DSL>
 
 ### Logging ###
 

@@ -17,7 +17,7 @@ and were used in "cleanroom testing" of the primary codebase.
 
 See also:
 
-- https://github.com/smucclaw/usecases/blob/main/sect10-typescript/
+- <https://github.com/smucclaw/usecases/blob/main/sect10-typescript/>
 
 Interestingly, this codebase features twin implementations in Haskell and Typescript, with working runtimes in both languages.
 
@@ -25,11 +25,11 @@ We wanted a Typescript runtime so that the computations could run in the end-use
 
 Links to Meng's embedded DSL:
 
-* [The Haskell embedded DSL](https://github.com/smucclaw/usecases/blob/main/sect10-haskell/src/ToMathLang.hs)
-  * For comparison: [Natural L4 version of the rules PAU0 and PAU4](https://docs.google.com/spreadsheets/d/1cWAb7Ba4HJovQn1PquZzYJjnjKUuhEPhNHzAH4ZfV4I/edit#gid=2100528279)
-* [The Haskell types and runtime](https://github.com/smucclaw/dsl/blob/main/lib/haskell/explainable/src/Explainable/MathLang.hs)
-* [The TS output pretty-printed from Haskell)](https://github.com/smucclaw/usecases/blob/main/sect10-typescript/src/pau.ts)
-* [The TS runtime which evaluates the TS output](https://github.com/smucclaw/usecases/blob/main/sect10-typescript/src/mathlang.ts)
+- [The Haskell embedded DSL](https://github.com/smucclaw/usecases/blob/main/sect10-haskell/src/ToMathLang.hs)
+  - For comparison: [Natural L4 version of the rules PAU0 and PAU4](https://docs.google.com/spreadsheets/d/1cWAb7Ba4HJovQn1PquZzYJjnjKUuhEPhNHzAH4ZfV4I/edit#gid=2100528279)
+- [The Haskell types and runtime](https://github.com/smucclaw/dsl/blob/main/lib/haskell/explainable/src/Explainable/MathLang.hs)
+- [The TS output pretty-printed from Haskell)](https://github.com/smucclaw/usecases/blob/main/sect10-typescript/src/pau.ts)
+- [The TS runtime which evaluates the TS output](https://github.com/smucclaw/usecases/blob/main/sect10-typescript/src/mathlang.ts)
 
 That embedded DSL should give you some sense for what Meng has in mind with his 'MathLang'.
 
@@ -78,7 +78,6 @@ All the above is orchestrated by a `Makefile` under `sect10-typescript`.
 
 Note that the business logic was independently encoded in the internal MathLang DSL and was not wired up to read from the Natural4 spreadsheets.
 
-
 ### 'Generic MathLang' vs 'MathLang'
 
 The term 'MathLang' is used in a couple of different ways. On the broadest sense, MathLang is supposed to be some kind of functional programming language. But there are also more specific senses; for example, it could also refer to *the specific embedded DSL Meng had whipped up* (see above) --- a DSL that departs from a more 'generic' / 'undergrad-textbook' functional programming language in some ways that make the translation to it more effortful.
@@ -91,7 +90,7 @@ It is in this context that 'Generic MathLang' should be understood. Because the 
 
 YM decided to first translate the output from the Natural L4 parser to an intermediate representation that he called *Generic MathLang* --- an intermediate representation that amounted to more generic, **un**typed lambda-calculus-looking AST --- before further translating it to other formats. That is, the envisioned pipeline was something like
 
-```
+```ascii
 Natural L4 parser => Generic MathLang => (e.g.) serialization of Generic MathLang for an in-browser interpreter | Meng's MathLang | ...etc
 ```
 
@@ -114,7 +113,7 @@ graph TB;
     classDef highlight fill:#f9f,stroke:#333,stroke-width:2px;
 
     subgraph C ["natural4-exe (app/Main.hs)"]
-	Parser --> Interpreter;
+ Parser --> Interpreter;
     end
 
     C --"runs"--> C1["the Generic MathLang codebase\n(2024)"];
@@ -130,10 +129,8 @@ graph TB;
     E--"hopefully somehow\nbackward-compatible with"-->F["Explainable/MathLang.hs"];
 
     F --"which takes it the rest of the way to"-->G["the Typescript runtime"]
-	class F,G tsruntime
+ class F,G tsruntime
 ```
-
-
 
 ## Types
 

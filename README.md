@@ -18,11 +18,15 @@ We're aiming to get most of the substantive material up by June 1.
 
 To see what it'll look like, locally: Build the docs site with `mkdocs build`; serve it (with live-reloading) via `mkdocs serve`.
 
+### If you are using VSCode
+
+I recommend using [this extension for Markdown linting](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint).
+
 ### Pre-commit
 
 To install, see docs at [https://pre-commit.com/](https://pre-commit.com/)
 
-To run it locally:
+To run it locally (which is usually faster than waiting for GH's workflow to grind its way through):
 
 ```bash
 pre-commit run --all-files
