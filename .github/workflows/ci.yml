@@ -45,4 +45,4 @@ jobs:
         if: steps.cache-deps.outputs.cache-hit != 'true'
 
       - name: Deploy to GitHub Pages
-        run: mkdocs gh-deploy --force
+        run: poetry run mkdocs gh-deploy --force
