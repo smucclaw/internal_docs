@@ -2,7 +2,7 @@
 
 This document attempts to reflect the overall system requirements.
 This is not the first time we have attempted to write this sort of
-thing. You you may encounter similar documentation that was written at
+thing. You may encounter similar documentation that was written at
 different times in the life of the project.
 
 For example, see also
@@ -66,6 +66,13 @@ about the app as there are end-users; plus a product owner, a program
 manager, a management reviewer, a UI designer, etc etc. We will not
 belabour this point as it is common to all software engineering.
 
+Similarly, technical individuals may be tasked to assist a legal drafter.
+
+Or a technical but non-legally-trained individual may (as the force of
+their temperament drives) demand to understand the legal situation at
+a finer level of detail, beyond the point where a typical layperson
+might want give up.
+
 ## Business Context
 
 LLM hallucinations are causing concern. In high-stakes domains,
@@ -78,7 +85,8 @@ The "Rules as Code" movement is slowly gaining steam in advanced economies:
 https://www.govcms.gov.au/news-events/news/govcms-announces-enterprise-adoption-rules-code
 
 Conventional web applications that do not have an LLM component can
-also benefit from a rule-engine, L4, CNL, DSL, approach 
+also benefit from a rule-engine, L4, CNL, DSL, approach which
+acclerates the building of applications.
 
 All of the above provide an opportunity for a legal DSL to answer some
 of these demands.
@@ -93,14 +101,20 @@ under the givens.
 
 Deon Digital's CSL reduces a given contract to a residual, after running a bunch of events against it.
 
-### Planning Problems
+### Sense-Making Problems
 
 End-users are often concerned with these questions:
 
-* "what's going on?"
+* "what's going on? what is the situation?"
+* "why is this dollar amount what it is, and not some other number?"
+
+### Planning Problems
+
+End-users also ask:
+
 * "what am I supposed to do, and how soon?"
 * "if I want to get from here to there, what do I need to do?"
-* "why is this dollar amount what it is, and not some other number?"
+* "why does this rule apply to me, or not?"
 
 ### Natural Language Generation
 
