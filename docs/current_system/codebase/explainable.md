@@ -16,6 +16,7 @@ formulations](https://github.com/smucclaw/usecases/blob/b256ffb78d21f15335d78935
 and were used in "cleanroom testing" of the primary codebase.
 
 See also:
+
 - https://github.com/smucclaw/usecases/blob/main/sect10-typescript/
 
 Interestingly, this codebase features twin implementations in Haskell and Typescript, with working runtimes in both languages.
@@ -82,11 +83,11 @@ Note that the business logic was independently encoded in the internal MathLang 
 
 The term 'MathLang' is used in a couple of different ways. On the broadest sense, MathLang is supposed to be some kind of functional programming language. But there are also more specific senses; for example, it could also refer to *the specific embedded DSL Meng had whipped up* (see above) --- a DSL that departs from a more 'generic' / 'undergrad-textbook' functional programming language in some ways that make the translation to it more effortful.
 
-It is in this context that 'Generic MathLang' should be understood. Because the specific embedded-in-Haskell DSL that Meng had whipped up was 
+It is in this context that 'Generic MathLang' should be understood. Because the specific embedded-in-Haskell DSL that Meng had whipped up was
 
 1. was written in a way that was hard to understand (I think Joe has been working on improving the code quality, though) and
 
-2. departs from a more 'generic' / 'undergrad-textbook' functional programming language in some ways that make the translation to it more effortful --- indeed, *unnecessarily* effortful, given the ostensible mandate ('get some kind of lambda calculus based thing out asap') 
+2. departs from a more 'generic' / 'undergrad-textbook' functional programming language in some ways that make the translation to it more effortful --- indeed, *unnecessarily* effortful, given the ostensible mandate ('get some kind of lambda calculus based thing out asap')
 
 YM decided to first translate the output from the Natural L4 parser to an intermediate representation that he called *Generic MathLang* --- an intermediate representation that amounted to more generic, **un**typed lambda-calculus-looking AST --- before further translating it to other formats. That is, the envisioned pipeline was something like
 
@@ -96,7 +97,7 @@ Natural L4 parser => Generic MathLang => (e.g.) serialization of Generic MathLan
 
 Doing this allows us, not only to (in principle) get a lot more quickly to a working web form backed by an in-browser interpreter (because, again, serializing Generic MathLang and then writing an in-browser interpreter with tracing would be a lot faster than having to read and test Meng's code carefully), but also improves *code reuse*, since we now have a lambda-calculus-y intermediate representation that we can work from if we need to experiment with producing other MathLang variants.
 
-YM had started implementing this over Dec 2023 - Jan 2024, but subsequently passed the baton on to Inari. 
+YM had started implementing this over Dec 2023 - Jan 2024, but subsequently passed the baton on to Inari.
 
 This was admittedly YM's own understanding of Generic MathLang, but [YM sees that Inari seems to also have stuck to this understanding of Generic MathLang; see her docs on the Generic MathLang codebase.](./generic_mathlang.md)
 
@@ -144,4 +145,3 @@ type Explainable    r st a = ExplainableIO r st a
 ## Evaluation
 
 See the [Explainable README](https://github.com/smucclaw/dsl/tree/main/lib/haskell/explainable#readme).
-

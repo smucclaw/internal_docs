@@ -7,13 +7,15 @@
 ## The Natural L4 parser ##
 
 The first-generation parser was based on BNFC: see
-- https://github.com/smucclaw/baby-l4/blob/main/l4.bnfc
-- https://bnfc.digitalgrammars.com/
+
+* [https://github.com/smucclaw/baby-l4/blob/main/l4.bnfc](https://github.com/smucclaw/baby-l4/blob/main/l4.bnfc)
+* [https://bnfc.digitalgrammars.com/](https://bnfc.digitalgrammars.com/)
 
 This work was done around 2020, 2021. It parsed text-file input.
 
 The second-generation parser for the spreadsheet syntax was based on Megaparsec: see
-- https://github.com/smucclaw/dsl/blob/main/lib/haskell/natural4/src/LS/
+
+> [https://github.com/smucclaw/dsl/blob/main/lib/haskell/natural4/src/LS/](https://github.com/smucclaw/dsl/blob/main/lib/haskell/natural4/src/LS/)
 
 The monadic parser is slow. Profiling it with a flame graph shows that
 a great deal of time is spent backtracking. The parser does a bunch of
@@ -43,7 +45,6 @@ This is where rule substitution happens and simple rule rewriting/optimization.
 
 This module is not really an interpreter. It should have been called an Analyzer.
 
-
 ```mermaid
 
 graph TB;
@@ -56,7 +57,7 @@ graph TB;
 	class P,I nl4exe
 
     end
-	
+
     C --"runs"--> D["various transpilers under src/LS/XPile/"];
     D --"output to"-->E[("workdir/uuid/\nvarious LATEST files")];
 ```
@@ -64,7 +65,8 @@ graph TB;
 ## Module dependency graph ##
 
 produced by
-```
+
+```bash
 (base) ┌─[20240522-14:35:55]   [mengwong@rosegold:~/natural4/src/LS]
 └─[0] <git:(main a0ecd7ff) > grep 'import LS' *.hs | grep -v -- '-- import' |  perl -ple 's/ \(.*//g; s/\.hs:import LS\.(.+)/ --> $1;/'
 ```
@@ -127,7 +129,7 @@ graph TD;
 
 To produce this, run [function-call-graph](https://github.com/mengwong/function-call-graph)
 
-```
+```bash
 (base) ┌─[20240522-14:28:22]   [mengwong@rosegold:~/natural4/src/LS]
 └─[0] <git:(main a0ecd7ff) > fcall --clusters Lib.hs Parser.hs Utils.hs  Interpreter.hs RelationalPredicates.hs Rule.hs Tokens.hs Types.hs   > LS.dot
 (base) ┌─[20240522-14:29:42]   [mengwong@rosegold:~/natural4/src/LS]
@@ -140,7 +142,6 @@ To produce this, run [function-call-graph](https://github.com/mengwong/function-
 ## Transpilers ##
 
 Moving past the parser and analyzer stages, we come to the transpilers.
-
 
 ``` mermaid
 graph TB;
@@ -172,8 +173,9 @@ graph TB;
 ```
 
 `Main.hs` runs a whole zoo of transpilers:
-- https://github.com/smucclaw/dsl/blob/main/lib/haskell/natural4/app/Main.hs#L185-L224
-- https://github.com/smucclaw/dsl/tree/main/lib/haskell/natural4/src/LS/XPile
+
+* [https://github.com/smucclaw/dsl/blob/main/lib/haskell/natural4/app/Main.hs#L185-L224](https://github.com/smucclaw/dsl/blob/main/lib/haskell/natural4/app/Main.hs#L185-L224)
+* [https://github.com/smucclaw/dsl/tree/main/lib/haskell/natural4/src/LS/XPile](https://github.com/smucclaw/dsl/tree/main/lib/haskell/natural4/src/LS/XPile)
 
 We have already talked about some of these, above -- MathLang and Petri.
 
@@ -187,11 +189,12 @@ We briefly visit a few others which are important for historical purposes, or wh
 
 ### Logical English ###
 
-I'll briefly note some in-the-weeds decisions about the implementation here (see [the system overview](../index.md) for a more high-level discussion). 
+I'll briefly note some in-the-weeds decisions about the implementation here (see [the system overview](../index.md) for a more high-level discussion).
 
 Re Meng's Analyzer / 'Interpreter':
-* This does not use the output from Meng's Analyzer / 'Interpreter'. Instead, it starts from the output from the parser. 
-* This is because 
+
+* This does not use the output from Meng's Analyzer / 'Interpreter'. Instead, it starts from the output from the parser.
+* This is because
   * (i) it wasn't clear that the semantics that was implicit in Meng's Analyzer / 'Interpreter' was something that would be compatible with that for this fragment of L4.
   * (ii) it looked from a quick glance like some of the transformations that the analyzer/interpreter was doing might be lossy, e.g. there's some substitution or inlining
   * (iii) it wasn't clear what the specification for Meng's Analyzer / 'Interpreter' was; and in particular, what assumptions and guarantees it was making or providing.
@@ -223,4 +226,3 @@ org-mode" with a hierarchy best read in Emacs's org-mode.
 The output of this transpiler is a Purescript representation of the boolstructs involved in the decision logic elements in L4 source input.
 
 This Purescript output is consumed by the Vue web app.
-

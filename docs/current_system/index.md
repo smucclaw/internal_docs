@@ -2,9 +2,9 @@
 
 As [the current user-facing documentation puts it](https://l4-documentation.readthedocs.io/en/stable/docs/links-returning-users.html),
 
-> while there is one generic L4 syntax, L4 really admits of different fragments, each with their own specialized semantics, corresponding to the various transpilers. 
+> while there is one generic L4 syntax, L4 really admits of different fragments, each with their own specialized semantics, corresponding to the various transpilers.
 
-We'll systematically discuss each of these dialects / transpilers and their statuses when we [discuss the codebase in more detail](./codebase/index.md). But before doing that, let's briefly survey what I (YM) take to be the most currently functional components of the L4 ecosystem --- or, to put it another way, what one can currently do with L4. 
+We'll systematically discuss each of these dialects / transpilers and their statuses when we [discuss the codebase in more detail](./codebase/index.md). But before doing that, let's briefly survey what I (YM) take to be the most currently functional components of the L4 ecosystem --- or, to put it another way, what one can currently do with L4.
 
 To clarify, this page aims to introduce the L4 ecosystem by highlighting the the most interesting things that can be done with it, and its key dialects. It does *not* discuss in-the-weeds details about the codebases or their architecture --- see the [Codebase section](./codebase/index.md) for that.
 
@@ -32,7 +32,7 @@ graph TB;
 
 ### Propositional-logic-only decision support web app (the Purescript and Vue codebase)
 
-The first generation builds a Vue web app that allows users to answer YES / NO questions to arrive at some sort of decision, and to see a visualization of that (see the discussion of ladder diagrams [TODO -- add links]). The most involved example of this involved making such an app from an encoding of the Personal Data Protection Act. 
+The first generation builds a Vue web app that allows users to answer YES / NO questions to arrive at some sort of decision, and to see a visualization of that (see the discussion of ladder diagrams [TODO -- add links]). The most involved example of this involved making such an app from an encoding of the Personal Data Protection Act.
 
 This is quite limited in its functionality: it only handles propositional logic.
 
@@ -42,7 +42,7 @@ This app was internally titled "Dolora, the Law Explorer".
 
 This was motivated by a 2021/2022 use case around the Personal Data Protection Act.
 
-#### Status 
+#### Status
 
 Still forms part of current demos; badly needs to be superseded.
 
@@ -51,9 +51,9 @@ Still forms part of current demos; badly needs to be superseded.
 1. spreadsheet sidebar, at top.
 2. A static snapshot of the generated app is stable and available at https://smucclaw.github.io/mengwong/pdpa
 
-### More sophisticated (arithmetic + dates + some abductive queries) decision support web app (the JSON Schema transpiler)
+### More sophisticated (arithmetic + dates + some abductive queries)
 
-[TODO: Reorganize and explain what this is first]
+[TODO: Reorganize and explain what this is first. Link to further discussions of the JSON Schema transpiler + Clojurescript client]
 
 The second generation tried to separate MVC layers by using an approach based on [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form) / [vue-form-json-schema](https://github.com/jarvelov/vue-form-json-schema).
 
@@ -61,13 +61,13 @@ The second generation tried to separate MVC layers by using an approach based on
 
 #### Historical Context
 
-This was motivated by that use case with the insurance company. 
+This was motivated by that use case with the insurance company.
 
-#### Status 
+#### Status
 
-Still relevant, 
+Still relevant,
 
-* though YM thinks that there's quite a bit that could be improved, especially with regards to the interfaces (in the software design sense). 
+* though YM thinks that there's quite a bit that could be improved, especially with regards to the interfaces (in the software design sense).
 * And ideally, we'd also want to re-examine the semantics of the schema definition constructs.
 * The JSON Schema transpiler also needs some work. [TODO: Add more detail here on what kind of work]
 
@@ -75,7 +75,7 @@ Still relevant,
 
 ### The Logical English transpiler
 
-**TODO: Add discussion of what this is and how this is related to the web app stuff**
+TODO: Add discussion of what this is and how this is related to the web app stuff
 
 [Docs for this can be found on the user-facing doc site](https://github.com/smucclaw/documentation/blob/main/docs/transpilers-logical-english.rst)
 
@@ -85,7 +85,7 @@ There are some ways in which the code for the transpiler could be cleaned up. Bu
 
 ##### Motivation
 
-This was motivated by that use case with the insurance company. 
+This was motivated by that use case with the insurance company.
 
 If memory serves me right, we went for this because
 
@@ -95,7 +95,7 @@ If memory serves me right, we went for this because
 
 ##### Reservations people had about this
 
-Meng 
+Meng
 
 * did not like how it looked like we were piggybacking on another legal DSL (Logical English)
 
@@ -110,16 +110,15 @@ Ultimately, though, YM's personal opinion is that there's no reason to hang on t
 #### Lessons
 
 * For explainability, it might be enough, at least in the short run, to have some way, perhaps a DSL, for annotating with metadata the things we want to expose to downstream consumers, so that you can control what gets logged or 'explained', and maybe also the phrasing / *how* it gets explained.
-
-	* To put it another way, there is a *prima facie* tension between wanting an encoding that (i) is faithful to the original text / legalistic, more technical concerns and yet (ii) can support explanations that are couched in less legalistic language and more understandable to ordinary users. Metadata facilities might be a good enough way to solve this.
+  * To put it another way, there is a *prima facie* tension between wanting an encoding that (i) is faithful to the original text / legalistic, more technical concerns and yet (ii) can support explanations that are couched in less legalistic language and more understandable to ordinary users. Metadata facilities might be a good enough way to solve this.
 
 #### Status
 
-Depends on Meng, I guess. But I imagine we'll want to have this at least as a back up option, in case we don't have something else that can do at least as much when a usecase rolls around. 
+Depends on Meng, I guess. But I imagine we'll want to have this at least as a back up option, in case we don't have something else that can do at least as much when a usecase rolls around.
 
 ### The MathLang system and transpiler
 
-**TODO: Add 1-2 sentences explaining what this is**
+TODO: Add 1-2 sentences explaining what this is
 
 See "The 'Explainable' codebase" in the [codebase](./codebase/explainable.md) file.
 
@@ -139,15 +138,13 @@ We (Maryam and Inari) also did some smaller experiments in generating the lexico
 
 This was in use for the PDPA use case and the Rodents and vermin demo, both from 2021/2022. In the insurance use case, we shifted to Logical English, and it didn't use the GF-based NLG at all.
 
-
 ## Visualizations
 
 The Natural L4 ecosystem also allows you to make useful visualizations from a L4 specification.
 
-There is more detailed discussion of the relevant codebases for these sub-systems [in the Codebase section](./codebase/index.md). 
+There is more detailed discussion of the relevant codebases for these sub-systems [in the Codebase section](./codebase/index.md).
 
 [TODO, high level]
-
 
 ## Natural L4 syntax specification
 

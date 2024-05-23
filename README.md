@@ -1,8 +1,12 @@
-# Timeline
+# README
+
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/smucclaw/internal_docs/main.svg)](https://results.pre-commit.ci/latest/github/smucclaw/internal_docs/main)
+
+## Timeline
 
 We're aiming to get most of the substantive material up by June 1.
 
-# How to install / set up locally
+## How to install / set up locally
 
 1. Install `poetry`,  the dependency manager we're using, [by following the instructions here](https://python-poetry.org/docs/).
 
@@ -14,6 +18,16 @@ We're aiming to get most of the substantive material up by June 1.
 
 To see what it'll look like, locally: Build the docs site with `mkdocs build`; serve it (with live-reloading) via `mkdocs serve`.
 
-# For more info on mkdocs
+### Pre-commit
+
+To install, see docs at [https://pre-commit.com/](https://pre-commit.com/)
+
+To run it locally:
+
+```bash
+pre-commit run --all-files
+```
+
+## For more info on mkdocs
 
 See [https://squidfunk.github.io/mkdocs-material](https://squidfunk.github.io/mkdocs-material) and [https://www.mkdocs.org/](https://www.mkdocs.org/).

@@ -106,15 +106,15 @@ data RPRel =
 data TComparison = TBefore | TAfter | TBy | TOn | TVague
 ```
 
-
 ### Redundancies in RelationalPredicate
 
 #### ParamText and MultiTerm
 
-```
+```haskell
     RPParamText   ParamText
   | RPMT          MultiTerm
 ```
+
 Both ParamText and MultiTerm are based on a list of `MTExpr`. ParamText has in addition an optional TypeSig attached to the expressions and two separate NonEmpty lists.
 
 So in translation to Generic MathLang, I just do this

@@ -1,4 +1,3 @@
-
 # Visualizations
 
 A handful of components produce visualizations of L4 expressions.
