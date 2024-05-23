@@ -32,6 +32,10 @@ visualizations; a back-end serving a rule engine API; a middle tier
 producing human-readable explanations. These are all components which
 could be part of the L4 system.
 
+These end-users may speak multiple natural languages, and want to
+interact with the system in their own preferred tongue. They may also
+prefer visual interfaces and explanations, if text is too hard.
+
 ### Legal Drafter Writing a Regulation or a Contract
 
 Legal drafters may be working solo or as part of a team.
@@ -39,6 +43,8 @@ Legal drafters may be working solo or as part of a team.
 They may be working on a contract, or legislation, or regulation.
 
 They may be drafting "from scratch" a new piece of text; or they may be trying to tweak an existing text.
+
+They may be required to deliver rules in multiple natural languages, and they may want to see L4 help do that job.
 
 ### A Computer
 
@@ -50,6 +56,15 @@ We live in exciting times. We can also use computers to bulk transform
 existing natural language rules (laws, regulations, contracts) into L4
 for review, approval, and further transformations to support the above
 applications.
+
+### Subject to Business and Engineering Considerations
+
+Within each of these general persona categories there will be specific
+stakeholders that each want to see the elephant built to serve each of
+their concerns. For example, there may be as many end-user opinions
+about the app as there are end-users; plus a product owner, a program
+manager, a management reviewer, a UI designer, etc etc. We will not
+belabour this point as it is common to all software engineering.
 
 ## Business Context
 
@@ -85,6 +100,7 @@ End-users are often concerned with these questions:
 * "what's going on?"
 * "what am I supposed to do, and how soon?"
 * "if I want to get from here to there, what do I need to do?"
+* "why is this dollar amount what it is, and not some other number?"
 
 ### Natural Language Generation
 
