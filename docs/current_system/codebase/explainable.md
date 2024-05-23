@@ -24,6 +24,7 @@ We wanted a Typescript runtime so that the computations could run in the end-use
 Links to Meng's embedded DSL:
 
 * [The Haskell embedded DSL](https://github.com/smucclaw/usecases/blob/main/sect10-haskell/src/ToMathLang.hs)
+  * For comparison: [Natural L4 version of the rules PAU0 and PAU4](https://docs.google.com/spreadsheets/d/1cWAb7Ba4HJovQn1PquZzYJjnjKUuhEPhNHzAH4ZfV4I/edit#gid=2100528279)
 * [The Haskell types and runtime](https://github.com/smucclaw/dsl/blob/main/lib/haskell/explainable/src/Explainable/MathLang.hs)
 * [The TS output pretty-printed from Haskell)](https://github.com/smucclaw/usecases/blob/main/sect10-typescript/src/pau.ts)
 * [The TS runtime which evaluates the TS output](https://github.com/smucclaw/usecases/blob/main/sect10-typescript/src/mathlang.ts)
