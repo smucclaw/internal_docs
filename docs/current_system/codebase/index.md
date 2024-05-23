@@ -11,5 +11,3 @@ The major projects are:
 We also talk about
 
 - [visualizations](./visualizations.md)
-
-

@@ -67,4 +67,3 @@ data MathBinOp = Plus | Minus | Times | Divide | Modulo
 1. Spreadsheet gets parsed into a Rule
 2. Rule (only Hornlike) gets transformed into [Generic MathLang](./generic_mathlang.md)
 3. Generic MathLang is transformed into MathLang.
-

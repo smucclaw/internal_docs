@@ -20,6 +20,7 @@ If you are writing something that involves explaining things, it'd probably be a
 ## MkDocs related
 
 ### Docs
+
 We're using Material for MkDocs, the documentation for which is available at [https://squidfunk.github.io/mkdocs-material/](https://squidfunk.github.io/mkdocs-material/).
 
 ### Commands, just in case
