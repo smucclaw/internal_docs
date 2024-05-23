@@ -6,9 +6,7 @@ As [the current user-facing documentation puts it](https://l4-documentation.read
 
 We'll systematically discuss each of these transpilers and their statuses when we [discuss the codebase in more detail](./codebase/index.md). But before doing that, let's briefly survey what I (YM) take to be the most currently functional components of the L4 ecosystem --- or, to put it another way, what one can currently do with L4.
 
-## The (currently-most-functional) transpiler pipelines / components that don't involve visualization
-
-### Web form generation
+## Web form generation
 
 One useful thing you can do with L4 is to scaffold a web form app from an L4 specification.
 
@@ -30,30 +28,41 @@ graph TB;
 	G1--"transpiles to"-->G2[("workdir/uuid/\njsonTp/LATEST.json")];
 ```
 
-#### the Purescript and Vue codebase
+### Propositional-logic-only decision support web app (the Purescript and Vue codebase)
 
-The first generation built a Vue app from an encoding of the Personal Data Protection Act.
+The first generation builds a Vue web app that allows users to answer YES / NO questions to arrive at some sort of decision, and to see a visualization of that (see the discussion of ladder diagrams [TODO -- add links]). The most involved example of this involved making such an app from an encoding of the Personal Data Protection Act. 
+
+This is quite limited in its functionality: it only handles propositional logic.
 
 This app was internally titled "Dolora, the Law Explorer".
 
-**Historical Context:** This was motivated by a 2021/2022 use case around the Personal Data Protection Act.
+#### Historical Context
 
-**Status:** Still forms part of current demos; badly needs to be superseded.
+This was motivated by a 2021/2022 use case around the Personal Data Protection Act.
 
-**Visible at:**
+#### Status 
+
+Still forms part of current demos; badly needs to be superseded.
+
+#### Visible at
 
 1. spreadsheet sidebar, at top.
 2. A static snapshot of the generated app is stable and available at https://smucclaw.github.io/mengwong/pdpa
 
-#### the JSON Schema transpiler
+### More sophisticated (arithmetic + dates + some abductive queries) decision support web app (the JSON Schema transpiler)
 
 The second generation tried to separate MVC layers by using an approach based on [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form) / [vue-form-json-schema](https://github.com/jarvelov/vue-form-json-schema).
 
 [The relevant docs](https://github.com/smucclaw/documentation/blob/main/docs/webform.rst) explain how the web form generation works in some detail. [The JSON schema transpiler docs](https://github.com/smucclaw/documentation/blob/main/docs/transpilers-json-schema.rst) are also relevant.
 
-**Historical Context:** This was motivated by that use case with the insurance company. 
+#### Historical Context
 
-**Status:** Still relevant, 
+This was motivated by that use case with the insurance company. 
+
+#### Status 
+
+Still relevant, 
+
 * though YM thinks that there's quite a bit that could be improved, especially with regards to the interfaces (in the software design sense). 
 * And ideally, we'd also want to re-examine the semantics of the schema definition constructs.
 * The JSON Schema transpiler also needs some work. [TODO: Add more detail here on what kind of work]
@@ -61,6 +70,8 @@ The second generation tried to separate MVC layers by using an approach based on
 **NOTE:** The [example form app repo](https://github.com/smucclaw/example-l4-form-app) needs some work. Haven't really bothered polishing it because we'll probably want to improve the web app generation system in more fundamental ways.
 
 ### The Logical English transpiler
+
+**TODO: Add discussion of what this is and how this is related to the web app stuff**
 
 [Docs for this can be found on the user-facing doc site](https://github.com/smucclaw/documentation/blob/main/docs/transpilers-logical-english.rst)
 
@@ -82,7 +93,7 @@ If memory serves me right, we went for this because
 
 Meng 
 
-* did not like how it looked like we were piggybacking on another legal DSL
+* did not like how it looked like we were piggybacking on another legal DSL (Logical English)
 
 * did not like how the backend took longer than one might like (I cannot remember exactly how long) to handle requests. That said, YM and Joe would note that this is not a foundational issue but rather an engineering-level one --- it's something that can solved with some engineering effort.
 
@@ -91,6 +102,12 @@ YM also thinks, based in part on feedback from other members of the team, that t
 One might also have some reservations about how working with, eg., Swi-Prolog and having the client be totally in-browser and adding in more advanced Q&A functionality isn't trivial (though Joe has already worked this out).
 
 Ultimately, though, YM's personal opinion is that there's no reason to hang on to this if we're overhauling things from the ground up.
+
+#### Lessons
+
+* For explainability, it might be enough, at least in the short run, to have some way, perhaps a DSL, for annotating with metadata the things we want to expose to downstream consumers, so that you can control what gets logged or 'explained', and maybe also the phrasing / *how* it gets explained.
+
+	* To put it another way, there is a *prima facie* tension between wanting an encoding that (i) is faithful to the original text / legalistic, more technical concerns and yet (ii) can support explanations that are couched in less legalistic language and more understandable to ordinary users. Metadata facilities might be a good enough way to solve this.
 
 #### Status
 
