@@ -91,6 +91,10 @@ acclerates the building of applications.
 All of the above provide an opportunity for a legal DSL to answer some
 of these demands.
 
+## Opportunities and Innovation Premise
+
+We can apply a lot of ideas from the world of software engineering and [formal methods](https://www.theatlantic.com/technology/archive/2017/09/saving-the-world-from-code/540393/) to this domain. There is some low-hanging fruit, starting from formal grammars and even syntax errors.
+
 ## Specific Use Cases
 
 ### State Transition Reductions to Residuals
