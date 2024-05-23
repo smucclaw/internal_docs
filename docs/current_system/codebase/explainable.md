@@ -90,7 +90,7 @@ It is in this context that 'Generic MathLang' should be understood. Because the 
 
 YM decided to first translate the output from the Natural L4 parser to an intermediate representation that he called *Generic MathLang* --- an intermediate representation that amounted to more generic, **un**typed lambda-calculus-looking AST --- before further translating it to other formats. That is, the envisioned pipeline was something like
 
-```
+```ascii
 Natural L4 parser => Generic MathLang => (e.g.) serialization of Generic MathLang for an in-browser interpreter | Meng's MathLang | ...etc
 ```
 
