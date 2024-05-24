@@ -5,13 +5,21 @@ repos:
       - id: end-of-file-fixer
       - id: trailing-whitespace
         exclude: \.svg$|^docs/image
+  - repo: https://github.com/sirosen/texthooks
+    rev: "0.5.0"
+    hooks:
+      - id: fix-smartquotes
+        stages: [commit]
+      - id: fix-ligatures
+        stages: [commit]
   - repo: https://github.com/igorshubovych/markdownlint-cli
     rev: v0.38.0
     hooks:
       - id: markdownlint
         name: Run markdownlint
         description: Check Markdown files with markdownlint
-        args: [--config=.github/linters/.markdownlint.yaml]
+        args: ["--config=.github/linters/.markdownlint.yaml", "-f"]
+        stages: [commit]
         exclude: ^\.github/.*$
         types: [markdown]
         files: \.(md|mdown|markdown)$
