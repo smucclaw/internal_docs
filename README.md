@@ -32,6 +32,10 @@ To run it locally (which is usually faster than waiting for GH's workflow to gri
 pre-commit run --all-files
 ```
 
+### Why pre commit and markdown linting
+
+Yongming noticed that parts of the site weren't rendering properly because the markdown was not valid. Using precommit and markdown linting should help with that.
+
 ## For more info on mkdocs
 
 See [https://squidfunk.github.io/mkdocs-material](https://squidfunk.github.io/mkdocs-material) and [https://www.mkdocs.org/](https://www.mkdocs.org/).
