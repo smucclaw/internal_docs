@@ -18,6 +18,22 @@ This draws the interactive, clickable diagrams in the web interview.
 
 ### See also the SVGLadder.hs in [AnyAll](./anyall.md)
 
+## More experimental: Jules and Zeming's MathLang Vis
+
+TODO: Explain
+
+<https://github.com/smucclaw/usecases/tree/mathlang-vis-horizontal>
+
+[Video demo](https://smucclaw.slack.com/files/U057B2P9XT2/F06CN807NC8/vid_20231230_224443_209.mp4)
+
+To try it out and click through the graph and fill in the questions:
+
+```bash
+npm i
+npm run watch-ts
+npm run start
+```
+
 ## Petri Net stuff
 
 <https://github.com/smucclaw/dsl/blob/main/lib/haskell/natural4/src/LS/XPile/Petri.hs>
