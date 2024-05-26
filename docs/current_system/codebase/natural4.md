@@ -177,7 +177,16 @@ graph TB;
 
 We have already talked about some of these, above -- MathLang and Petri.
 
-We briefly visit a few others which are important for historical purposes, or whose functionality we want to see in a future version of the codebase.
+TODO: Catalogue as many of the things as possible in [https://github.com/smucclaw/dsl/tree/main/lib/haskell/natural4/src/LS/XPile](https://github.com/smucclaw/dsl/tree/main/lib/haskell/natural4/src/LS/XPile) and note their statuses and contexts, since that's what WT had asked for.
+
+### Intro-x.hs ###
+
+The files:
+
+> IntroBase.hs, IntroBasic.hs, IntroLog.hs, IntroReader.hs, IntroShoehorn.hs, IntroTrivial.hs
+
+* Status: Reference? Deprecated?
+* Context: These were written by Meng; they were intended to be reference transpilers or guides for future implementors. Not all the transpilers follow the structure outlined in these files, however, because some of the structure is quite specific to Meng's preferences and setup (e.g. the choice of logging framework). See also the discussion in the Logical English transpiler sub-section for why not all the transpilers use Meng's 'Interpreter'/'Analyzer'.
 
 ### To Prolog (Prolog.hs) ###
 
@@ -213,6 +222,8 @@ The `Intro*.hs` and `Logging.hs` files record a painful learning
 journey toward monadic logging. The goal was to allow all transpilers
 and all parts of the natural4 toolchain generally to be able to
 produce structured logging for later debug inspection.
+
+(Not all transpilers use this -- Meng's --- logging framework, because this framework is optimized for Meng's setup and preferences. And in any case, this kind of logging isn't really as necessary for debugging pure functions.)
 
 ### Org ###
 
