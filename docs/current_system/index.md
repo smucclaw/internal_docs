@@ -53,11 +53,13 @@ Still forms part of current demos; badly needs to be superseded.
 
 ### More sophisticated (arithmetic + dates + some abductive queries)
 
-[TODO: Reorganize and explain what this is first. Link to further discussions of the JSON Schema transpiler + Clojurescript client]
+[TODO: Reorganize and explain what this is first. 'separate MVC layers' probably not really getting at what's most interesting about the system. Link to further discussions of the JSON Schema transpiler + Clojurescript client]
 
 The second generation tried to separate MVC layers by using an approach based on [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form) / [vue-form-json-schema](https://github.com/jarvelov/vue-form-json-schema).
 
 [The relevant docs](https://github.com/smucclaw/documentation/blob/main/docs/webform.rst) explain how the web form generation works in some detail. [The JSON schema transpiler docs](https://github.com/smucclaw/documentation/blob/main/docs/transpilers-json-schema.rst) are also relevant.
+
+There was also an abortive attempt at [trying to find a way to separate UI text from the web app](https://github.com/smucclaw/usecases/blob/c00a5162220ec9e3a062e7814a5310f9f0924c9a/jsonforms-vue-seed/README.md?plain=1).
 
 #### Historical Context
 

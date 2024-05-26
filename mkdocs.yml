@@ -10,6 +10,7 @@ nav:
           - Baby L4: current_system/codebase/baby_L4.md
           - The Rule AST: current_system/codebase/rule_ast.md
           - DevOps: current_system/codebase/devops.md
+      - Other Experiments / Prototypes: current_system/other_experiments.md
   - For the Future:
       - Wishlist: future_aspirations.md
       - Misc Notes or Ideas: misc.md
