@@ -180,7 +180,7 @@ Subsequently, interns Jules and Zeming wrote an interactive version in HTML. See
 
 Finally, [a specification of sorts of the Natural L4 syntax is available here.](https://l4-documentation.readthedocs.io/en/stable/docs/returning-specification.html)
 
-# Overall Architecture Map
+## Overall Architecture Map
 
 ```mermaid
 graph TB;
