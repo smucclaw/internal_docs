@@ -1,4 +1,4 @@
-<img width="723" alt="image" src="https://github.com/smucclaw/internal_docs/assets/21286812/7ac106c6-bbb6-4478-b816-43b23ea200c0"># README
+# README
 
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/smucclaw/internal_docs/main.svg)](https://results.pre-commit.ci/latest/github/smucclaw/internal_docs/main)
 
