@@ -15,4 +15,3 @@ We also talk about
 - [visualizations](./visualizations.md)
 
 See the [system architecture map](./architecture.md)
-

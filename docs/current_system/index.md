@@ -10,30 +10,33 @@ To clarify, this page aims to introduce the L4 ecosystem by highlighting the the
 
 Starting from a Natural4 encoding of a set of legal rules, you can automatically:
 
-  - *parse* the spreadsheet CSV into an **internal representation**: see [codebase/natural4](./codebase/natural4.md)
-  - *generate* a **web form "expert system"** that interviews an end-user and returns a result.
-    - The [simple version](./webforms.md#propositional-logic-only-decision-support-web-app) of this only deals with propositional logic.
-    - The [Logical English version](./logicalenglish.md) deals with numbers and dates too
-    - New infrastructure uses the [mathlang codebase](./codebase/generic_mathlang.md).
-  - *visualize* the **simple Boolean decision logic**, which is the subject of constitutive rules,
-    - as a [black-and-white SVG ladder diagram](./codebase/visualizations.md#simple-ladder-svgs)
-    - as an [interactive HTML widget](./codebase/visualizations.md#interactive-ladder-html)
-  - *visualize* the **state transition logic**, which is the subject of regulative rules,
-    - as a [Petri Net](./codebase/visualizations.md#petri-net-stuff)
-  - *statically analyze* the **state transition logic**
-    - using [Maude](./codebase/natural4.md#maude)
+- *parse* the spreadsheet CSV into an **internal representation**: see [codebase/natural4](./codebase/natural4.md)
+- *generate* a **web form "expert system"** that interviews an end-user and returns a result.
+  - The [simple version](./webforms.md#propositional-logic-only-decision-support-web-app) of this only deals with propositional logic.
+  - The [Logical English version](./logicalenglish.md) deals with numbers and dates too
+  - New infrastructure uses the [mathlang codebase](./codebase/generic_mathlang.md).
+- *visualize* the **simple Boolean decision logic**, which is the subject of constitutive rules,
+  - as a [black-and-white SVG ladder diagram](./codebase/visualizations.md#simple-ladder-svgs)
+  - as an [interactive HTML widget](./codebase/visualizations.md#interactive-ladder-html)
+- *visualize* the **state transition logic**, which is the subject of regulative rules,
+  - as a [Petri Net](./codebase/visualizations.md#petri-net-stuff)
+- *statically analyze* the **state transition logic**
+  - using [Maude](./codebase/natural4.md#maude)
 
 ---
+
 ### The MathLang system and transpiler
 
 The MathLang codebase is intended to produce a Javascript runtime suitable for in-browser execution of decision rules originally encoded in L4.
 
 See:
-  - [The 'Explainable' codebase](./codebase/explainable.md)
-  - [mathlang](./codebase/mathlang.md)
-  - [generic mathlang](./codebase/generic_mathlang.md)
+
+- [The 'Explainable' codebase](./codebase/explainable.md)
+- [mathlang](./codebase/mathlang.md)
+- [generic mathlang](./codebase/generic_mathlang.md)
 
 ---
+
 ### Natural Language Generation
 
 The current codebase for NLG is in [natural4/src/LS/NLP/NLG.hs](https://github.com/smucclaw/dsl/blob/main/lib/haskell/natural4/src/LS/NLP/NLG.hs), and the grammars it is based on are in [natural4/grammars](https://github.com/smucclaw/dsl/tree/main/lib/haskell/natural4/grammars).
@@ -51,4 +54,3 @@ We have ambitions to restart the NLG efforts—more in the dedicated page for [N
 ## Natural L4 syntax specification
 
 Finally, [a specification of sorts of the Natural L4 syntax is available here.](https://l4-documentation.readthedocs.io/en/stable/docs/returning-specification.html)
-

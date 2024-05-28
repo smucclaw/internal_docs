@@ -22,7 +22,6 @@ graph TB;
     G2--"consumed by"-->G3["react frontend\n(smucclaw/usecases/smu)"]
 ```
 
-
 ## Propositional-logic-only decision support web app ##
 
 (the Purescript and Vue codebase)
@@ -45,7 +44,6 @@ Still forms part of current demos; badly needs to be superseded.
 
 1. spreadsheet sidebar, at top.
 2. A static snapshot of the generated app is stable and available at <https://smucclaw.github.io/mengwong/pdpa>
-
 
 ## More sophisticated web form ##
 
@@ -72,4 +70,3 @@ Still relevant,
 * The JSON Schema transpiler also needs some work. [TODO: Add more detail here on what kind of work]
 
 **NOTE:** The [example form app repo](https://github.com/smucclaw/example-l4-form-app) needs some work. Haven't really bothered polishing it because we'll probably want to improve the web app generation system in more fundamental ways.
-

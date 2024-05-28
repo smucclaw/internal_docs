@@ -17,9 +17,9 @@ and were used in "cleanroom testing" of the primary codebase.
 
 See also:
 
-* <https://github.com/smucclaw/usecases/blob/main/sect10-typescript/>
-* (./generic_mathlang.md)
-* (./mathlang.md)
+- <https://github.com/smucclaw/usecases/blob/main/sect10-typescript/>
+- (./generic_mathlang.md)
+- (./mathlang.md)
 
 Interestingly, this codebase features twin implementations in Haskell and Typescript, with working runtimes in both languages.
 
