@@ -212,7 +212,7 @@ graph TB;
     F --"becomes"--> F1["javascript data structure\nQoutJS"]
     F1--"consumed by"-->F2["LadderDiagram.vue"]
     F2--"imports"-->F4["the interactive ladder diagram generator\nladder-diagram js library\n/src/smucclaw/ladder-diagram"]
-    
+
     C --"runs"-->J["Logical English"]
     C --"runs"-->K["Prolog\n[TODO]"]
     C --"runs"-->L["future targets\nPython API Backend\nJavascript for browser-side\nGo libraries"]
