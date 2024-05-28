@@ -8,6 +8,20 @@ We'll systematically discuss each of these dialects / transpilers and their stat
 
 To clarify, this page aims to introduce the L4 ecosystem by highlighting the the most interesting things that can be done with it, and its key dialects. It does *not* discuss in-the-weeds details about the codebases or their architecture --- see the [Codebase section](./codebase/index.md) for that.
 
+Starting from a Natural4 encoding of a set of legal rules, you can automatically:
+
+* *generate* a web form "expert system" that interviews an end-user and returns a result.
+  * The [simple version](#propositional-logic-only-decision-support-web-app-the-purescript-and-vue-codebase) of this only deals with propositional logic.
+  * The [more complex version](#more-sophisticated-arithmetic--dates--some-abductive-queries) deals with numbers and dates too.
+* *visualize* the **simple Boolean decision logic**, which is the subject of constitutive rules,
+  * as a [black-and-white SVG ladder diagram](#simple-ladder-svgs)
+  * as an [interactive HTML widget](#interactive-ladder-html)
+* *visualize* the **state transition logic**, which is the subject of regulative rules,
+  * as a [Petri Net](./codebase/visualizations.md#petri-net-stuff)
+* statically analyze the state transition logic
+  * using [Maude](./codebase/natural4.md#maude)
+
+
 ## Web form generation
 
 One useful thing you can do with L4 is to scaffold a web form app from an L4 specification.
@@ -19,15 +33,17 @@ graph TB;
     classDef natural4exe fill:#f9f,stroke:#333,stroke-width:2px;
 
     A["Google Sheets tab"] -- "L4/Refresh" --> B[["Apps Script Sanic Hello.py"]];
- B -- calls -->C[["natural4-exe (app/Main.hs)"]];
+    B -- calls -->C[["natural4-exe (app/Main.hs)"]];
 
- C --"runs"--> C1["the Purescript and Vue codebase\n(2021/2022)"];
- C1--"imports"-->D[["LS/XPile/Purescript.hs"]];
+    C --"runs"--> C1["the Purescript and Vue codebase\n(2021/2022)"];
+    C1--"imports"-->D[["LS/XPile/Purescript.hs"]];
     D--"transpiles to"-->E[("workdir/uuid/\npurs/LATEST.purs")];
+    E--"consumed by"-->F["vue-json frontend\n(smucclaw/vue-pure-pdpa)"];
 
     C --"runs"--> G0["the JSON Schema transpiler\n(2023)"];
- G0--"imports"-->G1[["LS/XPile/ExportTypes.hs"]];
- G1--"transpiles to"-->G2[("workdir/uuid/\njsonTp/LATEST.json")];
+    G0--"imports"-->G1[["LS/XPile/ExportTypes.hs"]];
+    G1--"transpiles to"-->G2[("workdir/uuid/\njsonTp/LATEST.json")];
+    G2--"consumed by"-->G3["react frontend\n(smucclaw/usecases/smu)"]
 ```
 
 ### Propositional-logic-only decision support web app (the Purescript and Vue codebase)
@@ -144,8 +160,63 @@ The Natural L4 ecosystem also allows you to make useful visualizations from a L4
 
 There is more detailed discussion of the relevant codebases for these sub-systems [in the Codebase section](./codebase/index.md).
 
-[TODO, high level]
+### simple ladder SVGs
+
+In 2020, simple Boolean-only decision logic was visualized with a library inspired by ladder logic Boolean circuit diagrams. See the [original specification in Google Drive](https://drive.google.com/drive/folders/1y7TssfA925VuyuAt8VBaNxlRTo8KyqlS?usp=sharing)
+
+The tiny versions show up in the sidebar and look like this.
+
+![tiny v1 ladder diagram svg](./vis-aasvg-qualifies-tiny.svg)
+
+The fuller versions contain text and look like this.
+
+![full v1 ladder diagram svg](./vis-aasvg-qualifies-full.svg)
+
+### interactive ladder HTML
+
+Subsequently, interns Jules and Zeming wrote an interactive version in HTML. See https://github.com/smucclaw/ladder-diagram
 
 ## Natural L4 syntax specification
 
 Finally, [a specification of sorts of the Natural L4 syntax is available here.](https://l4-documentation.readthedocs.io/en/stable/docs/returning-specification.html)
+
+# Overall Architecture Map
+
+
+```mermaid
+graph TB;
+    classDef natural4exe fill:#f9f,stroke:#333,stroke-width:2px;
+
+    A["Google Sheets tab"] -- "L4/Refresh" --> B[["Apps Script Sanic Hello.py"]];
+    B -- calls -->C[["natural4-exe (app/Main.hs)"]];
+
+    C --"runs"--> C1["the Purescript and Vue codebase\n(2021/2022)"];
+    C1--"imports"-->D[["LS/XPile/Purescript.hs"]];
+    D--"transpiles to"-->E[("workdir/uuid/\npurs/LATEST.purs")];
+    E--"consumed by"-->F["vue-json frontend\n(smucclaw/vue-pure-pdpa)"];
+
+    C --"runs"--> G0["the JSON Schema transpiler\n(2023)"];
+    G0--"imports"-->G1[["LS/XPile/ExportTypes.hs"]];
+    G1--"transpiles to"-->G2[("workdir/uuid/\njsonTp/LATEST.json")];
+    G2--"consumed by"-->G3["react frontend\n(smucclaw/usecases/smu)"]
+
+    subgraph H1 ["svg generator"]
+      H1A[["LS/XPile/SVG.hs"]];
+      H1A--"imports"-->H1B[["AnyAll.makeSvg\n(dsl/lib/haskell/anyall)"]];
+    end
+
+    C --"runs"--> H0["the simple Boolean circuit visualizer"]
+    H0--"imports"--> H1
+    H1--"transpiles to"-->H2[("workdir/uuid/\naasvg/LATEST/*.svg")];
+    H2--"consumed by"-->H3["spreadsheet sidebar\n(smucclaw/gsheet)"]
+
+    C --"runs"--> I0["the interactive ladder diagram generator"]
+    F --"becomes"--> F1["javascript data structure\nQoutJS"]
+    F1--"consumed by"-->F2["LadderDiagram.vue"]
+    F2--"imports"-->F4["ladder-diagram js library\n/src/smucclaw/ladder-diagram"]
+    I0 --"at"-->F4
+    
+
+
+```
+
