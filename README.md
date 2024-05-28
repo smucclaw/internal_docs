@@ -1,4 +1,4 @@
-# README
+<img width="723" alt="image" src="https://github.com/smucclaw/internal_docs/assets/21286812/7ac106c6-bbb6-4478-b816-43b23ea200c0"># README
 
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/smucclaw/internal_docs/main.svg)](https://results.pre-commit.ci/latest/github/smucclaw/internal_docs/main)
 
@@ -12,7 +12,9 @@ We're aiming to get most of the substantive material up by June 1.
 
 2. Use `poetry shell` to activate the virtual environment (see [the poetry docs](https://python-poetry.org/docs/basic-usage/) for more info)
 
-3. **To publish the site:** After making whatever changes you want to make, you can get it to show up on the GH pages site by pushing to `main` / making a PR and merging it in. *For substantive docs, you are encouraged to tag at least one of the rest for 'code' review.*
+3. Once you have done `poetry shell`, install dependencies with `poetry install --no-root`.
+
+4. **To publish the site:** After making whatever changes you want to make, you can get it to show up on the GH pages site by pushing to `main` / making a PR and merging it in. *For substantive docs, you are encouraged to tag at least one of the rest for 'code' review.*
 
 **PLEASE DO NOT PUSH TO THE `gh-pages` branch.**
 
