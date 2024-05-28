@@ -22,7 +22,6 @@ Starting from a Natural4 encoding of a set of legal rules, you can automatically
 * *statically analyze* the state transition logic
   * using [Maude](./codebase/natural4.md#maude)
 
-
 ## Web form generation
 
 One useful thing you can do with L4 is to scaffold a web form app from an L4 specification.
@@ -175,14 +174,13 @@ The fuller versions contain text and look like this.
 
 ### interactive ladder HTML
 
-Subsequently, interns Jules and Zeming wrote an interactive version in HTML. See https://github.com/smucclaw/ladder-diagram
+Subsequently, interns Jules and Zeming wrote an interactive version in HTML. See <https://github.com/smucclaw/ladder-diagram>
 
 ## Natural L4 syntax specification
 
 Finally, [a specification of sorts of the Natural L4 syntax is available here.](https://l4-documentation.readthedocs.io/en/stable/docs/returning-specification.html)
 
 # Overall Architecture Map
-
 
 ```mermaid
 graph TB;
@@ -214,8 +212,7 @@ graph TB;
     F --"becomes"--> F1["javascript data structure\nQoutJS"]
     F1--"consumed by"-->F2["LadderDiagram.vue"]
     F2--"imports"-->F4["the interactive ladder diagram generator\nladder-diagram js library\n/src/smucclaw/ladder-diagram"]
-    
+
     C --"runs"-->Z["others\n[TODO]"]
 
 ```
-
