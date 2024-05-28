@@ -2,11 +2,27 @@
 
 A handful of components produce visualizations of L4 expressions.
 
-## [Ladder Diagram](https://github.com/smucclaw/ladder-diagram)
+### simple ladder SVGs
 
-This draws the interactive, clickable diagrams in the web interview.
+In 2020, simple Boolean-only decision logic was visualized with a library inspired by ladder logic Boolean circuit diagrams. See the [original specification in Google Drive](https://drive.google.com/drive/folders/1y7TssfA925VuyuAt8VBaNxlRTo8KyqlS?usp=sharing)
 
-* [The main Ladder Diagram repo](https://github.com/smucclaw/ladder-diagram)
+The tiny versions show up in the sidebar and look like this.
+
+![tiny v1 ladder diagram svg](../vis-aasvg-qualifies-tiny.svg)
+
+The fuller versions contain text and look like this.
+
+![full v1 ladder diagram svg](../vis-aasvg-qualifies-full.svg)
+
+See also `SVGLadder.hs` in [AnyAll](./anyall.md)
+
+### interactive ladder HTML
+
+Subsequently, interns Jules and Zeming wrote an interactive version in HTML.
+
+This draws the interactive, clickable diagrams at the bottom of the web interview.
+
+* [smucclaw/ladder-diagram repo](https://github.com/smucclaw/ladder-diagram)
   * There are also docs available for this, via
 
   ```bash
@@ -16,11 +32,9 @@ This draws the interactive, clickable diagrams in the web interview.
 
 * [Specification in Google Drive](https://drive.google.com/drive/folders/1y7TssfA925VuyuAt8VBaNxlRTo8KyqlS?usp=sharing)
 
-### See also the SVGLadder.hs in [AnyAll](./anyall.md)
+### expression tree explorer
 
-## More experimental: Jules and Zeming's MathLang Vis
-
-TODO: Explain
+Our redoubtable interns further wrote code to fold (show/hide) subexpressions of MathLang:
 
 <https://github.com/smucclaw/usecases/tree/mathlang-vis-horizontal>
 

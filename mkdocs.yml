@@ -5,8 +5,18 @@ nav:
   - Historical Context: historical_context.md
   - The L4 System:
       - current_system/index.md
+      - current_system/webforms.md
+      - current_system/logicalenglish.md
       - Notes on Codebase:
           - current_system/codebase/index.md
+          - current_system/codebase/architecture.md
+          - current_system/codebase/anyall.md
+          - current_system/codebase/explainable.md
+          - current_system/codebase/visualizations.md
+          - current_system/codebase/generic_mathlang.md
+          - current_system/codebase/mathlang.md
+          - current_system/codebase/natural4.md
+          - current_system/codebase/nlg.md
           - Baby L4: current_system/codebase/baby_L4.md
           - The Rule AST: current_system/codebase/rule_ast.md
           - DevOps: current_system/codebase/devops.md
