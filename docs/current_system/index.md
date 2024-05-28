@@ -10,15 +10,16 @@ To clarify, this page aims to introduce the L4 ecosystem by highlighting the the
 
 Starting from a Natural4 encoding of a set of legal rules, you can automatically:
 
+* *parse* the spreadsheet CSV into an internal representation: see [codebase/natural4](./codebase/natural4.md)
 * *generate* a web form "expert system" that interviews an end-user and returns a result.
   * The [simple version](#propositional-logic-only-decision-support-web-app-the-purescript-and-vue-codebase) of this only deals with propositional logic.
-  * The [more complex version](#more-sophisticated-arithmetic--dates--some-abductive-queries) deals with numbers and dates too.
+  * The [more complex version](#more-sophisticated-arithmetic--dates--some-abductive-queries) deals with numbers and dates too, using the [mathlang codebase](./codebase/generic_mathlang.md).
 * *visualize* the **simple Boolean decision logic**, which is the subject of constitutive rules,
   * as a [black-and-white SVG ladder diagram](#simple-ladder-svgs)
   * as an [interactive HTML widget](#interactive-ladder-html)
 * *visualize* the **state transition logic**, which is the subject of regulative rules,
   * as a [Petri Net](./codebase/visualizations.md#petri-net-stuff)
-* statically analyze the state transition logic
+* *statically analyze* the state transition logic
   * using [Maude](./codebase/natural4.md#maude)
 
 
@@ -210,13 +211,11 @@ graph TB;
     H1--"transpiles to"-->H2[("workdir/uuid/\naasvg/LATEST/*.svg")];
     H2--"consumed by"-->H3["spreadsheet sidebar\n(smucclaw/gsheet)"]
 
-    C --"runs"--> I0["the interactive ladder diagram generator"]
     F --"becomes"--> F1["javascript data structure\nQoutJS"]
     F1--"consumed by"-->F2["LadderDiagram.vue"]
-    F2--"imports"-->F4["ladder-diagram js library\n/src/smucclaw/ladder-diagram"]
-    I0 --"at"-->F4
+    F2--"imports"-->F4["the interactive ladder diagram generator\nladder-diagram js library\n/src/smucclaw/ladder-diagram"]
     
-
+    C --"runs"-->Z["others\n[TODO]"]
 
 ```
 
