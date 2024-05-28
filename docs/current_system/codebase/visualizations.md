@@ -42,3 +42,4 @@ According to Meng (16 May 2024):
 
 * Context: This was meant to be a visualization for the state transition parts / deontics-handling parts of L4.
 * Status: Although we still want to offer visualizations for the state transition-y parts in the next iteration of L4,  we don't need to stick to Petri Nets. We are free to move to something else, if there are better alternatives.
+* Prior Art: one of the earliest papers in the field of computable contracts, [Ronald Lee 1998](https://drive.google.com/file/d/1K8bZP8GphlT_YX7kR-nadVwcxNHMswTe/view?usp=drive_link), chose the Petri Net formalism.
