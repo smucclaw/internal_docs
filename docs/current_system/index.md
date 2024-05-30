@@ -12,16 +12,16 @@ Starting from a Natural4 encoding of a set of legal rules, you can automatically
 
 - *parse* the spreadsheet CSV into an **internal representation**: see [codebase/natural4](./codebase/natural4.md)
 - *generate* a **web form "expert system"** that interviews an end-user and returns a result.
- 	- The [simple version](./webforms.md#propositional-logic-only-decision-support-web-app) of this only deals with propositional logic.
- 	- The [Logical English version](./logicalenglish.md) deals with numbers and dates too
- 	- New infrastructure uses the [mathlang codebase](./codebase/generic_mathlang.md).
+  - The [simple version](./webforms.md#propositional-logic-only-decision-support-web-app) of this only deals with propositional logic.
+  - The [Logical English version](./logicalenglish.md) deals with numbers and dates too
+  - New infrastructure uses the [mathlang codebase](./codebase/generic_mathlang.md).
 - *visualize* the **simple Boolean decision logic**, which is the subject of constitutive rules,
- 	- as a [black-and-white SVG ladder diagram](./codebase/visualizations.md#simple-ladder-svgs)
- 	- as an [interactive HTML widget](./codebase/visualizations.md#interactive-ladder-html)
+  - as a [black-and-white SVG ladder diagram](./codebase/visualizations.md#simple-ladder-svgs)
+  - as an [interactive HTML widget](./codebase/visualizations.md#interactive-ladder-html)
 - *visualize* the **state transition logic**, which is the subject of regulative rules,
- 	- as a [Petri Net](./codebase/visualizations.md#petri-net-stuff)
+  - as a [Petri Net](./codebase/visualizations.md#petri-net-stuff)
 - *statically analyze* the **state transition logic**
- 	- using [Maude](./codebase/natural4.md#maude)
+  - using [Maude](./codebase/natural4.md#maude)
 
 ---
 
