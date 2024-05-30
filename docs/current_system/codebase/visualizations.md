@@ -2,7 +2,7 @@
 
 A handful of components produce visualizations of L4 expressions.
 
-### simple ladder SVGs
+## simple ladder SVGs
 
 In 2020, simple Boolean-only decision logic was visualized with a library inspired by ladder logic Boolean circuit diagrams. See the [original specification in Google Drive](https://drive.google.com/drive/folders/1y7TssfA925VuyuAt8VBaNxlRTo8KyqlS?usp=sharing)
 
@@ -16,7 +16,7 @@ The fuller versions contain text and look like this.
 
 See also `SVGLadder.hs` in [AnyAll](./anyall.md)
 
-### interactive ladder HTML
+## interactive ladder HTML
 
 Subsequently, interns Jules and Zeming wrote an interactive version in HTML.
 
@@ -32,7 +32,7 @@ This draws the interactive, clickable diagrams at the bottom of the web intervie
 
 * [Specification in Google Drive](https://drive.google.com/drive/folders/1y7TssfA925VuyuAt8VBaNxlRTo8KyqlS?usp=sharing)
 
-### expression tree explorer
+## expression tree explorer
 
 Our redoubtable interns further wrote code to fold (show/hide) subexpressions of MathLang:
 
