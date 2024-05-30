@@ -4,7 +4,7 @@
 graph TB;
     classDef natural4exe fill:#f9f,stroke:#333,stroke-width:2px;
 
-    A["Google Sheets tab"] -- "L4/Refresh" --> B[["Apps Script Sanic Hello.py\nsmucclaw/gsheet/natural4-server/""]];
+    A["Google Sheets tab"] -- "L4/Refresh" --> B[["Apps Script Sanic Hello.py\nsmucclaw/gsheet/natural4-server/"]];
     B -- calls -->C[["natural4-exe (app/Main.hs)"]];
 
     C --"runs"--> C1["the Purescript and Vue codebase\n(2021/2022)"];
