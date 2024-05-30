@@ -1,6 +1,6 @@
 # NLG
 
-This page documents the NLG system from early 2023, which is/was used by the [web form generation](../index.md#web-form-generation). The main goal was to convert the conditions in the rules into questions.
+This page documents the NLG system from early 2023, which is/was used by the [web form generation](../webforms.md). The main goal was to convert the conditions in the rules into questions.
 
 The code is in [natural4/src/LS/NLP/NLG.hs](https://github.com/smucclaw/dsl/blob/main/lib/haskell/natural4/src/LS/NLP/NLG.hs), and the grammars it uses are in [natural4/grammars](https://github.com/smucclaw/dsl/tree/main/lib/haskell/natural4/grammars).
 
