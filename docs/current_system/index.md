@@ -25,7 +25,7 @@ Starting from a Natural4 encoding of a set of legal rules, you can automatically
 
 ---
 
-### The MathLang system and transpiler
+## The MathLang system and transpiler
 
 The MathLang codebase is intended to produce a Javascript runtime suitable for in-browser execution of decision rules originally encoded in L4.
 
@@ -37,7 +37,7 @@ See:
 
 ---
 
-### Natural Language Generation
+## Natural Language Generation
 
 The current codebase for NLG is in [natural4/src/LS/NLP/NLG.hs](https://github.com/smucclaw/dsl/blob/main/lib/haskell/natural4/src/LS/NLP/NLG.hs), and the grammars it is based on are in [natural4/grammars](https://github.com/smucclaw/dsl/tree/main/lib/haskell/natural4/grammars).
 
@@ -45,7 +45,7 @@ The NLG codebase was used by the [web form generation](./webforms.md). The main 
 
 **For a longer description, see [NLG](./codebase/nlg.md).**
 
-#### Status
+### Status
 
 This was in use for the PDPA use case and the Rodents and vermin demo, both from 2021/2022. In the insurance use case, we shifted to Logical English, and it didn't use the GF-based NLG at all.
 
