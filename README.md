@@ -43,11 +43,13 @@ pre-commit install
 
 See docs at [https://pre-commit.com/](https://pre-commit.com/) for more info.
 
-#### Then, to run the hooks against the files locally (which is usually faster than waiting for the GH workflow)
+#### Then, to run the hooks against the files locally
 
 ```bash
 pre-commit run --all-files
 ```
+
+This is usually faster than waiting for the GH workflow.
 
 ### Why pre commit and markdown linting
 
