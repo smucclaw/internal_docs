@@ -26,13 +26,30 @@ I recommend using [this extension for Markdown linting](https://marketplace.visu
 
 ### Pre-commit
 
-To install, see docs at [https://pre-commit.com/](https://pre-commit.com/)
+#### To install locally
 
-To run it locally (which is usually faster than waiting for GH's workflow to grind its way through):
+If you are on a mac:
+
+```bash
+brew install pre-commit
+
+# navigate to this repo
+cd internal_docs
+ # install the git hook scripts
+pre-commit install
+```
+
+> Every time you clone a project using pre-commit, running `pre-commit install` should always be the first thing you do.
+
+See docs at [https://pre-commit.com/](https://pre-commit.com/) for more info.
+
+#### Then, to run the hooks against the files locally
 
 ```bash
 pre-commit run --all-files
 ```
+
+This is usually faster than waiting for the GH workflow.
 
 ### Why pre commit and markdown linting
 
