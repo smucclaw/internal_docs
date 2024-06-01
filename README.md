@@ -24,7 +24,9 @@ To see what it'll look like, locally: Build the docs site with `mkdocs build`; s
 
 I recommend using [this extension for Markdown linting](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint).
 
-### Pre-commit
+### Using pre-commit locally
+
+Using `pre-commit` locally is usually faster than waiting for the GH workflow.
 
 #### To install locally
 
@@ -35,21 +37,20 @@ brew install pre-commit
 
 # navigate to this repo
 cd internal_docs
- # install the git hook scripts
+ # install the git hook scripts. pre-commit will now run on every commit.
 pre-commit install
+pre-commit autoupdate # bring the hooks to the latest tag on the default branch
 ```
 
 > Every time you clone a project using pre-commit, running `pre-commit install` should always be the first thing you do.
 
 See docs at [https://pre-commit.com/](https://pre-commit.com/) for more info.
 
-#### Then, to run the hooks against the files locally
+#### To manually run all pre-commit hooks against the files locally
 
 ```bash
 pre-commit run --all-files
 ```
-
-This is usually faster than waiting for the GH workflow.
 
 ### Why pre commit and markdown linting
 
