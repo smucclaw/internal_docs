@@ -1,9 +1,10 @@
 {
-  "[markdown]": {
-    "editor.formatOnSave": true,
-    "editor.formatOnPaste": true
-  },
-  "editor.codeActionsOnSave": {
-    "source.fixAll.markdownlint": true
-  }
+    "[markdown]": {
+        "editor.formatOnSave": true,
+        "editor.formatOnPaste": true
+    },
+    "markdownlint.focusMode": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.markdownlint": true
+    }
 }
