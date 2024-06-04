@@ -80,6 +80,8 @@ All the above is orchestrated by a `Makefile` under `sect10-typescript`.
 
 Note that the business logic was independently encoded in the internal MathLang DSL and was not wired up to read from the Natural4 spreadsheets. As a clean-room re-implementation, that's fine, but in the long run, the [DRY principle](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) suggests that future MathLang toolchains should read from the spreadsheet or whatever natural4 encoding is canonical, rather than a reimplementation in `ToMathLang.hs`.
 
+(YM's note: the 'internal MathLang DSL' that Meng talks about above is different from the MathLang codebase that Inari and YM had worked on. The latter does work off the output from the Natural L4 parser.)
+
 ### 'Generic MathLang' vs 'MathLang'
 
 The term 'MathLang' is used in a couple of different ways. On the broadest sense, MathLang is supposed to be some kind of functional programming language. But there are also more specific senses; for example, it could also refer to *the specific embedded DSL Meng had whipped up* (see above) --- a DSL that departs from a more 'generic' / 'undergrad-textbook' functional programming language in some ways that make the translation to it more effortful.
