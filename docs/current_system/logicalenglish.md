@@ -45,17 +45,14 @@ We'll want to have this at least as a back up option, in case we don't have some
 
 We should maintain our LE codebase to continue to read LE-styled L4 and transpile to a rule engine that answers queries along the lines of the current API.
 
-- If
-  - by the time we need to deliver a new use case,
-    - we have a working rule engine that
-      - is sufficient for that use case
-      - and is a superset of what LE is capable of doing,
-- then we can retire the LE interface;
-- else, we should do the engineering work needed to speed up the LE engine.
+* If
+  * by the time we need to deliver a new use case,
+    * we have a working rule engine that
+      * is sufficient for that use case
+      * and is a superset of what LE is capable of doing,
+* then we can retire the LE interface;
+* else, we should do the engineering work needed to speed up the LE engine.
 
 Meng believes that if we encapsulate the single-goal-query orientation
 of the current protocol, to allow multiple queries encapsulated within
 one session, we can resolve the problem of outputting counterfactuals.
-
-
-

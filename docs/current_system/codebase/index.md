@@ -14,4 +14,3 @@ We also talk about
 - [visualizations](./visualizations.md) of boolean and arithmetic "mathlang" structures, and of state transitions as a petri net
 
 Please see the [system architecture map](./architecture.md) to see how these code components work together.
-
