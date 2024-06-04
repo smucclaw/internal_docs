@@ -16,9 +16,13 @@ This was motivated by the 2023 use case with the insurance company.
 
 If memory serves me right, we went for this because
 
-* we thought that some form of logic programming would make for a good foundation for the system --- eg, it would be simple to extend it with facilities for abductive reasoning. (You could of course also do this with more work in Haskell.) And some of the designers/implementers of this dialect of L4 had a strong interest in logic programming.
+* we thought that some form of logic programming would make for a good foundation for the system --- eg, it would be simple to extend it with facilities for abductive reasoning. (You could of course also do this with more work in Haskell.)
+
+* Some of the designers/implementers of this dialect of L4 had a strong interest in logic programming.
 
 * Logical English was especially convenient to build upon because it is a kind of CNL wrapper of Prolog -- it's basically Prolog with a natural-language-y facade. In that way, Logical English made it a lot easier to go from a CNL like Natural L4 to Prolog.
+
+* Logical English was able to produce relatively nice, human-readable explanation trees that's nicer than what one would produce with a naive logging evaluator / backwards chainer that's written from scratch. This capability admittedly wasn't used in the end, but it seemed like a nice advantage at the outset, when it wasn't clear what kinds of explanations we might need.
 
 ### Reservations people had about this ###
 
