@@ -1,29 +1,47 @@
 # [The 'Explainable' codebase](https://github.com/smucclaw/dsl/tree/main/lib/haskell/explainable)
 
-## Historical Context
+The Explainable codebase includes the following components.
 
-Meng had written an embedded DSL during the insurance usecase, and wanted something like that that could compute things and give traces for its computations, and crucially, do it fast (recall that he did not like how the Logical English backend had been slow in its handling of requests).
+- [MathLang](./mathlang.md): a DSL for arithmetic expressions and predicates
+- Explainable: a monad for evaluating MathLang expressions and providing explanations for the (intermediate and final) results
 
-These components were intended to:
+These components of the Explainable codebase were intended to:
 
 - illustrate an evaluation-tree approach to logging computation for explainability purposes; and
 - provide a parallel implementation of infrastructure to support the insurance use case in 2023.
 
+## On 'MathLang'
+
+To head off potential confusion right away: 'MathLang' can refer to several things:
+
+- *some* kind of functional programming based DSL
+- the specific embedded DSL Meng had created during the insurance usecase for his own experimentation and testing, and that was not wired up to the L4 codebase
+- the version of that that Inari and YM worked on, and that is wired up to the wider L4 codebase
+
+These will be further explained in due course.
+
+## Historical Context
+
+Let's start with: Why 'MathLang', when we already had the Logical English dialect? Recall that Meng did not like how the Logical English backend had been slow in its handling of requests, and that he had preferred a more functional approach to encoding contracts.
+
+During the insurance usecase, Meng had written an embedded DSL, and wanted that to be further developed (hence the work that Inari and YM did). In particular, he wanted something like that that could compute things and give traces for its computations, and crucially, do it fast.
+
 While the primary codepaths for the insurance use case ran with L4 and
-Logical English, this Explainable codebase supported [rapid
-experimentation with alternative
+Logical English, this Explainable codebase allowed Meng to [experiment with alternative
 formulations](https://github.com/smucclaw/usecases/blob/b256ffb78d21f15335d789352b5e5da957e38e35/sect10-haskell/src/ToMathLang.hs#L334-L370),
-and were used in "cleanroom testing" of the primary codebase.
+and to do "cleanroom testing" of the primary codebase.
+
+Interestingly, this codebase features twin implementations in Haskell and Typescript, with working runtimes in both languages.
+
+We wanted a Typescript runtime so that the computations could run in the end-user's browser.
+
+### Further links / references
 
 See also:
 
 - <https://github.com/smucclaw/usecases/blob/main/sect10-typescript/>
 - ['lower-level' docs on 'generic mathlang'](./generic_mathlang.md)
 - ['lower-level' docs on 'mathlang'](./mathlang.md)
-
-Interestingly, this codebase features twin implementations in Haskell and Typescript, with working runtimes in both languages.
-
-We wanted a Typescript runtime so that the computations could run in the end-user's browser.
 
 Links to Meng's embedded DSL:
 
@@ -34,11 +52,6 @@ Links to Meng's embedded DSL:
 - [The TS runtime which evaluates the TS output](https://github.com/smucclaw/usecases/blob/main/sect10-typescript/src/mathlang.ts)
 
 That embedded DSL should give you some sense for what Meng has in mind with his 'MathLang'.
-
-The Explainable codebase includes the following components.
-
-- [MathLang](./mathlang.md): a DSL for arithmetic expressions and predicates
-- Explainable: a monad for evaluating MathLang expressions and providing explanations for the (intermediate and final) results
 
 ## Use
 
@@ -80,9 +93,9 @@ All the above is orchestrated by a `Makefile` under `sect10-typescript`.
 
 Note that the business logic was independently encoded in the internal MathLang DSL and was not wired up to read from the Natural4 spreadsheets. As a clean-room re-implementation, that's fine, but in the long run, the [DRY principle](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) suggests that future MathLang toolchains should read from the spreadsheet or whatever natural4 encoding is canonical, rather than a reimplementation in `ToMathLang.hs`.
 
-(YM's note: the 'internal MathLang DSL' that Meng talks about above is different from the MathLang codebase that Inari and YM had worked on. The latter does work off the output from the Natural L4 parser.)
+(YM's note: the above discussion is about Meng's 'internal MathLang DSL' (i.e., his embedded DSL). This is different from the MathLang codebase that Inari and YM had worked on. The latter does work off the output from the Natural L4 parser.)
 
-### 'Generic MathLang' vs 'MathLang'
+## 'Generic MathLang' vs 'MathLang'
 
 The term 'MathLang' is used in a couple of different ways. On the broadest sense, MathLang is supposed to be some kind of functional programming language. But there are also more specific senses; for example, it could also refer to *the specific embedded DSL Meng had whipped up* (see above) --- a DSL that departs from a more 'generic' / 'undergrad-textbook' functional programming language in some ways that make the translation to it more effortful.
 
@@ -103,10 +116,6 @@ Doing this allows us, not only to (in principle) get a lot more quickly to a wor
 YM had started implementing this over Dec 2023 - Jan 2024, but subsequently passed the baton on to Inari.
 
 This was admittedly YM's own understanding of Generic MathLang, but [YM sees that Inari seems to also have stuck to this understanding of Generic MathLang; see her docs on the Generic MathLang codebase.](./generic_mathlang.md)
-
-YM does not fully understand the following remark by Meng --- it's not clear why it's relevant that spreadsheets are 'the single source of truth', especially since the MathLang dialect does not differ from the other current dialects of L4 with regards to this --- but maybe others would be able to understand it.
-
-> In 2024, we built a Generic MathLang component to serve as a bridge between the Natural4 codebase and the `MathLang.hs` codebase, so the spreadsheets could serve as the single source of truth.
 
 ### Meng's diagram of the architecture
 
