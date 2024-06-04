@@ -2,7 +2,7 @@
 
 ## Historical Context
 
-YM: Meng had written an embedded DSL during the insurance usecase, and wanted something like that that could compute things and give traces for its computations, and crucially, do it fast (recall that he did not like how the Logical English backend had been slow in its handling of requests).
+Meng had written an embedded DSL during the insurance usecase, and wanted something like that that could compute things and give traces for its computations, and crucially, do it fast (recall that he did not like how the Logical English backend had been slow in its handling of requests).
 
 These components were intended to:
 
@@ -18,8 +18,8 @@ and were used in "cleanroom testing" of the primary codebase.
 See also:
 
 - <https://github.com/smucclaw/usecases/blob/main/sect10-typescript/>
-- (./generic_mathlang.md)
-- (./mathlang.md)
+- ['lower-level' docs on 'generic mathlang'](./generic_mathlang.md)
+- ['lower-level' docs on 'mathlang'](./mathlang.md)
 
 Interestingly, this codebase features twin implementations in Haskell and Typescript, with working runtimes in both languages.
 
