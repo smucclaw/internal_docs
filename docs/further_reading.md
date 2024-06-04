@@ -37,7 +37,7 @@ Ordered in roughly chronological / introductory sequence
 
 #### Work by CodeX at Stanford
 
-- <https://codexstanford.github.io/formation-demo/>
+- <https://codexstanford.github.io/formation-demo/> showcases an idealized, simplified insurance contract and its encoding in Prolog, as well as a web form for it (click on "Switch to Claims Analysis") This is helpful for seeing the abstract structure of most insurance contracts.
 - <https://royalsocietypublishing.org/doi/full/10.1098/rsta.2023.0160> is worth skimming. the arguments here are very quick, but there's some useful info here
   - One of the authors of that paper also gave [a short talk at this year's Future Law conference](https://www.youtube.com/watch?v=8LoXaybqV20&list=PL-_-ZiMvHNVL9WUAep39Y9-R8xl7lS4pG&index=5) that had useful info on ideal UX for a web app that helps people answer questions about insurance contracts.
 
