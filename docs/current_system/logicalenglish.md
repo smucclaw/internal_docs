@@ -1,8 +1,8 @@
 # The Logical English transpiler #
 
-The LE transpiler converts LE-styled L4 source text into Logical English text, which gets consumed by a rule engine serving a web app.
+The LE transpiler converts stuff written in the LE/Proglog fragment of L4 (see Joe's specification) into Logical English code. This can then be used for various other purposes; e.g., [as the basis for a rule engine serving a web app](https://github.com/smucclaw/logical-english-client).
 
-Separately, a transpiler converts the data model from that text into a collection of JSON Schemas.
+In the context of the insurance claim calculator web app, we also had a different transpiler that converts the data model for a web app into a collection of JSON Schemas. Although we used the two in tandem in that usecase, the two systems aren't coupled to each other: the JSON schema sub-system can in principle be used with other dialects of L4.
 
 [Docs for this can be found on the user-facing doc site](https://github.com/smucclaw/documentation/blob/main/docs/transpilers-logical-english.rst)
 
