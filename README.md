@@ -12,7 +12,9 @@ We're aiming to get most of the substantive material up by June 1.
 
 2. Use `poetry shell` to activate the virtual environment (see [the poetry docs](https://python-poetry.org/docs/basic-usage/) for more info)
 
-3. **To publish the site:** After making whatever changes you want to make, you can get it to show up on the GH pages site by pushing to `main` / making a PR and merging it in. *For substantive docs, you are encouraged to tag at least one of the rest for 'code' review.*
+3. Once you have done `poetry shell`, install dependencies with `poetry install --no-root`.
+
+4. **To publish the site:** After making whatever changes you want to make, you can get it to show up on the GH pages site by pushing to `main` / making a PR and merging it in. *For substantive docs, you are encouraged to tag at least one of the rest for 'code' review.*
 
 **PLEASE DO NOT PUSH TO THE `gh-pages` branch.**
 
@@ -22,11 +24,29 @@ To see what it'll look like, locally: Build the docs site with `mkdocs build`; s
 
 I recommend using [this extension for Markdown linting](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint).
 
-### Pre-commit
+### Using pre-commit locally
 
-To install, see docs at [https://pre-commit.com/](https://pre-commit.com/)
+Using `pre-commit` locally is usually faster than waiting for the GH workflow.
 
-To run it locally (which is usually faster than waiting for GH's workflow to grind its way through):
+#### To install locally
+
+If you are on a mac:
+
+```bash
+brew install pre-commit
+
+# navigate to this repo
+cd internal_docs
+ # install the git hook scripts. pre-commit will now run on every commit.
+pre-commit install
+pre-commit autoupdate # bring the hooks to the latest tag on the default branch
+```
+
+> Every time you clone a project using pre-commit, running `pre-commit install` should always be the first thing you do.
+
+See docs at [https://pre-commit.com/](https://pre-commit.com/) for more info.
+
+#### To manually run all pre-commit hooks against the files locally
 
 ```bash
 pre-commit run --all-files

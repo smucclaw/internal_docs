@@ -18,6 +18,8 @@ and were used in "cleanroom testing" of the primary codebase.
 See also:
 
 - <https://github.com/smucclaw/usecases/blob/main/sect10-typescript/>
+- (./generic_mathlang.md)
+- (./mathlang.md)
 
 Interestingly, this codebase features twin implementations in Haskell and Typescript, with working runtimes in both languages.
 
@@ -76,7 +78,7 @@ graph TB;
 
 All the above is orchestrated by a `Makefile` under `sect10-typescript`.
 
-Note that the business logic was independently encoded in the internal MathLang DSL and was not wired up to read from the Natural4 spreadsheets.
+Note that the business logic was independently encoded in the internal MathLang DSL and was not wired up to read from the Natural4 spreadsheets. As a clean-room re-implementation, that's fine, but in the long run, the [DRY principle](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) suggests that future MathLang toolchains should read from the spreadsheet or whatever natural4 encoding is canonical, rather than a reimplementation in `ToMathLang.hs`.
 
 ### 'Generic MathLang' vs 'MathLang'
 
@@ -113,7 +115,7 @@ graph TB;
     classDef highlight fill:#f9f,stroke:#333,stroke-width:2px;
 
     subgraph C ["natural4-exe (app/Main.hs)"]
- Parser --> Interpreter;
+        Parser --> Interpreter;
     end
 
     C --"runs"--> C1["the Generic MathLang codebase\n(2024)"];
