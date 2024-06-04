@@ -1,6 +1,38 @@
 # Further reading
 
-TODO: add annotated biblio for comp law, law & AI papers, other legal DSLs, etc. Not yet ordered by priority
+## Relevant Prior Art
+
+Ordered in roughly chronological / introductory sequence
+
+  - Ronald Lee: [A Logic Model for Electronic Contracting](https://drive.google.com/file/d/1G6m1cDqu2JuVh3ySEfM-5PfiWZ90TvbO/view?usp=drive_link), [Candid](https://drive.google.com/file/d/1K8bZP8GphlT_YX7kR-nadVwcxNHMswTe/view?usp=drive_link)
+
+  - [Hvitved's PhD](https://drive.google.com/file/d/1sLmVMZqHhQDzj8dikKt-8CNemF-nGCn1/view?usp=drive_link)
+
+  - [Camilleri's PhD](https://drive.google.com/file/d/15qyDzov2_Ohr4iK7xiFR_5hI49stcrHJ/view?usp=drive_link)
+
+  - Aarne Ranta, [Translating between Language and Logic](https://drive.google.com/file/d/1q__9Dw_u0wTF5At7CvvsLp9Y6h2KFfZB/view?usp=drive_link)
+
+  - [Model Checking Contracts, a case study](https://drive.google.com/file/d/1a9ptQlFHvHWjZr7SLsl01HHH-f1xAWJG/view?usp=drive_link)
+
+  - SLEEC / LEGOS: https://dl.acm.org/doi/abs/10.1145/3597503.3639093, https://github.com/NickF0211/LEGOs
+
+  - Christopher Clack's Past Projects: https://christopherclack.com/teaching
+  
+  - [Stipula](https://cris.unibo.it/handle/11585/896616)
+
+  - [Symboleo](https://drive.google.com/file/d/1lY9Nnn9NfjWp1j4ji6_NmkcQcKOXcJR6/view?usp=drive_link)
+  
+  - see the survey of legal DSLs section in https://drive.google.com/file/d/1--zBgq3Js0aMKMNoBjBC5wYmB3GcERR2/view?usp=drive_link
+
+  - [DMN](https://camunda.com/dmn/)
+
+## Other Compilations of readings we've amassed over the years
+
+  - https://github.com/smucclaw/complaw/tree/main/doc Introduction to computational law
+
+  - https://github.com/smucclaw/complaw/blob/main/doc/juniors/README.org the Juniors Readme
+
+## publications by team members
 
 GOVERNATORI, Guido and WONG, Meng Weng (HUANG Mingrong). [Defeasible semantics for L4](https://ink.library.smu.edu.sg/cclaw/5). (2023). POPL ProLaLa 2023.
 
