@@ -1,6 +1,6 @@
 # Other experiments
 
-TODO: Explain
+A handful of other work done over the years, may be useful to future development.
 
 * Joe's [https://github.com/smucclaw/l4-lp](https://github.com/smucclaw/l4-lp)
 
@@ -9,5 +9,7 @@ TODO: Explain
 * [YM's simple Forge (Alloy-style specification language) formalization of PDPA](https://github.com/smucclaw/pdpa-exps/)
 
 * [Meng's DMN <-> MD](https://github.com/smucclaw/dmnmd)
+
+* [L4Meta](https://github.com/smucclaw/l4meta)
 
 * [Jason Morris's experiments with SCASP](https://github.com/smucclaw/r34_sCASP)

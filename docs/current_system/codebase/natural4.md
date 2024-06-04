@@ -185,8 +185,8 @@ The files:
 
 > IntroBase.hs, IntroBasic.hs, IntroLog.hs, IntroReader.hs, IntroShoehorn.hs, IntroTrivial.hs
 
-* Status: Reference? Deprecated?
-* Context: These were written by Meng; they were intended to be reference transpilers or guides for future implementors. Not all the transpilers follow the structure outlined in these files, however, because some of the structure is quite specific to Meng's preferences and setup (e.g. the choice of logging framework). See also the discussion in the Logical English transpiler sub-section for why not all the transpilers use Meng's 'Interpreter'/'Analyzer'.
+* Status: Tutorial, ready to be deprecated
+* Context: These were written by Meng; they were intended to introduce the notion of transpilation and the patterns of implementation in this project. One pattern was about outputting to files on disk in various `Show`able or printable ways analogous to `STDOUT` and `STDERR`. Anotehr pattern has to do with logging. Not all the actual transpilers follow the structure outlined in these files, however, because some of the structure is quite specific to Meng's preferences and setup (e.g. the choice of logging framework). See also the discussion in the Logical English transpiler sub-section for why not all the transpilers use Meng's 'Interpreter'/'Analyzer'.
 
 ### To Prolog (Prolog.hs) ###
 
