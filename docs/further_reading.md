@@ -14,6 +14,13 @@ Ordered in roughly chronological / introductory sequence
 
 - [Model Checking Contracts, a case study](https://drive.google.com/file/d/1a9ptQlFHvHWjZr7SLsl01HHH-f1xAWJG/view?usp=drive_link)
 
+- [Catala](https://catala-lang.org/) and related papers
+  - [Catala: a programming language for the law 2021](https://hal.inria.fr/hal-03159939)
+  - [Catala: Moving Towards the Future of Legal Expert Systems](https://hal.inria.fr/hal-02936606)
+  - [Formalizing Date Arithmetic and Statically Detecting Ambiguities for the Law](https://rmonat.fr/data/pubs/2024/2024-04-08_esop_dates.pdf)
+  - [Sarah Lawsky 2017 A Logic for Statues](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3088206) (Lawsky is a law professor)
+    - "This essay examines the structure of statutory reasoning after ambiguities are resolved and the meaning of the statute's terms established. It argues that standard formal logic is not the best approach for representing statutory rule-based reasoning. Rather, the essay argues, using the Internal Revenue Code and accompanying regulations, judicial decisions, and rulings as its primary example, that at least some statutory reasoning is best characterized as defeasible reasoning — reasoning that may result in conclusions that can be defeated by subsequent information — and is best represented using default logic."
+
 - SLEEC / LEGOS: <https://dl.acm.org/doi/abs/10.1145/3597503.3639093>, <https://github.com/NickF0211/LEGOs>
 
 - Christopher Clack's Past Projects: <https://christopherclack.com/teaching>
@@ -25,6 +32,14 @@ Ordered in roughly chronological / introductory sequence
 - see the survey of legal DSLs section in <https://drive.google.com/file/d/1--zBgq3Js0aMKMNoBjBC5wYmB3GcERR2/view?usp=drive_link>
 
 - [DMN](https://camunda.com/dmn/)
+
+### On the structure of insurance contracts and UX for apps helping people understand them
+
+#### Work by CodeX at Stanford
+
+- <https://codexstanford.github.io/formation-demo/> showcases an idealized, simplified insurance contract and its encoding in Prolog, as well as a web form for it (click on "Switch to Claims Analysis") This is helpful for seeing the abstract structure of most insurance contracts.
+- <https://royalsocietypublishing.org/doi/full/10.1098/rsta.2023.0160> is worth skimming. the arguments here are very quick, but there's some useful info here
+  - One of the authors of that paper also gave [a short talk at this year's Future Law conference](https://www.youtube.com/watch?v=8LoXaybqV20&list=PL-_-ZiMvHNVL9WUAep39Y9-R8xl7lS4pG&index=5) that had useful info on ideal UX for a web app that helps people answer questions about insurance contracts.
 
 ## Other Compilations of readings we've amassed over the years
 

@@ -1,6 +1,6 @@
 # Generic MathLang
 
-Generic MathLang is meant to be an intermediate step between the [Rule datatype](./rule_ast.md) and [MathLang](./mathlang.md).
+Generic MathLang is meant to be an intermediate step between the [Rule datatype](./rule_ast.md) and [MathLang](./mathlang.md). See also the high-level discussion of 'Generic MathLang' vs 'MathLang' in [the discussion of the Explainable codebase](/explainable.md).
 
 Things that get more structured from Rule. A lot of things in Rule are just free text inside a `MTExpr`, but it gets parsed in Generic MathLang.
 
@@ -25,15 +25,15 @@ Text like `foo's,bar's,baz` gets parsed into records: `foo.bar.baz`.
 Rule may define functions as follows (see [example spreadsheet](https://docs.google.com/spreadsheets/d/1cWAb7Ba4HJovQn1PquZzYJjnjKUuhEPhNHzAH4ZfV4I/edit#gid=2100528279) for larger context):
 
 ```L4
-GIVEN	x			IS A	Number
-        y			IS A	Number
-DECIDE	x	discounted by		y	IS	x * (1 - y)
+GIVEN x   IS A Number
+        y   IS A Number
+DECIDE x discounted by  y IS x * (1 - y)
 ```
 
 And we can apply the function (simplified the arguments):
 
 ```L4
-DECIDE Answer	IS	firstArg	discounted by   secondArg
+DECIDE Answer IS firstArg discounted by   secondArg
 ```
 
 When parsed into rules, we don't have much structure:

@@ -2,7 +2,7 @@
 
 ## Historical Context
 
-YM: Meng had written an embedded DSL during the insurance usecase, and wanted something like that that could compute things and give traces for its computations, and crucially, do it fast (recall that he did not like how the Logical English backend had been slow in its handling of requests).
+Meng had written an embedded DSL during the insurance usecase, and wanted something like that that could compute things and give traces for its computations, and crucially, do it fast (recall that he did not like how the Logical English backend had been slow in its handling of requests).
 
 These components were intended to:
 
@@ -18,8 +18,8 @@ and were used in "cleanroom testing" of the primary codebase.
 See also:
 
 - <https://github.com/smucclaw/usecases/blob/main/sect10-typescript/>
-- (./generic_mathlang.md)
-- (./mathlang.md)
+- ['lower-level' docs on 'generic mathlang'](./generic_mathlang.md)
+- ['lower-level' docs on 'mathlang'](./mathlang.md)
 
 Interestingly, this codebase features twin implementations in Haskell and Typescript, with working runtimes in both languages.
 
@@ -79,6 +79,8 @@ graph TB;
 All the above is orchestrated by a `Makefile` under `sect10-typescript`.
 
 Note that the business logic was independently encoded in the internal MathLang DSL and was not wired up to read from the Natural4 spreadsheets. As a clean-room re-implementation, that's fine, but in the long run, the [DRY principle](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) suggests that future MathLang toolchains should read from the spreadsheet or whatever natural4 encoding is canonical, rather than a reimplementation in `ToMathLang.hs`.
+
+(YM's note: the 'internal MathLang DSL' that Meng talks about above is different from the MathLang codebase that Inari and YM had worked on. The latter does work off the output from the Natural L4 parser.)
 
 ### 'Generic MathLang' vs 'MathLang'
 
