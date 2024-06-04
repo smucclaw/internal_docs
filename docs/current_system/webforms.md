@@ -53,7 +53,9 @@ for "age". Or maybe we don't have to ask for it from the user, we look
 it up from some existing sidecar of JSON input retrieved from an
 enterprise database. Either way, though, we have something like a
 
+``` haskell
     evaluatePredicate :: Expr Int -> Expr Bool
+```
 
 Web forms have various forms of user input widgets to support this
 more expanded universe of expressions.
