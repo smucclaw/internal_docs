@@ -14,6 +14,13 @@ Ordered in roughly chronological / introductory sequence
 
 - [Model Checking Contracts, a case study](https://drive.google.com/file/d/1a9ptQlFHvHWjZr7SLsl01HHH-f1xAWJG/view?usp=drive_link)
 
+- [Catala](https://catala-lang.org/) and related papers
+  - [Catala: a programming language for the law 2021](https://hal.inria.fr/hal-03159939)
+  - [Catala: Moving Towards the Future of Legal Expert Systems](https://hal.inria.fr/hal-02936606)
+  - [Formalizing Date Arithmetic and Statically Detecting Ambiguities for the Law](https://rmonat.fr/data/pubs/2024/2024-04-08_esop_dates.pdf)
+  - [Sarah Lawsky 2017 A Logic for Statues](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3088206) (Lawsky is a law professor)
+    - "This essay examines the structure of statutory reasoning after ambiguities are resolved and the meaning of the statute's terms established. It argues that standard formal logic is not the best approach for representing statutory rule-based reasoning. Rather, the essay argues, using the Internal Revenue Code and accompanying regulations, judicial decisions, and rulings as its primary example, that at least some statutory reasoning is best characterized as defeasible reasoning — reasoning that may result in conclusions that can be defeated by subsequent information — and is best represented using default logic."
+
 - SLEEC / LEGOS: <https://dl.acm.org/doi/abs/10.1145/3597503.3639093>, <https://github.com/NickF0211/LEGOs>
 
 - Christopher Clack's Past Projects: <https://christopherclack.com/teaching>
