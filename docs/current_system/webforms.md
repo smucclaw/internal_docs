@@ -26,7 +26,7 @@ graph TB;
 
 (the Purescript and Vue codebase)
 
-The first generation builds a Vue web app that allows users to answer YES / NO questions to arrive at some sort of decision, and to see a visualization of that (see the discussion of ladder diagrams [TODO -- add links]). The most involved example of this involved making such an app from an encoding of the Personal Data Protection Act.
+The first generation builds a Vue web app that allows users to answer YES / NO questions to arrive at some sort of decision, and to see a visualization of that (see the discussion of ladder diagrams in [Visualizations](./codebase/visualizations.md)). The most involved example of this involved making such an app from an encoding of the Personal Data Protection Act.
 
 This is quite limited in its functionality: it only handles propositional logic.
 
@@ -47,15 +47,28 @@ Still forms part of current demos; badly needs to be superseded.
 
 ## More sophisticated web form ##
 
-(arithmetic + dates + some abductive queries)
+Sometimes a Boolean expression is really an arithmetic inequality in
+disguise, like, "is age >= 21?" so then we find it more natural to ask
+for "age". Or maybe we don't have to ask for it from the user, we look
+it up from some existing sidecar of JSON input retrieved from an
+enterprise database. Either way, though, we have something like a
 
-[TODO: Reorganize and explain what this is first. 'separate MVC layers' probably not really getting at what's most interesting about the system. Link to further discussions of the JSON Schema transpiler + Clojurescript client]
+``` haskell
+    evaluatePredicate :: Expr Int -> Expr Bool
+```
+
+Web forms have various forms of user input widgets to support this
+more expanded universe of expressions.
+
+In the 2023 insurance case we needed to capture dates and numbers in addition to basic Bools.
 
 The second generation tried to separate MVC layers by using an approach based on [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form) / [vue-form-json-schema](https://github.com/jarvelov/vue-form-json-schema).
 
 [The relevant docs](https://github.com/smucclaw/documentation/blob/main/docs/webform.rst) explain how the web form generation works in some detail. [The JSON schema transpiler docs](https://github.com/smucclaw/documentation/blob/main/docs/transpilers-json-schema.rst) are also relevant.
 
 There was also an abortive attempt at [trying to find a way to separate UI text from the web app](https://github.com/smucclaw/usecases/blob/c00a5162220ec9e3a062e7814a5310f9f0924c9a/jsonforms-vue-seed/README.md?plain=1).
+
+[TODO: Link to further discussions of the JSON Schema transpiler + Clojurescript client]
 
 ### Historical Context ###
 

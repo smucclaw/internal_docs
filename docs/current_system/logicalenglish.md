@@ -1,6 +1,8 @@
 # The Logical English transpiler #
 
-TODO: Add discussion of what this is and how this is related to the web app stuff
+The LE transpiler converts LE-styled L4 source text into Logical English text, which gets consumed by a rule engine serving a web app.
+
+Separately, a transpiler converts the data model from that text into a collection of JSON Schemas.
 
 [Docs for this can be found on the user-facing doc site](https://github.com/smucclaw/documentation/blob/main/docs/transpilers-logical-english.rst)
 
@@ -10,7 +12,7 @@ There are some ways in which the code for the transpiler could be cleaned up. Bu
 
 ### Motivation ###
 
-This was motivated by that use case with the insurance company.
+This was motivated by the 2023 use case with the insurance company.
 
 If memory serves me right, we went for this because
 
@@ -39,4 +41,18 @@ Ultimately, though, YM's personal opinion is that there's no reason to hang on t
 
 ## Status ##
 
-Depends on Meng, I guess. But I imagine we'll want to have this at least as a back up option, in case we don't have something else that can do at least as much when a usecase rolls around.
+We'll want to have this at least as a back up option, in case we don't have something else that can do at least as much when a usecase rolls around.
+
+We should maintain our LE codebase to continue to read LE-styled L4 and transpile to a rule engine that answers queries along the lines of the current API.
+
+* If
+  * by the time we need to deliver a new use case,
+    * we have a working rule engine that
+      * is sufficient for that use case
+      * and is a superset of what LE is capable of doing,
+* then we can retire the LE interface;
+* else, we should do the engineering work needed to speed up the LE engine.
+
+Meng believes that if we encapsulate the single-goal-query orientation
+of the current protocol, to allow multiple queries encapsulated within
+one session, we can resolve the problem of outputting counterfactuals.

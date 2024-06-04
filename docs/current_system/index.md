@@ -22,6 +22,8 @@ Starting from a Natural4 encoding of a set of legal rules, you can automatically
   - as a [Petri Net](./codebase/visualizations.md#petri-net-stuff)
 - *statically analyze* the **state transition logic**
   - using [Maude](./codebase/natural4.md#maude)
+- *test* the rules against user-specified "unit tests" similar to Cucumber/Gherkin
+  - this is on the roadmap and has not yet been built yet
 
 ---
 
