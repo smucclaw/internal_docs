@@ -14,6 +14,9 @@ Ordered in roughly chronological / introductory sequence
 
 - [Model Checking Contracts, a case study](https://drive.google.com/file/d/1a9ptQlFHvHWjZr7SLsl01HHH-f1xAWJG/view?usp=drive_link)
 
+- [Going Functional On Exotic Trades](https://www.arbitrary.name/papers/fpf.pdf) by Simon Frankau, Diomidis Spinellis, Nick Nassuphis, Christoph Burgard
+  - This feels to YM like what Meng's MathLang amounts to, in practice.
+
 - [Catala](https://catala-lang.org/) and related papers
   - [Catala: a programming language for the law 2021](https://hal.inria.fr/hal-03159939)
   - [Catala: Moving Towards the Future of Legal Expert Systems](https://hal.inria.fr/hal-02936606)
