@@ -12,7 +12,6 @@ mkdocs-material = "^9.5.22"
 mkdocs-awesome-pages-plugin = "^2.9.2"
 pre-commit = "^3.7.1"
 
-
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
