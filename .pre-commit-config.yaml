@@ -1,25 +1,25 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.6.0
+    rev: v5.0.0
     hooks:
       - id: end-of-file-fixer
       - id: trailing-whitespace
         exclude: \.svg$|^docs/image
   - repo: https://github.com/sirosen/texthooks
-    rev: "0.6.6"
+    rev: "0.6.7"
     hooks:
       - id: fix-smartquotes
-        stages: [commit]
+        stages: [pre-commit]
       - id: fix-ligatures
-        stages: [commit]
+        stages: [pre-commit]
   - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.41.0
+    rev: v0.42.0
     hooks:
       - id: markdownlint
         name: Run markdownlint
         description: Check Markdown files with markdownlint
         args: ["--config=.github/linters/.markdownlint.yaml", "-f"]
-        stages: [commit]
+        stages: [pre-commit]
         exclude: ^\.github/.*$
         types: [markdown]
         files: \.(md|mdown|markdown)$
