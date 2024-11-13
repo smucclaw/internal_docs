@@ -47,6 +47,8 @@ graph TB;
 
     C --"transpiles to"-->K["Prolog\n(obsolete)"]
     C --"transpiles to"-->L["future targets\nPython API Backend\nJavascript for browser-side\nGo libraries"]
-    C --"transpiles to"-->Z["others\n[TODO]"]
+    C --"transpiles to"-->Z["other transpilers\nnot detailed at this time"]
 
 ```
+
+If the "other transpilers not detailed at this time" need to be detailed, please edit the diagram above accordingly.

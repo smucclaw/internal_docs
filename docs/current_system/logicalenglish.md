@@ -1,6 +1,8 @@
 # The Logical English transpiler #
 
-TODO: Add discussion of what this is and how this is related to the web app stuff
+The LE transpiler converts stuff written in the LE/Proglog fragment of L4 (see Joe's specification) into Logical English code. This can then be used for various other purposes; e.g., [as the basis for a rule engine serving a web app](https://github.com/smucclaw/logical-english-client).
+
+In the context of the insurance claim calculator web app, we also had a different transpiler that converts the data model for a web app into a collection of JSON Schemas. Although we used the two in tandem in that usecase, the two systems aren't coupled to each other: the JSON schema sub-system can in principle be used with other dialects of L4.
 
 [Docs for this can be found on the user-facing doc site](https://github.com/smucclaw/documentation/blob/main/docs/transpilers-logical-english.rst)
 
@@ -10,13 +12,17 @@ There are some ways in which the code for the transpiler could be cleaned up. Bu
 
 ### Motivation ###
 
-This was motivated by that use case with the insurance company.
+This was motivated by the 2023 use case with the insurance company.
 
 If memory serves me right, we went for this because
 
-* we thought that some form of logic programming would make for a good foundation for the system --- eg, it would be simple to extend it with facilities for abductive reasoning. (You could of course also do this with more work in Haskell.) And some of the designers/implementers of this dialect of L4 had a strong interest in logic programming.
+* we thought that some form of logic programming would make for a good foundation for the system --- eg, it would be simple to extend it with facilities for abductive reasoning. (You could of course also do this with more work in Haskell.)
+
+* Some of the designers/implementers of this dialect of L4 had a strong interest in logic programming.
 
 * Logical English was especially convenient to build upon because it is a kind of CNL wrapper of Prolog -- it's basically Prolog with a natural-language-y facade. In that way, Logical English made it a lot easier to go from a CNL like Natural L4 to Prolog.
+
+* Logical English was able to produce relatively nice, human-readable explanation trees that's nicer than what one would produce with a naive logging evaluator / backwards chainer that's written from scratch. This capability admittedly wasn't used in the end, but it seemed like a nice advantage at the outset, when it wasn't clear what kinds of explanations we might need.
 
 ### Reservations people had about this ###
 
@@ -39,4 +45,18 @@ Ultimately, though, YM's personal opinion is that there's no reason to hang on t
 
 ## Status ##
 
-Depends on Meng, I guess. But I imagine we'll want to have this at least as a back up option, in case we don't have something else that can do at least as much when a usecase rolls around.
+We'll want to have this at least as a back up option, in case we don't have something else that can do at least as much when a usecase rolls around.
+
+We should maintain our LE codebase to continue to read LE-styled L4 and transpile to a rule engine that answers queries along the lines of the current API.
+
+* If
+  * by the time we need to deliver a new use case,
+    * we have a working rule engine that
+      * is sufficient for that use case
+      * and is a superset of what LE is capable of doing,
+* then we can retire the LE interface;
+* else, we should do the engineering work needed to speed up the LE engine.
+
+Meng believes that if we encapsulate the single-goal-query orientation
+of the current protocol, to allow multiple queries encapsulated within
+one session, we can resolve the problem of outputting counterfactuals.
