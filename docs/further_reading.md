@@ -36,6 +36,8 @@ Ordered in roughly chronological / introductory sequence
 
 - [DMN](https://camunda.com/dmn/)
 
+- survey of the field as of about 2009: <https://drive.google.com/file/d/12VIjnWOFDPa-mxAPH3_Lmynr0kWckE50/view?usp=drive_link> Paul N Otto, Annie I. Anton, *Managing Legal Texts in Requirements Engineering*
+
 ### On the structure of insurance contracts and UX for apps helping people understand them
 
 #### Work by CodeX at Stanford
