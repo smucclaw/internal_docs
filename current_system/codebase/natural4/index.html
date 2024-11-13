@@ -1,0 +1,1216 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://smucclaw.github.io/internal_docs/current_system/codebase/natural4/">
+      
+      
+        <link rel="prev" href="../mathlang/">
+      
+      
+        <link rel="next" href="../nlg/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.29">
+    
+    
+      
+        <title>The Natural L4 codebase - Internal Docs for L4 Development</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.76a95c52.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#the-natural-l4-codebase" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Internal Docs for L4 Development" class="md-header__button md-logo" aria-label="Internal Docs for L4 Development" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Internal Docs for L4 Development
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              The Natural L4 codebase
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Internal Docs for L4 Development" class="md-nav__button md-logo" aria-label="Internal Docs for L4 Development" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Internal Docs for L4 Development
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../historical_context/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Historical Context
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    The L4 System
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            The L4 System
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../webforms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Web form generation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../logicalenglish/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Logical English transpiler
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Notes on Codebase
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Notes on Codebase
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overall 2023 System Architecture Diagram
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../anyall/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The AnyAll codebase
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../explainable/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The 'Explainable' codebase
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../visualizations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Visualizations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../generic_mathlang/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Generic MathLang
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mathlang/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MathLang
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    The Natural L4 codebase
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    The Natural L4 codebase
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ast-cst" class="md-nav__link">
+    <span class="md-ellipsis">
+      AST / CST
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-natural-l4-parser" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Natural L4 parser
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mengs-analyzer-interpreter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Meng's Analyzer / 'Interpreter'
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-dependency-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module dependency graph
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-function-call-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detailed function call graph
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transpilers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transpilers
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Transpilers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#intro-xhs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Intro-x.hs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#to-prolog-prologhs" class="md-nav__link">
+    <span class="md-ellipsis">
+      To Prolog (Prolog.hs)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logical-english" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logical English
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maude" class="md-nav__link">
+    <span class="md-ellipsis">
+      Maude
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logging
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#org" class="md-nav__link">
+    <span class="md-ellipsis">
+      Org
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#purescript" class="md-nav__link">
+    <span class="md-ellipsis">
+      Purescript
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nlg/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NLG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../baby_L4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Baby L4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rule_ast/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Rule AST
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../devops/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DevOps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other_experiments/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Other Experiments / Prototypes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    For the Future
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            For the Future
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../future_aspirations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Wishlist
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../misc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Misc Notes or Ideas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../further_reading/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Further Reading
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="the-natural-l4-codebase"><a href="https://github.com/smucclaw/dsl/tree/main/lib/haskell/natural4">The Natural L4 codebase</a></h1>
+<h2 id="ast-cst">AST / CST</h2>
+<ul>
+<li><a href="../rule_ast/">The <code>Rule</code> data structure</a></li>
+</ul>
+<h2 id="the-natural-l4-parser">The Natural L4 parser</h2>
+<p>The first-generation parser was based on BNFC: see</p>
+<ul>
+<li><a href="https://github.com/smucclaw/baby-l4/blob/main/l4.bnfc">https://github.com/smucclaw/baby-l4/blob/main/l4.bnfc</a></li>
+<li><a href="https://bnfc.digitalgrammars.com/">https://bnfc.digitalgrammars.com/</a></li>
+</ul>
+<p>This work was done around 2020, 2021. It parsed text-file input.</p>
+<p>The second-generation parser for the spreadsheet syntax was based on Megaparsec: see</p>
+<blockquote>
+<p><a href="https://github.com/smucclaw/dsl/blob/main/lib/haskell/natural4/src/LS/">https://github.com/smucclaw/dsl/blob/main/lib/haskell/natural4/src/LS/</a></p>
+</blockquote>
+<p>The monadic parser is slow. Profiling it with a flame graph shows that
+a great deal of time is spent backtracking. The parser does a bunch of
+lookahead and other work to deal with indentation. BNFC has native
+support for "layout rule" logic. In this parser, we hacked up an
+emulation of indentation-as-parenthesis, which doesn't work very well.
+There is also a homegrown tracing engine that spits out megabytes of
+logging info to help figure out what the parser is thinking.</p>
+<p><a href="https://github.com/smucclaw/dsl/blob/main/lib/haskell/natural4/test/Parsing/megaparsing/">Many test
+cases</a>
+later, we still don't have full confidence in the parsing. For
+example, trying to set up a <code>BoolStructR</code> that has a non-null <code>PrePost</code>
+label can sometimes fail unintuitively when there is too much space or
+not enough space between the label and the children.</p>
+<p>The parser also hoists inline rules into top-level rules. This is the purpose of operating the parser within a Writer monad. See <a href="https://github.com/smucclaw/dsl/blob/main/lib/haskell/natural4/src/LS/Tokens.hs#L1035-L1036">tellIDFirst</a>.</p>
+<h2 id="mengs-analyzer-interpreter">Meng's Analyzer / 'Interpreter'</h2>
+<p>After the input CSV is parsed into a collection of <code>Rule</code> types,
+<a href="https://github.com/smucclaw/dsl/blob/main/lib/haskell/natural4/src/LS/Interpreter.hs">Interpreter.hs</a>
+attempts to analyze and reorganize it, to make it more ready for the
+various transpilers to export from.</p>
+<p>This is where rule substitution happens and simple rule rewriting/optimization.</p>
+<p>This module is not really an interpreter. It should have been called an Analyzer.</p>
+<pre class="mermaid"><code>
+graph TB;
+    A1["Google Sheets tab\n(via API)"] -- "L4/Refresh" --&gt; C;
+    A2["command-line invocation\n(perhaps involving fswatch)"] -- calls --&gt; C;
+    subgraph C ["natural4-exe (app/Main.hs)"]
+    classDef nl4exe fill:#f9f,stroke:#333,stroke-width:2px;
+
+ P["src/LS/\nParser.hs"] --&gt; I["src/LS/\nInterpreter.hs"];
+ class P,I nl4exe
+
+    end
+
+    C --"runs"--&gt; D["various transpilers under src/LS/XPile/"];
+    D --"output to"--&gt;E[("workdir/uuid/\nvarious LATEST files")];</code></pre>
+<h2 id="module-dependency-graph">Module dependency graph</h2>
+<p>produced by</p>
+<div class="highlight"><pre><span></span><code><span class="o">(</span>base<span class="o">)</span><span class="w"> </span>┌─<span class="o">[</span><span class="m">20240522</span>-14:35:55<span class="o">]</span><span class="w">   </span><span class="o">[</span>mengwong@rosegold:~/natural4/src/LS<span class="o">]</span>
+└─<span class="o">[</span><span class="m">0</span><span class="o">]</span><span class="w"> </span>&lt;git:<span class="o">(</span>main<span class="w"> </span>a0ecd7ff<span class="o">)</span><span class="w"> </span>&gt;<span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;import LS&#39;</span><span class="w"> </span>*.hs<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span>--<span class="w"> </span><span class="s1">&#39;-- import&#39;</span><span class="w"> </span><span class="p">|</span><span class="w">  </span>perl<span class="w"> </span>-ple<span class="w"> </span><span class="s1">&#39;s/ \(.*//g; s/\.hs:import LS\.(.+)/ --&gt; $1;/&#39;</span>
+</code></pre></div>
+<pre class="mermaid"><code>graph TD;
+    classDef default fill:#f9f,stroke:#333;
+
+        Parser --&gt; Interpreter;
+
+      BasicTypes --&gt; TokenTable;
+      DataFlow --&gt; Rule;
+      DataFlow --&gt; Types;
+      DataFlow --&gt; XPile.Logging;
+      Error --&gt; BasicTypes;
+      Error --&gt; Utils;
+      PrettyPrinter --&gt; Rule;
+      PrettyPrinter --&gt; Types;
+      TokenTable --&gt; Utils;
+      Types --&gt; BasicTypes;
+      Types --&gt; Utils;
+      Verdict --&gt; Rule;
+
+      Lib --&gt; Error;
+      Lib --&gt; Parser;
+      Lib --&gt; RelationalPredicates;
+      Lib --&gt; Rule;
+      Lib --&gt; Tokens;
+      Lib --&gt; Types;
+      Lib --&gt; Utils;
+
+
+      RelationalPredicates --&gt; Parser;
+      RelationalPredicates --&gt; Rule;
+      RelationalPredicates --&gt; Tokens;
+      RelationalPredicates --&gt; Types;
+      RelationalPredicates --&gt; Utils;
+
+      Tokens --&gt; Error;
+      Tokens --&gt; Rule;
+      Tokens --&gt; Types;
+
+      Rule --&gt; Types;
+      Rule --&gt; XPile.Logging;
+
+      Parser --&gt; Rule;
+      Parser --&gt; Tokens;
+      Parser --&gt; Types;
+
+      Interpreter --&gt; PrettyPrinter;
+      Interpreter --&gt; RelationalPredicates;
+      Interpreter --&gt; Rule;
+      Interpreter --&gt; Types;
+      Interpreter --&gt; Utils;
+      Interpreter --&gt; XPile.Logging;</code></pre>
+<h2 id="detailed-function-call-graph">Detailed function call graph</h2>
+<p>To produce this, run <a href="https://github.com/mengwong/function-call-graph">function-call-graph</a></p>
+<div class="highlight"><pre><span></span><code><span class="o">(</span>base<span class="o">)</span><span class="w"> </span>┌─<span class="o">[</span><span class="m">20240522</span>-14:28:22<span class="o">]</span><span class="w">   </span><span class="o">[</span>mengwong@rosegold:~/natural4/src/LS<span class="o">]</span>
+└─<span class="o">[</span><span class="m">0</span><span class="o">]</span><span class="w"> </span>&lt;git:<span class="o">(</span>main<span class="w"> </span>a0ecd7ff<span class="o">)</span><span class="w"> </span>&gt;<span class="w"> </span>fcall<span class="w"> </span>--clusters<span class="w"> </span>Lib.hs<span class="w"> </span>Parser.hs<span class="w"> </span>Utils.hs<span class="w">  </span>Interpreter.hs<span class="w"> </span>RelationalPredicates.hs<span class="w"> </span>Rule.hs<span class="w"> </span>Tokens.hs<span class="w"> </span>Types.hs<span class="w">   </span>&gt;<span class="w"> </span>LS.dot
+<span class="o">(</span>base<span class="o">)</span><span class="w"> </span>┌─<span class="o">[</span><span class="m">20240522</span>-14:29:42<span class="o">]</span><span class="w">   </span><span class="o">[</span>mengwong@rosegold:~/natural4/src/LS<span class="o">]</span>
+└─<span class="o">[</span><span class="m">0</span><span class="o">]</span><span class="w"> </span>&lt;git:<span class="o">(</span>main<span class="w"> </span>a0ecd7ff<span class="o">)</span><span class="w"> </span>&gt;<span class="w"> </span>dot<span class="w"> </span>-Tsvg<span class="w"> </span>LS.dot<span class="w"> </span>&gt;<span class="w"> </span>LS.svg
+</code></pre></div>
+<p><img alt="the usual spaghetti code" src="../LS.svg" /></p>
+<h2 id="transpilers">Transpilers</h2>
+<p>Moving past the parser and analyzer stages, we come to the transpilers.</p>
+<pre class="mermaid"><code>graph TB;
+    A1["Google Sheets tab\n(via API)"] -- "L4/Refresh" --&gt; C;
+    A2["command-line invocation\n(perhaps involving fswatch)"] -- calls --&gt; C;
+
+    subgraph C ["natural4-exe (app/Main.hs)"]
+ classDef nl4exe fill:#f9f,stroke:#333,stroke-width:2px;
+
+ Parser --&gt; Interpreter;
+ class Parser,Interpreter nl4exe
+    end
+
+    C --"runs"--&gt; C1["the Purescript and Vue codebase\n(2021/2022)"];
+    C1--"imports"--&gt;D[["LS/XPile/Purescript.hs"]];
+    D--"transpiles to"--&gt;E[("workdir/uuid/\npurs/LATEST.purs")];
+
+    C --"runs"--&gt; G0["the JSON Schema transpiler\n(2023)"];
+    G0--"imports"--&gt;G1[["LS/XPile/ExportTypes.hs"]];
+    G1--"transpiles to"--&gt;G2[("workdir/uuid/\njsonTp/LATEST.json")];
+
+    C --"runs"--&gt; H0["the Prolog transpiler"];
+    H0--"imports"--&gt;H1[["LS/XPile/Prolog.hs"]];
+    H1--"transpiles to"--&gt;H2[("workdir/uuid/\njsonTp/LATEST.json")];
+
+    C --"runs"--&gt; I0["other transpiler"];
+    I0--"imports"--&gt;I1[["LS/XPile/OtherTranspiler.hs"]];
+    I1--"transpiles to"--&gt;I2[("workdir/uuid/\nTranspilerDir/LATEST")];</code></pre>
+<p><code>Main.hs</code> runs a whole zoo of transpilers:</p>
+<ul>
+<li><a href="https://github.com/smucclaw/dsl/blob/main/lib/haskell/natural4/app/Main.hs#L185-L224">https://github.com/smucclaw/dsl/blob/main/lib/haskell/natural4/app/Main.hs#L185-L224</a></li>
+<li><a href="https://github.com/smucclaw/dsl/tree/main/lib/haskell/natural4/src/LS/XPile">https://github.com/smucclaw/dsl/tree/main/lib/haskell/natural4/src/LS/XPile</a></li>
+</ul>
+<p>We have already talked about some of these, above -- MathLang and Petri.</p>
+<p>TODO: Catalogue as many of the things as possible in <a href="https://github.com/smucclaw/dsl/tree/main/lib/haskell/natural4/src/LS/XPile">https://github.com/smucclaw/dsl/tree/main/lib/haskell/natural4/src/LS/XPile</a> and note their statuses and contexts, since that's what WT had asked for.</p>
+<h3 id="intro-xhs">Intro-x.hs</h3>
+<p>The files:</p>
+<blockquote>
+<p>IntroBase.hs, IntroBasic.hs, IntroLog.hs, IntroReader.hs, IntroShoehorn.hs, IntroTrivial.hs</p>
+</blockquote>
+<ul>
+<li>Status: Tutorial, ready to be deprecated</li>
+<li>Context: These were written by Meng; they were intended to introduce the notion of transpilation and the patterns of implementation in this project. One pattern was about outputting to files on disk in various <code>Show</code>able or printable ways analogous to <code>STDOUT</code> and <code>STDERR</code>. Anotehr pattern has to do with logging. Not all the actual transpilers follow the structure outlined in these files, however, because some of the structure is quite specific to Meng's preferences and setup (e.g. the choice of logging framework). See also the discussion in the Logical English transpiler sub-section for why not all the transpilers use Meng's 'Interpreter'/'Analyzer'.</li>
+</ul>
+<h3 id="to-prolog-prologhs">To Prolog (Prolog.hs)</h3>
+<ul>
+<li>Status: Deprecated</li>
+<li>Context: According to Meng (16 May), he had written this as a way of thinking through the semantics of L4. The thought was apparently to get a translational semantics for L4 by working out what the corresponding Prolog should be.</li>
+<li>YM: In any case, even if you wanted to go to Prolog, the Logical English transpiler would probably be a better way of doing that.</li>
+</ul>
+<h3 id="logical-english">Logical English</h3>
+<p>I'll briefly note some in-the-weeds decisions about the implementation here (see <a href="../../">the system overview</a> for a more high-level discussion).</p>
+<p>Re Meng's Analyzer / 'Interpreter':</p>
+<ul>
+<li>This does not use the output from Meng's Analyzer / 'Interpreter'. Instead, it starts from the output from the parser.</li>
+<li>This is because</li>
+<li>(i) it wasn't clear that the semantics that was implicit in Meng's Analyzer / 'Interpreter' was something that would be compatible with that for this fragment of L4.</li>
+<li>(ii) it looked from a quick glance like some of the transformations that the analyzer/interpreter was doing might be lossy, e.g. there's some substitution or inlining</li>
+<li>(iii) it wasn't clear what the specification for Meng's Analyzer / 'Interpreter' was; and in particular, what assumptions and guarantees it was making or providing.</li>
+</ul>
+<p>It's also worth mentioning that there's a golden test framework in <code>dsl/lib/haskell/natural4/test/LS/XPile/LogicalEnglish</code> that Joe and Jo Hsi ahd worked on, and that we found helpful when developing this transpiler.</p>
+<p>Finally, note that some of the comments in the LE transpiler codebase are out of date / out of sync with the code. Apologies about that --- I (YM) will try to clean that up soon.</p>
+<h3 id="maude">Maude</h3>
+<p>This was the subject of Joe's paper on the Contract as Automata work.</p>
+<p><a href="https://www.researchgate.net/publication/375025000_Deontics_and_time_in_contracts_An_executable_semantics_for_the_L4_DSL">https://www.researchgate.net/publication/375025000_Deontics_and_time_in_contracts_An_executable_semantics_for_the_L4_DSL</a></p>
+<h3 id="logging">Logging</h3>
+<p>The <code>Intro*.hs</code> and <code>Logging.hs</code> files record a painful learning
+journey toward monadic logging. The goal was to allow all transpilers
+and all parts of the natural4 toolchain generally to be able to
+produce structured logging for later debug inspection.</p>
+<p>(Not all transpilers use this -- Meng's --- logging framework, because this framework is optimized for Meng's setup and preferences. And in any case, this kind of logging isn't really as necessary for debugging pure functions.)</p>
+<h3 id="org">Org</h3>
+<p>In parallel with structured logging we wrote a "transpiler to
+org-mode" with a hierarchy best read in Emacs's org-mode.</p>
+<h3 id="purescript">Purescript</h3>
+<p>The output of this transpiler is a Purescript representation of the boolstructs involved in the decision logic elements in L4 source input.</p>
+<p>This Purescript output is consumed by the Vue web app.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.indexes", "navigation.top", "navigation.expand", "navigation.path", "navigation.instant", "toc.follow", "toc.integrate"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      
+    
+  </body>
+</html>
