@@ -32,7 +32,13 @@ This draws the interactive, clickable diagrams at the bottom of the web intervie
 
 * [Specification in Google Drive](https://drive.google.com/drive/folders/1y7TssfA925VuyuAt8VBaNxlRTo8KyqlS?usp=sharing)
 
-## expression tree explorer
+### Representation
+
+This represents boolean circuits with this [AST](https://github.com/smucclaw/ladder-diagram/blob/main/js/Data.js). Their `AllQuantifier` name is a bit misleading: it's **not** ∀.
+
+Atomic propositions can be True, False, or Unknown.
+
+## expression tree explorer ('mathlang vis')
 
 Our redoubtable interns further wrote code to fold (show/hide) subexpressions of MathLang:
 
@@ -47,6 +53,16 @@ npm i
 npm run watch-ts
 npm run start
 ```
+
+### Representation
+
+Boolean logic with arithmetic and exceptions.
+
+See [the AST](https://github.com/smucclaw/usecases/blob/mathlang-vis/mathlang-vis/ts/index.ts).
+
+The `MathlangVis` class renders this tree by converting each `NodeTemplate` into HTML elements.
+
+Visualization is coupled with evalaution in this project.
 
 ## Petri Net stuff
 
