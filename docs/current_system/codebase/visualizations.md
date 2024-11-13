@@ -32,6 +32,8 @@ This draws the interactive, clickable diagrams at the bottom of the web intervie
 
 * [Specification in Google Drive](https://drive.google.com/drive/folders/1y7TssfA925VuyuAt8VBaNxlRTo8KyqlS?usp=sharing)
 
+The AST here is formed by the `Circuit` type, which can be a `BoolVar`, `AllQuantifier`, or `AnyQuantifier`.
+
 ## expression tree explorer
 
 Our redoubtable interns further wrote code to fold (show/hide) subexpressions of MathLang:
@@ -47,6 +49,8 @@ npm i
 npm run watch-ts
 npm run start
 ```
+
+The program being visualised is represented as a [`NodeTemplate`](https://github.com/smucclaw/usecases/blob/mathlang-vis/mathlang-vis/ts/index.ts#L43-L47) tree. The `MathlangVis` class renders this tree by converting each `NodeTemplate` into HTML elements.
 
 ## Petri Net stuff
 
