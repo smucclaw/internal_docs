@@ -32,7 +32,7 @@ This draws the interactive, clickable diagrams at the bottom of the web intervie
 
 * [Specification in Google Drive](https://drive.google.com/drive/folders/1y7TssfA925VuyuAt8VBaNxlRTo8KyqlS?usp=sharing)
 
-The AST here is formed by the `Circuit` type, which can be a `BoolVar`, `AllQuantifier`, or `AnyQuantifier`.
+The [AST](https://github.com/smucclaw/ladder-diagram/blob/main/js/Data.js) here is formed by the `Circuit` type, which can be a `BoolVar`, `AllQuantifier`, or `AnyQuantifier`.
 
 ## expression tree explorer
 
