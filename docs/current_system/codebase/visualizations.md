@@ -34,7 +34,7 @@ This draws the interactive, clickable diagrams at the bottom of the web intervie
 
 ### Representation
 
-This represents boolean circuits with this [AST](https://github.com/smucclaw/ladder-diagram/blob/main/js/Data.js). Their `AllQuantifier` name is a bit misleading: it's **not** ∀. 
+This represents boolean circuits with this [AST](https://github.com/smucclaw/ladder-diagram/blob/main/js/Data.js). Their `AllQuantifier` name is a bit misleading: it's **not** ∀.
 
 Atomic propositions can be True, False, or Unknown.
 
@@ -53,11 +53,12 @@ npm i
 npm run watch-ts
 npm run start
 ```
+
 ### Representation
 
-Boolean logic with arithmetic and exceptions. 
+Boolean logic with arithmetic and exceptions.
 
-See [the AST](https://github.com/smucclaw/usecases/blob/mathlang-vis/mathlang-vis/ts/index.ts). 
+See [the AST](https://github.com/smucclaw/usecases/blob/mathlang-vis/mathlang-vis/ts/index.ts).
 
 The `MathlangVis` class renders this tree by converting each `NodeTemplate` into HTML elements.
 
