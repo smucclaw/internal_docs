@@ -5,6 +5,6 @@
     },
     "markdownlint.focusMode": true,
     "editor.codeActionsOnSave": {
-        "source.fixAll.markdownlint": true
+        "source.fixAll.markdownlint": "explicit"
     }
 }
