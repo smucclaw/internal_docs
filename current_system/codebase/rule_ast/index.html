@@ -1,0 +1,1099 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://smucclaw.github.io/internal_docs/current_system/codebase/rule_ast/">
+      
+      
+        <link rel="prev" href="../baby_L4/">
+      
+      
+        <link rel="next" href="../devops/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.29">
+    
+    
+      
+        <title>The Rule AST - Internal Docs for L4 Development</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.76a95c52.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ast-or-cst-for-rules" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Internal Docs for L4 Development" class="md-header__button md-logo" aria-label="Internal Docs for L4 Development" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Internal Docs for L4 Development
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              The Rule AST
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Internal Docs for L4 Development" class="md-nav__button md-logo" aria-label="Internal Docs for L4 Development" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Internal Docs for L4 Development
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../historical_context/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Historical Context
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    The L4 System
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            The L4 System
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../webforms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Web form generation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../logicalenglish/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Logical English transpiler
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Notes on Codebase
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Notes on Codebase
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overall 2023 System Architecture Diagram
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../anyall/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The AnyAll codebase
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../explainable/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The 'Explainable' codebase
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../visualizations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Visualizations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../generic_mathlang/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Generic MathLang
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mathlang/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MathLang
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../natural4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Natural L4 codebase
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nlg/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NLG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../baby_L4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Baby L4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    The Rule AST
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    The Rule AST
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rule
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#boolstruct" class="md-nav__link">
+    <span class="md-ellipsis">
+      BoolStruct
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relationalpredicate" class="md-nav__link">
+    <span class="md-ellipsis">
+      RelationalPredicate
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RelationalPredicate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#types-for-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      Types for values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#types-for-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Types for types
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rprel" class="md-nav__link">
+    <span class="md-ellipsis">
+      RPRel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redundancies-in-relationalpredicate" class="md-nav__link">
+    <span class="md-ellipsis">
+      Redundancies in RelationalPredicate
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Redundancies in RelationalPredicate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paramtext-and-multiterm" class="md-nav__link">
+    <span class="md-ellipsis">
+      ParamText and MultiTerm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logical-operators-from-rprel-and-boolstruct" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logical operators from RPRel and BoolStruct
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../devops/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DevOps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other_experiments/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Other Experiments / Prototypes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    For the Future
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            For the Future
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../future_aspirations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Wishlist
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../misc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Misc Notes or Ideas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../further_reading/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Further Reading
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="ast-or-cst-for-rules">AST (or CST?) for rules</h1>
+<h2 id="rule">Rule</h2>
+<p>The data type for Rule is defined in <a href="https://github.com/smucclaw/dsl/blob/a0ecd7ff35155b1e61c66d17fc511b8e45c60d63/lib/haskell/natural4/src/LS/Rule.hs#L152">dsl/…/Rule.hs</a>.</p>
+<p>It has the following constructors:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">-- The most commonly used</span>
+<span class="kt">Regulative</span>
+<span class="kt">Constitutive</span>
+<span class="kt">Hornlike</span>
+
+<span class="c1">-- For defining types and their fields</span>
+<span class="kt">TypeDecl</span>
+
+<span class="c1">-- Haven&#39;t seen these used much</span>
+<span class="kt">Scenario</span>
+<span class="kt">DefNameAlias</span>
+<span class="kt">DefTypically</span>
+
+<span class="c1">-- internal softlink to a rule label (rlabel), e.g. HENCE NextStep</span>
+<span class="kt">RuleAlias</span>
+<span class="c1">-- a list of rules + a named section heading</span>
+<span class="kt">RuleGroup</span>
+
+<span class="c1">-- I guess these are like default rules?</span>
+<span class="kt">RegFulfilled</span>
+<span class="kt">RegBreach</span>
+
+<span class="c1">-- not a rule  ¯\_(ツ)_/¯</span>
+<span class="kt">NotARule</span>
+</code></pre></div>
+<h2 id="boolstruct">BoolStruct</h2>
+<p>There's another library called <code>anyall</code>, which defines a datatype called BoolStruct.</p>
+<div class="highlight"><pre><span></span><code><span class="kr">data</span><span class="w"> </span><span class="kt">BoolStruct</span><span class="w"> </span><span class="n">lbl</span><span class="w"> </span><span class="n">a</span>
+<span class="w">  </span><span class="ow">=</span><span class="w"> </span><span class="kt">Leaf</span><span class="w"> </span><span class="n">a</span>
+<span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="kt">All</span><span class="w"> </span><span class="n">lbl</span><span class="w"> </span><span class="p">[</span><span class="kt">BoolStruct</span><span class="w"> </span><span class="n">lbl</span><span class="w"> </span><span class="n">a</span><span class="p">]</span><span class="w"> </span><span class="c1">-- and</span>
+<span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="kt">Any</span><span class="w"> </span><span class="n">lbl</span><span class="w"> </span><span class="p">[</span><span class="kt">BoolStruct</span><span class="w"> </span><span class="n">lbl</span><span class="w"> </span><span class="n">a</span><span class="p">]</span><span class="w"> </span><span class="c1">--  or</span>
+<span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="kt">Not</span><span class="w"> </span><span class="p">(</span><span class="kt">BoolStruct</span><span class="w"> </span><span class="n">lbl</span><span class="w"> </span><span class="n">a</span><span class="p">)</span>
+<span class="w">  </span><span class="kr">deriving</span><span class="w"> </span><span class="p">(</span><span class="kt">Eq</span><span class="p">,</span><span class="w"> </span><span class="kt">Ord</span><span class="p">,</span><span class="w"> </span><span class="kt">Show</span><span class="p">,</span><span class="w"> </span><span class="kt">Generic</span><span class="p">,</span><span class="w"> </span><span class="kt">Hashable</span><span class="p">,</span><span class="w"> </span><span class="kt">FromJSON</span><span class="p">,</span><span class="w"> </span><span class="kt">ToJSON</span><span class="p">,</span><span class="w"> </span><span class="kt">Functor</span><span class="p">,</span><span class="w"> </span><span class="kt">Foldable</span><span class="p">,</span><span class="w"> </span><span class="kt">Traversable</span><span class="p">)</span>
+</code></pre></div>
+<p><code>BoolStructR</code> is a BoolStruct with an optional label (<code>Maybe Text</code>) and a <code>RelationalPredicate</code>.</p>
+<h2 id="relationalpredicate">RelationalPredicate</h2>
+<div class="highlight"><pre><span></span><code><span class="kr">data</span><span class="w"> </span><span class="kt">RelationalPredicate</span><span class="w"> </span><span class="ow">=</span>
+<span class="w">    </span><span class="kt">RPParamText</span><span class="w">   </span><span class="kt">ParamText</span><span class="w">                     </span><span class="c1">-- cloudless blue sky</span>
+<span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="kt">RPMT</span><span class="w"> </span><span class="kt">MultiTerm</span><span class="w">  </span><span class="c1">-- intended to replace RPParamText. consider TypedMulti?</span>
+<span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="kt">RPConstraint</span><span class="w">  </span><span class="kt">MultiTerm</span><span class="w"> </span><span class="kt">RPRel</span><span class="w"> </span><span class="kt">MultiTerm</span><span class="w">     </span><span class="c1">-- eyes IS blue</span>
+<span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="kt">RPBoolStructR</span><span class="w"> </span><span class="kt">MultiTerm</span><span class="w"> </span><span class="kt">RPRel</span><span class="w"> </span><span class="kt">BoolStructR</span><span class="w">   </span><span class="c1">-- eyes IS (left IS blue AND right IS brown)</span>
+<span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="kt">RPnary</span><span class="w"> </span><span class="kt">RPRel</span><span class="w"> </span><span class="p">[</span><span class="kt">RelationalPredicate</span><span class="p">]</span><span class="w"> </span><span class="c1">-- &quot;NEVER GO FULL LISP!&quot; &quot;we went full Lisp&quot;.</span>
+</code></pre></div>
+<h3 id="types-for-values">Types for values</h3>
+<p>The base for all types is the <code>MTExpr</code> type.</p>
+<div class="highlight"><pre><span></span><code><span class="kr">data</span><span class="w"> </span><span class="kt">MTExpr</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="kt">MTT</span><span class="w"> </span><span class="kt">Text</span><span class="o">.</span><span class="kt">Text</span><span class="w"> </span><span class="c1">-- ^ Text string</span>
+<span class="w">            </span><span class="o">|</span><span class="w"> </span><span class="kt">MTI</span><span class="w"> </span><span class="kt">Integer</span><span class="w">   </span><span class="c1">-- ^ Integer</span>
+<span class="w">            </span><span class="o">|</span><span class="w"> </span><span class="kt">MTF</span><span class="w"> </span><span class="kt">Double</span><span class="w">     </span><span class="c1">-- ^ Float</span>
+<span class="w">            </span><span class="o">|</span><span class="w"> </span><span class="kt">MTB</span><span class="w"> </span><span class="kt">Bool</span><span class="w">      </span><span class="c1">-- ^ Boolean</span>
+
+<span class="kr">type</span><span class="w"> </span><span class="kt">MultiTerm</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="p">[</span><span class="kt">MTExpr</span><span class="p">]</span>
+
+<span class="kr">type</span><span class="w"> </span><span class="kt">TypedMulti</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="p">(</span><span class="kt">NonEmpty</span><span class="w"> </span><span class="kt">MTExpr</span><span class="p">,</span><span class="w"> </span><span class="kt">Maybe</span><span class="w"> </span><span class="kt">TypeSig</span><span class="p">)</span>
+
+<span class="kr">type</span><span class="w"> </span><span class="kt">ParamText</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="kt">NonEmpty</span><span class="w"> </span><span class="kt">TypedMulti</span>
+</code></pre></div>
+<h3 id="types-for-types">Types for types</h3>
+<div class="highlight"><pre><span></span><code><span class="kr">data</span><span class="w"> </span><span class="kt">TypeSig</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="kt">SimpleType</span><span class="w"> </span><span class="kt">ParamType</span><span class="w"> </span><span class="kt">EntityType</span>
+<span class="w">             </span><span class="o">|</span><span class="w"> </span><span class="kt">InlineEnum</span><span class="w"> </span><span class="kt">ParamType</span><span class="w"> </span><span class="kt">ParamText</span>
+
+<span class="kr">data</span><span class="w"> </span><span class="kt">ParamType</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="kt">TOne</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kt">TOptional</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kt">TList0</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kt">TList1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kt">TSet0</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kt">TSet1</span>
+
+<span class="kr">type</span><span class="w"> </span><span class="kt">EntityType</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="kt">Text</span><span class="o">.</span><span class="kt">Text</span>
+</code></pre></div>
+<h3 id="rprel">RPRel</h3>
+<p>The list of <code>RPRel</code>s is as follows.</p>
+<div class="highlight"><pre><span></span><code><span class="kr">data</span><span class="w"> </span><span class="kt">RPRel</span><span class="w"> </span><span class="ow">=</span>
+<span class="w">    </span><span class="kt">RPis</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kt">RPhas</span>
+<span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="kt">RPeq</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kt">RPlt</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kt">RPlte</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kt">RPgt</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kt">RPgte</span>
+<span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="kt">RPelem</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kt">RPnotElem</span>
+<span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="kt">RPnot</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kt">RPand</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kt">RPor</span>
+<span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="kt">RPmap</span>
+<span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="kt">RPmin</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kt">RPmax</span>
+<span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="kt">RPsum</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kt">RPproduct</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kt">RPminus</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kt">RPdivide</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kt">RPmodulo</span>
+<span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="kt">RPTC</span><span class="w"> </span><span class="kt">TComparison</span>
+
+<span class="kr">data</span><span class="w"> </span><span class="kt">TComparison</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="kt">TBefore</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kt">TAfter</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kt">TBy</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kt">TOn</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kt">TVague</span>
+</code></pre></div>
+<h3 id="redundancies-in-relationalpredicate">Redundancies in RelationalPredicate</h3>
+<h4 id="paramtext-and-multiterm">ParamText and MultiTerm</h4>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="kt">RPParamText</span><span class="w">   </span><span class="kt">ParamText</span>
+<span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="kt">RPMT</span><span class="w">          </span><span class="kt">MultiTerm</span>
+</code></pre></div>
+<p>Both ParamText and MultiTerm are based on a list of <code>MTExpr</code>. ParamText has in addition an optional TypeSig attached to the expressions and two separate NonEmpty lists.</p>
+<p>So in translation to Generic MathLang, I just do this</p>
+<div class="highlight"><pre><span></span><code><span class="kr">case</span><span class="w"> </span><span class="n">rp</span><span class="w"> </span><span class="kr">of</span>
+<span class="w">  </span><span class="kt">RPParamText</span><span class="w"> </span><span class="n">pt</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="n">expifyBodyRP</span><span class="w"> </span><span class="o">$</span><span class="w"> </span><span class="kt">RPMT</span><span class="w"> </span><span class="o">$</span><span class="w"> </span><span class="n">pt2multiterm</span><span class="w"> </span><span class="n">pt</span>
+<span class="w">  </span><span class="kt">RPMT</span><span class="w"> </span><span class="n">mtes</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="n">expifyMTEsNoMd</span><span class="w"> </span><span class="n">mtes</span>
+</code></pre></div>
+<h4 id="logical-operators-from-rprel-and-boolstruct">Logical operators from RPRel and BoolStruct</h4>
+<p>The type <code>RPRel</code> contains logical operators <code>RPnot</code>, <code>RPand</code>, <code>RPor</code>. So these things can be in the BoolStructR, or inside the RelationalPredicate.</p>
+<div class="highlight"><pre><span></span><code><span class="kt">Leaf</span><span class="w"> </span><span class="p">(</span><span class="kt">RPnary</span><span class="w"> </span><span class="kt">RPnot</span><span class="w"> </span><span class="p">[</span><span class="n">rp</span><span class="p">])</span>
+<span class="c1">-- should be the same as</span>
+<span class="kt">Not</span><span class="w"> </span><span class="p">(</span><span class="kt">Leaf</span><span class="w"> </span><span class="n">rp</span><span class="p">)</span>
+
+<span class="kt">Leaf</span><span class="w"> </span><span class="p">(</span><span class="kt">RPnary</span><span class="w"> </span><span class="kt">RPall</span><span class="w"> </span><span class="p">[</span><span class="n">rp1</span><span class="p">,</span><span class="w"> </span><span class="n">rp2</span><span class="p">])</span>
+<span class="c1">-- should be the same as</span>
+<span class="kt">All</span><span class="w"> </span><span class="n">lbl</span><span class="w"> </span><span class="p">[</span><span class="kt">Leaf</span><span class="w"> </span><span class="n">rp1</span><span class="p">,</span><span class="w"> </span><span class="kt">Lea</span><span class="w"> </span><span class="n">rp2</span><span class="p">]</span>
+</code></pre></div>
+<p>The difference is that the BoolStruct constructors <code>Any</code> and <code>All</code> include a label (which for BoolStructR is Maybe Text). Maybe there's also some other differences that I'm not aware of?</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.indexes", "navigation.top", "navigation.expand", "navigation.path", "navigation.instant", "toc.follow", "toc.integrate"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      
+    
+  </body>
+</html>
